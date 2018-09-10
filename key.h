@@ -74,7 +74,7 @@ bool operator==(const Key& rightHandSideKey) const;
 bool operator<(const Key& rightHandSideKey) const;
 
 protected:
-   string textingAbbreviation
+   string textingAbbreviation;
 };
 #endif
 
