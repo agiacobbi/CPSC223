@@ -1,4 +1,4 @@
-// Specification of ADT Item wherex
+// Specification of ADT Item where
 //     an Item is-a Key  (technical computer science)
 //     class Item is a derived or child class of class Key
 
@@ -40,7 +40,7 @@ friend ostream& operator<< (ostream& output, const Item& rightHandSideItem);
 public:
 
 //creates an empty item (texting abbreviation and its associated meaning)
-//post 
+//post Item object is an empty texting meaning
 //usage Item aitem;
 Item();
 
@@ -51,15 +51,15 @@ Item();
 ~Item();
 
 //creates a new item and copies the right hand side item into item
-//pre
-//post
+//pre rightHandSideItem is an Item assigned a string that represents a texting meaning
+//post Item object has a copy of the texting meaning in rightHandSideItem
 //usage  Item myItem(yourItem);
 Item(const Item& rightHandSideItem);
 
-//
-//pre
-//post
-//usage
+//copies a texting meaning
+//pre rightHandSideItem has been assigned a texting meaning
+//post Item object has a copy of rightHandSideItem
+//usage aItem = bItem;
 Item& operator=(const Item& rightHandSideItem);
 
 private:
