@@ -7,6 +7,20 @@
 #include <fstream>
 using namespace std;
 
+void keyFriendInputTest();
+void keyFriendOutputTest();
+void keyCopyConstructorTest();
+void keyAssignTest();
+void keyIsEqualTest();
+void keyIsLessThanTest();
+void itemFriendInputTest();
+void itemFriendOutputTest();
+void itemCopyConstructorTest();
+void itemAssignTest();
+void itemIsLessThanTest();
+void itemIsEqualTest();
+void itemConvertToIntTest();
+
 int main()
 {
     Key firstOne;
