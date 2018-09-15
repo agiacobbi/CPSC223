@@ -18,6 +18,7 @@
 istream& operator>> (istream& input, Key& rightHandSideKey)
 {
    input >> rightHandSideKey.textingAbbreviation;
+   cin.ignore();
    return input;
 }
 

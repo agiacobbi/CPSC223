@@ -25,7 +25,11 @@
 //usage cin >> myItem;
 istream& operator>> (istream& input, Item& rightHandSideItem)
 {
-
+    input >> rightHandSideItem.textingAbbreviation;
+    cin.ignore();
+    getline(input, rightHandSideItem.textingMeaning);
+    cin.ignore();
+    return input;
 }
  
 //allows for the output of an item to the standard output device or a file
@@ -38,7 +42,8 @@ istream& operator>> (istream& input, Item& rightHandSideItem)
 //usage  outfile << myItem;
 ostream& operator<< (ostream& output, const Item& rightHandSideItem)
 {
-    
+    output << rightHandSideItem.textingAbbreviation << ": " << rightHandSideItem.textingMeaning << endl;
+    return output;
 }
 
 //creates an empty item
@@ -55,7 +60,8 @@ Item::Item()
 //usage Item myItem(yourItem); 
 Item::Item(const Item& rightHandSideItem)
 {
-    
+    textingAbbreviation = rightHandSideItem.textingAbbreviation;
+    textingMeaning = rightHandSideItem.textingMeaning;
 }
 
 //releases memory for a texting abbreviation
@@ -73,5 +79,9 @@ Item::~Item()
 //usage aItem = bItem;
 Item& Item::operator=(const Item& rightHandSideItem)
 {
-
+    if (this != &rightHandSideItem) {
+        textingAbbreviation = rightHandSideItem.textingAbbreviation;
+        textingMeaning = rightHandSideItem.textingMeaning;
+    }
+    return *this;
 }
