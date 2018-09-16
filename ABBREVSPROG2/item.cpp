@@ -25,10 +25,10 @@
 //usage cin >> myItem;
 istream& operator>> (istream& input, Item& rightHandSideItem)
 {
+    char newLine;
     input >> rightHandSideItem.textingAbbreviation;
-    cin.ignore();
+    cin.get(newLine);
     getline(input, rightHandSideItem.textingMeaning);
-    cin.ignore();
     return input;
 }
  

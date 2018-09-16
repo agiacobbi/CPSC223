@@ -40,29 +40,37 @@ int main()
 }
 
 void keyFriendInputOutputTest(){
-	Key a, b, c;
+	Key keyOne, keyTwo, keyThree;
 	fstream inputFile, outputFile;
-	cout << "Testing the input function, please enter 3 texting Abbreviations" << endl;
-	cin  >> a >> b >> c;
-	cout << "Testing the output function by displaying the output between the # signs" << endl;
-	cout << "#" << a << "#" << b << "#" << c << "#" << endl;
-	inputFile.open("in.dat");
+
+    inputFile.open("in.dat");
 	outputFile.open("out.dat");
-	cout << "Testing to see if writing to a file works" << endl;
-	inputFile >> a >> b >> c;
-	outputFile << a << b << c << endl;
+
+	cout << "---Testing the ADT Key friends operator>> and operator<<---" << endl;
+    cout << "Enter three texting abbreviations" << endl;
+	cin  >> keyOne >> keyTwo >> keyThree;
+	cout << "Printing abbreviations between the # signs" << endl;
+	cout << "#" << keyOne << "#" << keyTwo << "#" << keyThree << "#" << endl;
+	
+	cout << "Testing the ADT Key friends operator>> and operator<< for files" << endl;
+    cout << "Texting abbreviations from in.dat will be written to out.dat" << endl;
+	inputFile >> keyOne >> keyTwo >> keyThree;
+	outputFile << keyOne << keyTwo << keyThree << endl;
+
 	inputFile.close();
 	outputFile.close();
 }
 void keyCopyConstructorTest(){
-	Key text("lol");
-	cout << "Testing constructor that assigns a texting abbreviation to key" << endl;
-	cout << "Displaying the text \"lol\" between #s" <<endl;
-	cout << "#"<<text<<"#" << endl;
+	Key keyOne("lol");
+
+	cout << "---Testing constructor that initializes Key with a specified abbreviation---" << endl;
+	cout << "keyOne is initialized to \"lol\"  and displayed between #s" <<endl;
+	cout << "#" << keyOne << "#" << endl;
 }
 void keyAssignTest(){
 	Key a, b, c;
-	cout << "Testing the assign by function by using cascading" << endl;
+
+	cout << "---Testing the assign by function by using cascading---" << endl;
 	cout << "Enter the first texting abbreviation" << endl;
 	cin >> a;
 	cout << "Enter the second texting abbreviation" << endl;
@@ -108,6 +116,7 @@ void itemFriendInputOutputTest()
 {
     Item testItem1, testItem2, testItem3;
     fstream inputFile, outputFile;
+
     inputFile.open("in.dat");
     outputFile.open("out.dat");
 
