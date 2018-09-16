@@ -45,7 +45,7 @@ void keyFriendInputOutputTest(){
 	cout << "Testing the input function, please enter 3 texting Abbreviations" << endl;
 	cin  >> a >> b >> c;
 	cout << "Testing the output function by displaying the output between the # signs" << endl;
-	cout << "#" << a << "#" << b << "#" << c << "#" endl;
+	cout << "#" << a << "#" << b << "#" << c << "#" << endl;
 	inputFile.open("in.dat");
 	outputFile.open("out.dat");
 	cout << "Testing to see if writing to a file works" << endl;
@@ -57,7 +57,7 @@ void keyFriendInputOutputTest(){
 void keyCopyConstructorTest(){
 	Key text("lol");
 	cout << "Testing constructor that assigns a texting abbreviation to key" << endl;
-	cout << "Displaying the text "lol" between #s" <<endl;
+	cout << "Displaying the text \"lol\" between #s" <<endl;
 	cout << "#"<<text<<"#" << endl;
 }
 void keyAssignTest(){
@@ -67,7 +67,7 @@ void keyAssignTest(){
 	cin >> a;
 	cout << "Enter the second texting abbreviation" << endl;
 	cin >> b;
-	cout >> "Enter the third texting abbreviation" << endl;
+	cout << "Enter the third texting abbreviation" << endl;
 	cin >> c;
 	cout << "Cascading the texting abbreviation" << endl;
 	a = b = c;
@@ -183,5 +183,5 @@ void itemConvertToIntTest()
     cout << "Testing convertToInteger inherited from ADT Key for ADT Item" << endl;
     cout << "Enter a texting abbreviation and meaning" << endl;
     cin >> itemOne;
-    cout << "itemOne converted to an integer is: " << itemOne.convertToInteger(); << endl;
+    cout << "itemOne converted to an integer is: " << itemOne.convertToInteger() << endl;
 }
