@@ -51,11 +51,11 @@ void keyFriendInputOutputTest(){
 	cout << "---Testing the ADT Key friends operator>> and operator<<---" << endl;
     cout << "Enter three texting abbreviations" << endl;
 	cin  >> keyOne >> keyTwo >> keyThree;
-	cout << "Printing abbreviations between the # signs" << endl;
-	cout << "#" << keyOne << "#" << keyTwo << "#" << keyThree << "#" << endl;
+	cout << endl << "Printing abbreviations between the # signs" << endl;
+	cout << "#" << keyOne << "#" << keyTwo << "#" << keyThree << "#" << endl << endl;
 	
 	cout << "Testing the ADT Key friends operator>> and operator<< for files" << endl;
-    cout << "Texting abbreviations from in.dat will be written to out.dat" << endl;
+    cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
 	inputFile >> keyOne >> keyTwo >> keyThree;
 	outputFile << keyOne << keyTwo << keyThree << endl;
 
@@ -73,44 +73,44 @@ void keyAssignTest(){
 	Key keyOne, keyTwo, keyThree;
 
 	cout << "---Testing operator= for ADT Key---" << endl;
-	cout << "Enter a texting abbreviation for keyOne" << endl;
+	cout << "Enter a texting abbreviation for keyOne->";
 	cin >> keyOne;
 
 	cout << "Keys keyTwo and keyThree will be set equal to keyOne using operator=" << endl;
-	keyOne = keyTwo = keyThree;
+	keyThree = keyTwo = keyOne;
 
 	cout << "Displaying keyOne, keyTwo and keyThree" << endl;
-    cout << keyOne << endl << keyTwo << endl << keyThree << endl;
+    cout << keyOne << endl << keyTwo << endl << keyThree << endl << endl;
 }
 		
 void keyIsEqualTest(){
 	Key keyOne, keyTwo;
 
 	cout << "---Testing the operator== for ADT Key---" << endl;
-	cout << "Enter a texting abbreviation->";
+	cout << "Enter a texting abbreviation for keyOne->";
     cin >> keyOne;
-	cout << "Enter a texting abbreviation->";
+	cout << "Enter a texting abbreviation for keyTwo->";
     cin >> keyTwo;
 
 	if (keyOne == keyTwo) 
-        cout << "Texting abbreviations are the same" << endl;
+        cout << "keyOne = keyTwo" << endl <<endl;
 	else 
-	    cout << "Texting abbreviations are different" << endl;
+	    cout << "keyOne != keyTwo" << endl << endl;
 }	
 	
 void keyIsLessThanTest(){
 	Key keyOne, keyTwo;
 
     cout << "---Testing the operator< for ADT Key---" << endl;
-	cout << "Enter a texting abbreviation->";
+	cout << "Enter a texting abbreviation for keyOne->";
 	cin >> keyOne;
-	cout<< " Enter a texting abbreviation->";
-	cin>> keyTwo;
+	cout << "Enter a texting abbreviation for keyTwo->";
+	cin >> keyTwo;
 
 	if (keyOne <  keyTwo)
-		cout << "The first texting abbreviation is less than the second texting abbreviation" << endl;  
+		cout << "keyOne < keyTwo" << endl << endl;  
 	else 
-		cout << "The first texting abbreviation is not less than the second texting abbreviation" << endl;
+		cout << "keyOne >= keyTwo" << endl << endl;
 }
 
 void itemFriendInputOutputTest()
@@ -124,10 +124,11 @@ void itemFriendInputOutputTest()
     cout << "---Testing the ADT Item friends operator>> and operator<<---" << endl;
     cout << "Enter three texting abbreviations and meanings" << endl;
     cin >> testItem1 >> testItem2 >> testItem3;
-    cout << "Printing items to screen" << endl;
+    cout << endl << "Printing items to screen" << endl;
     cout << testItem1 << testItem2 << testItem3 << endl;
 
     cout << "Testing the ADT Item friends operator>> and operator<< for files" << endl;
+    cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
     inputFile >> testItem1 >> testItem2 >> testItem3;
     outputFile << testItem1 << testItem2 << testItem3;
 
@@ -140,12 +141,12 @@ void itemCopyConstructorTest()
     Item itemOne;
 
     cout << "---Testing the copy constructor for ADT Item---" << endl;
-    cout << "Enter a texting abbreviation and meaning" << endl;
+    cout << "Enter a texting abbreviation and meaning->";
     cin >> itemOne;
 
     Item itemOneCopy(itemOne);
     
-    cout << "Displaying the copied item" << endl;
+    cout << endl << "Displaying the copied ADT Item" << endl;
     cout << itemOneCopy << endl;
 }
 
@@ -154,10 +155,10 @@ void itemAssignTest()
     Item itemOne, itemTwo, itemThree;
 
     cout << "---Testing operator= for ADT Item---" << endl;
-    cout << "Enter a texting abbreviation and meaning for itemOne" << endl;
+    cout << "Enter a texting abbreviation and meaning for itemOne->";
     cin >> itemOne;
 
-    cout << "Items itemTwo and itemThree will be set equal to itemOne using operator=" << endl;
+    cout << endl << "Items itemTwo and itemThree will be set equal to itemOne using operator=" << endl;
     itemThree = itemTwo = itemOne;
     cout << "Displaying itemOne itemTwo and itemThree" << endl;
     cout << itemOne << itemTwo << itemThree << endl;
@@ -168,13 +169,15 @@ void itemIsLessThanTest()
     Item itemOne, itemTwo;
 
     cout << "---Testing the operator< inherited from ADT Key for ADT Item---" << endl;
-    cout << "Enter two texting abbreviations and meanings for itemOne and itemTwo" << endl;
-    cin >> itemOne >> itemTwo;
+    cout << "Enter a texting abbreviation and meaning for itemOne->";
+    cin >> itemOne;
+    cout << "Enter a texting abbreviation and meaning for itemTwo->";
+    cin >> itemTwo;
 
     if (itemOne < itemTwo)
-        cout << "itemOne < itemTwo" << endl;
+        cout << "itemOne < itemTwo" << endl << endl;
     else
-        cout << "itemOne > itemTwo" << endl;
+        cout << "itemOne >= itemTwo" << endl << endl;
 }
 
 void itemIsEqualTest()
@@ -182,13 +185,15 @@ void itemIsEqualTest()
     Item itemOne, itemTwo;
 
     cout << "---Testing the operator== inherited from ADT Key for ADT Item---" << endl;
-    cout << "Enter two texting abbreviations and meanings for itemOne and itemTwo" << endl;
-    cin >> itemOne >> itemTwo;
+    cout << "Enter a texting abbreviation and meaning for itemOne->";
+    cin >> itemOne;
+    cout << "Enter a texting abbreviation and meaning for itemTwo->";
+    cin >> itemTwo;
 
     if (itemOne == itemTwo)
-        cout << "itemOne = itemTwo" << endl;
+        cout << "itemOne = itemTwo" << endl << endl;
     else
-        cout << "itemOne != itemTwo" << endl;
+        cout << "itemOne != itemTwo" << endl << endl;
 }
 
 void itemConvertToIntTest()
@@ -196,7 +201,7 @@ void itemConvertToIntTest()
     Item itemOne;
 
     cout << "---Testing convertToInteger inherited from ADT Key for ADT Item---" << endl;
-    cout << "Enter a texting abbreviation and meaning" << endl;
+    cout << "Enter a texting abbreviation and meaning for itemOne->";
     cin >> itemOne;
     cout << "itemOne converted to an integer is: " << itemOne.convertToInteger() << endl;
 }
