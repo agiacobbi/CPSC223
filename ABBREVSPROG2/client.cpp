@@ -39,7 +39,7 @@ int main()
 
 }
 
-void keyFriendInputOutputTest(){
+/*void keyFriendInputOutputTest(){
 	Key a, b, c;
 	fstream inputFile, outputFile;
 	cout << "Testing the input function, please enter 3 texting Abbreviations" << endl;
@@ -62,8 +62,8 @@ void keyFriendInputOutputTest(){
     itemIsLessThanTest();
     itemConvertToIntTest();
 
-    return 0;
-}
+    //return 0;
+}*/
 
 void keyFriendInputOutputTest(){
 	Key keyOne, keyTwo, keyThree;
@@ -94,8 +94,10 @@ void keyCopyConstructorTest(){
 	cout << "Testing constructor that assigns a texting abbreviation to key" << endl;
 	cout << "Displaying the text \"lol\" between #s" <<endl;
 	cout << "#"<<text<<"#" << endl;
+
 }
-void keyAssignTest(){
+
+/*void keyAssignTest(){
 	Key keyOne, keyTwo, keyThree;
 	cout << "Testing the assign by function by using cascading" << endl;
 	cout << "Enter the first texting abbreviation" << endl;
@@ -110,9 +112,9 @@ void keyAssignTest(){
 	cout << "First texting abbreviation after cascading: " << keyOne << endl;
 	cout << "Second texting abbreviation after cascading: " << keyTwo << endl;
 	cout << "Third texting abbreviation after cascading: " << keyThree << endl;
-}
+}*/
 		
-void keyIsEqualTest(){
+/*void keyIsEqualTest(){
 	Key keyOne, rightHandSideKey;
 	cout << "Testing to see if one texting abbreviation is equal to another" << endl;
 	cout << "Enter another texting abbreviation" << keyOne << endl;
@@ -126,12 +128,12 @@ void keyIsEqualTest(){
 	    cout << "Texting abbreviation are different" << endl;
 	}
 
-	Key keyOne("lol");
+	//Key keyOne("lol");
 
 	cout << "---Testing constructor that initializes Key with a specified abbreviation---" << endl;
 	cout << "keyOne is initialized to \"lol\"  and displayed between #s" <<endl;
 	cout << "#" << keyOne << "#" << endl << endl;
-}
+}*/
 void keyAssignTest(){
 	Key keyOne, keyTwo, keyThree;
 
