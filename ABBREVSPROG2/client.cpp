@@ -7,9 +7,9 @@
 #include <fstream>
 using namespace std;
 
-void keyFriendInputTest();
-void keyFriendOutputTest();
-void keyCopyConstructorTest();
+void keyFriendInputTest(istream& input);
+void keyFriendOutputTest(ostream& output);
+void keyCopyConstructorTest(string text);
 void keyAssignTest();
 void keyIsEqualTest();
 void keyIsLessThanTest();
@@ -23,10 +23,10 @@ void itemConvertToIntTest();
 
 int main()
 {
-    Key firstOne;
-    Key secondOne;
-    ifstream firstIn;
-    ofstream firstOut;
+    //Key firstOne;
+    //Key secondOne;
+    //ifstream firstIn;
+    //ofstream firstOut;
 
     cout << endl << endl;    // to move first output away from command prompt 
 
@@ -85,4 +85,72 @@ int main()
     */
     return 0;
 }
+
+void keyFriendInputOutputTest(){
+	Key a, b, c;
+	fstream inputFile, outputFile;
+	cout << "Testing the input function, please enter 3 texting Abbreviations" << endl;
+	cin  >> a >> b >> c;
+	cout << "Testing the output function by displaying the output between the # signs" << endl;
+	cout << "#" << a << "#" << b << "#" << c << "#" endl;
+	inputFile.open("in.dat");
+	outputFile.open("out.dat");
+	cout << "Testing to see if writing to a file works" << endl;
+	inputFile >> a >> b >> c;
+	outputFile << a << b << c << endl;
+	inputFile.close();
+	outputFile.close();
+}
+void keyCopyConstructorTest(){
+	Key text("lol");
+	cout << "Testing constructor that assigns a texting abbreviation to key" << endl;
+	cout << "Displaying the text "lol" between #s" <<endl;
+	cout << "#"<<text<<"#" << endl;
+}
+void keyAssignTest(){
+	Key a, b, c;
+	cout << "Testing the assign by function by using cascading" << endl;
+	cout << "Enter the first texting abbreviation" << endl;
+	cin >> a;
+	cout << "Enter the second texting abbreviation" << endl;
+	cin >> b;
+	cout >> "Enter the third texting abbreviation" << endl;
+	cin >> c;
+	cout << "Cascading the texting abbreviation" << endl;
+	a = b = c;
+	cout << "Assignments after cascading:" << endl;
+	cout << "First texting abbreviation after cascading: " << a;
+	cout << "Second texting abbreviation after cascading: " << b;
+	cout << "Third texting abbreviation after cascading: " << c;
+}
+		
+void keyIsEqualTest(){
+	Key keyOne, rightHandSideKey
+	cout << "Testing to see if one texting abbreviation is equal to another" << endl;
+	cout << "Enter another texting abbreviation" << keyOne << endl;
+	cout << "Enter another texting abbreviation" << rightHandSideKey << endl;
+	if (keyOne == rightHandSideKey) {
+        cout << "Texting abbreviation are the same" << endl;
+	}
+	else {
+	    cout << "Texting abbreviation are different" << endl;
+	}
+}	
+	
+void keyIsLessThanTest(){
+	Key keyOne, keyTwo;
+	cout << "Enter the first texting abbreviation" <<endl;
+	cin >> keyOne;
+	cout<< " Enter the second texting abbreviation"<<endl;
+	cin>> keyTwo;
+	if (keyOne <  keyTwo){
+		cout << "The first texting abbreviation is less than the second texting abbreviation" << endl;  
+	}
+	else {
+		cout<< "The second texting abbreviation is less than the first texting abbreviation << endl;
+	}
+}
+
+
+
 	
