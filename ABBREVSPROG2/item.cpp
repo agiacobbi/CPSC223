@@ -27,7 +27,7 @@ istream& operator>> (istream& input, Item& rightHandSideItem)
 {
     char newLine;
     input >> rightHandSideItem.textingAbbreviation;
-    cin.get(newLine);
+    input.get(newLine);
     getline(input, rightHandSideItem.textingMeaning);
     return input;
 }
