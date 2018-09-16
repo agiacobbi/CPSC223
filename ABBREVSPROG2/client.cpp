@@ -72,16 +72,18 @@ void keyAssignTest(){
 	cout << "Cascading the texting abbreviation" << endl;
 	a = b = c;
 	cout << "Assignments after cascading:" << endl;
-	cout << "First texting abbreviation after cascading: " << a;
-	cout << "Second texting abbreviation after cascading: " << b;
-	cout << "Third texting abbreviation after cascading: " << c;
+	cout << "First texting abbreviation after cascading: " << a << endl;
+	cout << "Second texting abbreviation after cascading: " << b << endl;
+	cout << "Third texting abbreviation after cascading: " << c << endl;
 }
 		
 void keyIsEqualTest(){
 	Key keyOne, rightHandSideKey;
 	cout << "Testing to see if one texting abbreviation is equal to another" << endl;
 	cout << "Enter another texting abbreviation" << keyOne << endl;
+	cin >> keyOne;
 	cout << "Enter another texting abbreviation" << rightHandSideKey << endl;
+	cin >> rightHandSideKey;
 	if (keyOne == rightHandSideKey) {
         cout << "Texting abbreviation are the same" << endl;
 	}
