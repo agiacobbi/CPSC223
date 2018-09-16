@@ -7,9 +7,6 @@
 #include <fstream>
 using namespace std;
 
-
-
-
 void keyFriendInputOutputTest();
 void keyCopyConstructorTest();
 void keyAssignTest();
@@ -24,19 +21,24 @@ void itemConvertToIntTest();
 
 int main()
 {
+    // Testing ADT Key member functions
     keyFriendInputOutputTest();
     keyCopyConstructorTest();
     keyAssignTest();
     keyIsEqualTest();
     keyIsLessThanTest();
+
+    // Testing ADT Item member functions
     itemFriendInputOutputTest();
     itemCopyConstructorTest();
     itemAssignTest();
+
+    // Testing ADT Key member functions inherited by ADT Item
     itemIsLessThanTest();
     itemIsEqualTest();
     itemConvertToIntTest();
-    return 0;
 
+    return 0;
 }
 
 void keyFriendInputOutputTest(){
@@ -65,51 +67,50 @@ void keyCopyConstructorTest(){
 
 	cout << "---Testing constructor that initializes Key with a specified abbreviation---" << endl;
 	cout << "keyOne is initialized to \"lol\"  and displayed between #s" <<endl;
-	cout << "#" << keyOne << "#" << endl;
+	cout << "#" << keyOne << "#" << endl << endl;
 }
 void keyAssignTest(){
-	Key a, b, c;
+	Key keyOne, keyTwo, keyThree;
 
-	cout << "---Testing the assign by function by using cascading---" << endl;
-	cout << "Enter the first texting abbreviation" << endl;
-	cin >> a;
-	cout << "Enter the second texting abbreviation" << endl;
-	cin >> b;
-	cout << "Enter the third texting abbreviation" << endl;
-	cin >> c;
-	cout << "Cascading the texting abbreviation" << endl;
-	a = b = c;
-	cout << "Assignments after cascading:" << endl;
-	cout << "First texting abbreviation after cascading: " << a;
-	cout << "Second texting abbreviation after cascading: " << b;
-	cout << "Third texting abbreviation after cascading: " << c;
+	cout << "---Testing operator= for ADT Key---" << endl;
+	cout << "Enter a texting abbreviation for keyOne" << endl;
+	cin >> keyOne;
+
+	cout << "Keys keyTwo and keyThree will be set equal to keyOne using operator=" << endl;
+	keyOne = keyTwo = keyThree;
+
+	cout << "Displaying keyOne, keyTwo and keyThree" << endl;
+    cout << keyOne << endl << keyTwo << endl << keyThree << endl;
 }
 		
 void keyIsEqualTest(){
-	Key keyOne, rightHandSideKey;
-	cout << "Testing to see if one texting abbreviation is equal to another" << endl;
-	cout << "Enter another texting abbreviation" << keyOne << endl;
-	cout << "Enter another texting abbreviation" << rightHandSideKey << endl;
-	if (keyOne == rightHandSideKey) {
-        cout << "Texting abbreviation are the same" << endl;
-	}
-	else {
-	    cout << "Texting abbreviation are different" << endl;
-	}
+	Key keyOne, keyTwo;
+
+	cout << "---Testing the operator== for ADT Key---" << endl;
+	cout << "Enter a texting abbreviation->";
+    cin >> keyOne;
+	cout << "Enter a texting abbreviation->";
+    cin >> keyTwo;
+
+	if (keyOne == keyTwo) 
+        cout << "Texting abbreviations are the same" << endl;
+	else 
+	    cout << "Texting abbreviations are different" << endl;
 }	
 	
 void keyIsLessThanTest(){
 	Key keyOne, keyTwo;
-	cout << "Enter the first texting abbreviation" <<endl;
+
+    cout << "---Testing the operator< for ADT Key---" << endl;
+	cout << "Enter a texting abbreviation->";
 	cin >> keyOne;
-	cout<< " Enter the second texting abbreviation"<<endl;
+	cout<< " Enter a texting abbreviation->";
 	cin>> keyTwo;
-	if (keyOne <  keyTwo){
+
+	if (keyOne <  keyTwo)
 		cout << "The first texting abbreviation is less than the second texting abbreviation" << endl;  
-	}
-	else {
-		cout << "The second texting abbreviation is less than the first texting abbreviation" << endl;
-	}
+	else 
+		cout << "The first texting abbreviation is not less than the second texting abbreviation" << endl;
 }
 
 void itemFriendInputOutputTest()
@@ -120,7 +121,7 @@ void itemFriendInputOutputTest()
     inputFile.open("in.dat");
     outputFile.open("out.dat");
 
-    cout << "Testing the ADT Item friends operator>> and operator<<" << endl;
+    cout << "---Testing the ADT Item friends operator>> and operator<<---" << endl;
     cout << "Enter three texting abbreviations and meanings" << endl;
     cin >> testItem1 >> testItem2 >> testItem3;
     cout << "Printing items to screen" << endl;
@@ -137,7 +138,8 @@ void itemFriendInputOutputTest()
 void itemCopyConstructorTest()
 {
     Item itemOne;
-    cout << "Testing the copy constructor for ADT Item" << endl;
+
+    cout << "---Testing the copy constructor for ADT Item---" << endl;
     cout << "Enter a texting abbreviation and meaning" << endl;
     cin >> itemOne;
 
@@ -150,7 +152,8 @@ void itemCopyConstructorTest()
 void itemAssignTest()
 {
     Item itemOne, itemTwo, itemThree;
-    cout << "Testing operator= for ADT Item" << endl;
+
+    cout << "---Testing operator= for ADT Item---" << endl;
     cout << "Enter a texting abbreviation and meaning for itemOne" << endl;
     cin >> itemOne;
 
@@ -163,7 +166,8 @@ void itemAssignTest()
 void itemIsLessThanTest()
 {
     Item itemOne, itemTwo;
-    cout << "Testing the operator< inherited from ADT Key for ADT Item" << endl;
+
+    cout << "---Testing the operator< inherited from ADT Key for ADT Item---" << endl;
     cout << "Enter two texting abbreviations and meanings for itemOne and itemTwo" << endl;
     cin >> itemOne >> itemTwo;
 
@@ -176,7 +180,8 @@ void itemIsLessThanTest()
 void itemIsEqualTest()
 {
     Item itemOne, itemTwo;
-    cout << "Testing the operator== inherited from ADT Key for ADT Item" << endl;
+
+    cout << "---Testing the operator== inherited from ADT Key for ADT Item---" << endl;
     cout << "Enter two texting abbreviations and meanings for itemOne and itemTwo" << endl;
     cin >> itemOne >> itemTwo;
 
@@ -189,7 +194,8 @@ void itemIsEqualTest()
 void itemConvertToIntTest()
 {
     Item itemOne;
-    cout << "Testing convertToInteger inherited from ADT Key for ADT Item" << endl;
+
+    cout << "---Testing convertToInteger inherited from ADT Key for ADT Item---" << endl;
     cout << "Enter a texting abbreviation and meaning" << endl;
     cin >> itemOne;
     cout << "itemOne converted to an integer is: " << itemOne.convertToInteger() << endl;
