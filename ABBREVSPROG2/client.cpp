@@ -78,7 +78,7 @@ void keyAssignTest(){
 }
 		
 void keyIsEqualTest(){
-	Key keyOne, rightHandSideKey
+	Key keyOne, rightHandSideKey;
 	cout << "Testing to see if one texting abbreviation is equal to another" << endl;
 	cout << "Enter another texting abbreviation" << keyOne << endl;
 	cout << "Enter another texting abbreviation" << rightHandSideKey << endl;
@@ -100,7 +100,7 @@ void keyIsLessThanTest(){
 		cout << "The first texting abbreviation is less than the second texting abbreviation" << endl;  
 	}
 	else {
-		cout<< "The second texting abbreviation is less than the first texting abbreviation << endl;
+		cout << "The second texting abbreviation is less than the first texting abbreviation" << endl;
 	}
 }
 
