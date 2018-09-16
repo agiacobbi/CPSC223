@@ -34,8 +34,8 @@ int main()
     itemAssignTest();
 
     // Testing ADT Key member functions inherited by ADT Item
-    itemIsLessThanTest();
     itemIsEqualTest();
+    itemIsLessThanTest();
     itemConvertToIntTest();
 
     return 0;
