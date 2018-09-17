@@ -1,13 +1,13 @@
-//filename key.cpp
-//author  Dr. Y
-//date September 7, 2018
-//Implementation of Abstract Data Type Key
-//
-//   data object: a key which is a texting abbreviation
-//   operations: create, destroy, copy, 
-//               input, output, assign
-//               check if same, check if less than, 
-//               convert to an integer
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+17 September 2018
+Description: This is the implementation file for abstract data type Key. This file contains function headers and
+bodies for the class Key's methods as well as documentation for each function. This data object is a Key which 
+stores a texting abbreviation. The class has methods that create, destroy, copy, input, output, assign, check if
+two texting abbreviations are the same, check if one texting abreviation is less than another, and convert a 
+texting abbreviation to an integer.
+*/
 
 #include "key.h"
 
