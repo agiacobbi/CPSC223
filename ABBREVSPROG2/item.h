@@ -1,3 +1,9 @@
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+17 September 2018
+Description: This is the header file 
+*/
 // Specification of ADT Item where
 //     an Item is-a Key  (technical computer science)
 //     class Item is a derived or child class of class Key

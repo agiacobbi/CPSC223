@@ -1,5 +1,11 @@
-// client program of class Key
-// following Homework
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+17 September 2018
+Description: This is a client program that tests the member functions of abstract data types Key and Item.
+This program is broken into functions that each test a different member function. The program is designed
+to walk the user through each function and show that each function works as documented.
+*/
 
 #include "key.h"
 #include "item.h"
@@ -50,7 +56,7 @@ void keyFriendInputOutputTest()
 	outputFile.open("out.dat");
 
 	cout << "---Testing the ADT Key friends operator>> and operator<<---" << endl;
-    cout << "Enter three texting abbreviations" << endl;
+    cout << "Enter three texting abbreviations using cascading input-> ";
 	cin  >> keyOne >> keyTwo >> keyThree;
 	cout << endl << "Printing abbreviations between the # signs" << endl;
 	cout << "#" << keyOne << "#" << keyTwo << "#" << keyThree << "#" << endl << endl;
@@ -67,8 +73,9 @@ void keyFriendInputOutputTest()
 void keyCopyConstructorTest()
 {
 	Key keyOne("lol");
+
 	cout << "---Testing constructor that assigns a texting abbreviation (lol) to key---" << endl;
-	cout << "Displaying the texting abbreviation between #s" <<endl;
+	cout << "Displaying the texting abbreviation between #s" << endl;
 	cout << "#" << keyOne << "#" << endl << endl;
 }
 
@@ -98,7 +105,7 @@ void keyIsEqualTest()
     cin >> keyTwo;
 
 	if (keyOne == keyTwo) 
-        cout << "keyOne = keyTwo" << endl <<endl;
+        cout << "keyOne = keyTwo" << endl << endl;
 	else 
 	    cout << "keyOne != keyTwo" << endl << endl;
 
@@ -122,22 +129,22 @@ void keyIsLessThanTest()
 
 void itemFriendInputOutputTest()
 {
-    Item testItem1, testItem2, testItem3;
+    Item itemOne, itemTwo, itemThree;
     fstream inputFile, outputFile;
 
     inputFile.open("in.dat");
     outputFile.open("out.dat");
 
     cout << "---Testing the ADT Item friends operator>> and operator<<---" << endl;
-    cout << "Enter three texting abbreviations and meanings" << endl;
-    cin >> testItem1 >> testItem2 >> testItem3; // cascading input
+    cout << "Enter three texting abbreviations and meanings using cascading input->";
+    cin >> itemOne >> itemTwo >> itemThree; // cascading input
     cout << "Printing items to screen" << endl;
-    cout << testItem1 << testItem2 << testItem3 << endl; // cascading output
+    cout << endl << itemOne << itemTwo << itemThree << endl; // cascading output
 
     cout << "---Testing the ADT Item friends operator>> and operator<< for files---" << endl;
     cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
-    inputFile >> testItem1 >> testItem2 >> testItem3;
-    outputFile << testItem1 << testItem2 << testItem3;
+    inputFile >> itemOne >> itemTwo >> itemThree;
+    outputFile << itemOne << itemTwo << itemThree;
 
     inputFile.close();
     outputFile.close();
@@ -150,6 +157,7 @@ void itemCopyConstructorTest()
     cout << "---Testing the copy constructor for ADT Item---" << endl;
     cout << "Enter a texting abbreviation and meaning->";
     cin >> itemOne;
+
     Item itemOneCopy(itemOne);
 
     cout << endl << "Displaying the copied ADT Item" << endl;

@@ -1,13 +1,13 @@
-//filename key.cpp
-//author  Dr. Y
-//date September 7, 2018
-//Implementation of Abstract Data Type Key
-//
-//   data object: a key which is a texting abbreviation
-//   operations: create, destroy, copy, 
-//               input, output, assign
-//               check if same, check if less than, 
-//               convert to an integer
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+17 September 2018
+Description: This is the implementation file for abstract data type Item. This file contains function headers and
+bodies for the class Item's methods as well as documentation for each function. This data object is an Item which 
+stores a texting abbreviation (inherited from Key) and an associated texting meaning. The class inherits functions 
+and data members from class Key and has its own methods and friends that create, destroy, copy, assign, input, and 
+output.
+*/
 
 #include "key.h"
 #include "item.h"
@@ -42,7 +42,7 @@ istream& operator>> (istream& input, Item& rightHandSideItem)
 //usage  outfile << myItem;
 ostream& operator<< (ostream& output, const Item& rightHandSideItem)
 {
-    output << rightHandSideItem.textingAbbreviation << ": " << rightHandSideItem.textingMeaning << endl;
+    output << rightHandSideItem.textingAbbreviation << ":  " << rightHandSideItem.textingMeaning << endl;
     return output;
 }
 
