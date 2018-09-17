@@ -67,9 +67,9 @@ void keyFriendInputOutputTest()
 void keyCopyConstructorTest()
 {
 	Key keyOne("lol");
-	cout << "Testing constructor that assigns a texting abbreviation (lol) to key" << endl;
+	cout << "---Testing constructor that assigns a texting abbreviation (lol) to key---" << endl;
 	cout << "Displaying the texting abbreviation between #s" <<endl;
-	cout << "#" << keyOne << "#" << endl;
+	cout << "#" << keyOne << "#" << endl << endl;
 }
 
 void keyAssignTest()
