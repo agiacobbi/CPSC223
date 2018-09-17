@@ -41,7 +41,8 @@ int main()
     return 0;
 }
 
-void keyFriendInputOutputTest(){
+void keyFriendInputOutputTest()
+{
 	Key keyOne, keyTwo, keyThree;
 	fstream inputFile, outputFile;
 
@@ -54,22 +55,25 @@ void keyFriendInputOutputTest(){
 	cout << endl << "Printing abbreviations between the # signs" << endl;
 	cout << "#" << keyOne << "#" << keyTwo << "#" << keyThree << "#" << endl << endl;
 	
-	cout << "Testing the ADT Key friends operator>> and operator<< for files" << endl;
+	cout << "---Testing the ADT Key friends operator>> and operator<< for files---" << endl;
     cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
 	inputFile >> keyOne >> keyTwo >> keyThree;
-	outputFile << keyOne << keyTwo << keyThree << endl;
+	outputFile << keyOne << keyTwo << keyThree;
 
 	inputFile.close();
 	outputFile.close();
-}
-void keyCopyConstructorTest(){
-	Key keyOne("lol");
 
-	cout << "---Testing constructor that initializes Key with a specified abbreviation---" << endl;
-	cout << "keyOne is initialized to \"lol\"  and displayed between #s" <<endl;
-	cout << "#" << keyOne << "#" << endl << endl;
 }
-void keyAssignTest(){
+void keyCopyConstructorTest()
+{
+	Key keyOne("lol");
+	cout << "Testing constructor that assigns a texting abbreviation (lol) to key" << endl;
+	cout << "Displaying the texting abbreviation between #s" <<endl;
+	cout << "#" << keyOne << "#" << endl;
+}
+
+void keyAssignTest()
+{
 	Key keyOne, keyTwo, keyThree;
 
 	cout << "---Testing operator= for ADT Key---" << endl;
@@ -83,7 +87,8 @@ void keyAssignTest(){
     cout << keyOne << endl << keyTwo << endl << keyThree << endl << endl;
 }
 		
-void keyIsEqualTest(){
+void keyIsEqualTest()
+{
 	Key keyOne, keyTwo;
 
 	cout << "---Testing the operator== for ADT Key---" << endl;
@@ -96,9 +101,11 @@ void keyIsEqualTest(){
         cout << "keyOne = keyTwo" << endl <<endl;
 	else 
 	    cout << "keyOne != keyTwo" << endl << endl;
+
 }	
 	
-void keyIsLessThanTest(){
+void keyIsLessThanTest()
+{
 	Key keyOne, keyTwo;
 
     cout << "---Testing the operator< for ADT Key---" << endl;
@@ -123,11 +130,11 @@ void itemFriendInputOutputTest()
 
     cout << "---Testing the ADT Item friends operator>> and operator<<---" << endl;
     cout << "Enter three texting abbreviations and meanings" << endl;
-    cin >> testItem1 >> testItem2 >> testItem3;
-    cout << endl << "Printing items to screen" << endl;
-    cout << testItem1 << testItem2 << testItem3 << endl;
+    cin >> testItem1 >> testItem2 >> testItem3; // cascading input
+    cout << "Printing items to screen" << endl;
+    cout << testItem1 << testItem2 << testItem3 << endl; // cascading output
 
-    cout << "Testing the ADT Item friends operator>> and operator<< for files" << endl;
+    cout << "---Testing the ADT Item friends operator>> and operator<< for files---" << endl;
     cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
     inputFile >> testItem1 >> testItem2 >> testItem3;
     outputFile << testItem1 << testItem2 << testItem3;
@@ -143,9 +150,8 @@ void itemCopyConstructorTest()
     cout << "---Testing the copy constructor for ADT Item---" << endl;
     cout << "Enter a texting abbreviation and meaning->";
     cin >> itemOne;
-
     Item itemOneCopy(itemOne);
-    
+
     cout << endl << "Displaying the copied ADT Item" << endl;
     cout << itemOneCopy << endl;
 }
@@ -160,6 +166,7 @@ void itemAssignTest()
 
     cout << endl << "Items itemTwo and itemThree will be set equal to itemOne using operator=" << endl;
     itemThree = itemTwo = itemOne;
+
     cout << "Displaying itemOne itemTwo and itemThree" << endl;
     cout << itemOne << itemTwo << itemThree << endl;
 }
@@ -178,6 +185,7 @@ void itemIsLessThanTest()
         cout << "itemOne < itemTwo" << endl << endl;
     else
         cout << "itemOne >= itemTwo" << endl << endl;
+
 }
 
 void itemIsEqualTest()
@@ -194,6 +202,7 @@ void itemIsEqualTest()
         cout << "itemOne = itemTwo" << endl << endl;
     else
         cout << "itemOne != itemTwo" << endl << endl;
+
 }
 
 void itemConvertToIntTest()
