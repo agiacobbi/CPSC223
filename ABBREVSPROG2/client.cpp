@@ -13,41 +13,41 @@ to walk the user through each function and show that each function works as docu
 #include <fstream>
 using namespace std;
 
-void keyFriendInputOutputTest();
-void keyCopyConstructorTest();
-void keyAssignTest();
-void keyIsEqualTest();
-void keyIsLessThanTest();
-void itemFriendInputOutputTest();
-void itemCopyConstructorTest();
-void itemAssignTest();
-void itemIsLessThanTest();
-void itemIsEqualTest();
-void itemConvertToIntTest();
+void testKeyFriendInputOutput();
+void testKeyCopyConstructor();
+void testKeyAssign();
+void testKeyIsEqual();
+void testKeyIsLessThan();
+void testItemFriendInputOutput();
+void testItemCopyConstructor();
+void testItemAssign();
+void testItemIsLessThan();
+void testItemIsEqual();
+void testItemConvertToInteger();
 
 int main()
 {
     // Testing ADT Key member functions
-    keyFriendInputOutputTest();
-    keyCopyConstructorTest();
-    keyAssignTest();
-    keyIsEqualTest();
-    keyIsLessThanTest();
+    testKeyFriendInputOutput();
+    testKeyCopyConstructor();
+    testKeyAssign();
+    testKeyIsEqual();
+    testKeyIsLessThan();
 
     // Testing ADT Item member functions
-    itemFriendInputOutputTest();
-    itemCopyConstructorTest();
-    itemAssignTest();
+    testItemFriendInputOutput();
+    testItemCopyConstructor();
+    testItemAssign();
 
     // Testing ADT Key member functions inherited by ADT Item
-    itemIsEqualTest();
-    itemIsLessThanTest();
-    itemConvertToIntTest();
+    testItemIsEqual();
+    testItemIsLessThan();
+    testItemConvertToInteger();
 
     return 0;
 }
 
-void keyFriendInputOutputTest()
+void testKeyFriendInputOutput()
 {
 	Key keyOne, keyTwo, keyThree;
 	fstream inputFile, outputFile;
@@ -56,10 +56,10 @@ void keyFriendInputOutputTest()
 	outputFile.open("out.dat");
 
 	cout << "---Testing the ADT Key friends operator>> and operator<<---" << endl;
-    cout << "Enter three texting abbreviations using cascading input-> ";
-	cin  >> keyOne >> keyTwo >> keyThree;
+    cout << "Enter three texting abbreviations using cascading input-> "; 
+	cin  >> keyOne >> keyTwo >> keyThree; // cascading input
 	cout << endl << "Printing abbreviations between the # signs" << endl;
-	cout << "#" << keyOne << "#" << keyTwo << "#" << keyThree << "#" << endl << endl;
+	cout << "#" << keyOne << "#" << endl << "#" << keyTwo << "#" << endl << "#" << keyThree << "#" << endl << endl; // cascading output
 	
 	cout << "---Testing the ADT Key friends operator>> and operator<< for files---" << endl;
     cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
@@ -70,7 +70,7 @@ void keyFriendInputOutputTest()
 	outputFile.close();
 
 }
-void keyCopyConstructorTest()
+void testKeyCopyConstructor()
 {
 	Key keyOne("lol");
 
@@ -79,7 +79,7 @@ void keyCopyConstructorTest()
 	cout << "#" << keyOne << "#" << endl << endl;
 }
 
-void keyAssignTest()
+void testKeyAssign()
 {
 	Key keyOne, keyTwo, keyThree;
 
@@ -90,11 +90,11 @@ void keyAssignTest()
 	cout << "Keys keyTwo and keyThree will be set equal to keyOne using operator=" << endl;
 	keyThree = keyTwo = keyOne;
 
-	cout << "Displaying keyOne, keyTwo and keyThree" << endl;
-    cout << keyOne << endl << keyTwo << endl << keyThree << endl << endl;
+	cout << "Displaying keyOne, keyTwo and keyThree between #s" << endl;
+    cout << "#" << keyOne << "#" << endl << "#" << keyTwo << "#" << endl << "#" << keyThree << "#" << endl << endl;
 }
 		
-void keyIsEqualTest()
+void testKeyIsEqual()
 {
 	Key keyOne, keyTwo;
 
@@ -111,7 +111,7 @@ void keyIsEqualTest()
 
 }	
 	
-void keyIsLessThanTest()
+void testKeyIsLessThan()
 {
 	Key keyOne, keyTwo;
 
@@ -127,7 +127,7 @@ void keyIsLessThanTest()
 		cout << "keyOne >= keyTwo" << endl << endl;
 }
 
-void itemFriendInputOutputTest()
+void testItemFriendInputOutput()
 {
     Item itemOne, itemTwo, itemThree;
     fstream inputFile, outputFile;
@@ -138,8 +138,8 @@ void itemFriendInputOutputTest()
     cout << "---Testing the ADT Item friends operator>> and operator<<---" << endl;
     cout << "Enter three texting abbreviations and meanings using cascading input->";
     cin >> itemOne >> itemTwo >> itemThree; // cascading input
-    cout << "Printing items to screen" << endl;
-    cout << endl << itemOne << itemTwo << itemThree << endl; // cascading output
+    cout << "Displaying itemOne, itemTwo, and itemThree between #s" << endl;
+    cout << "#" << itemOne << "#" << endl << "#" << itemTwo << "#" << endl << "#" << itemThree << "#" << endl; // cascading output
 
     cout << "---Testing the ADT Item friends operator>> and operator<< for files---" << endl;
     cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
@@ -150,7 +150,7 @@ void itemFriendInputOutputTest()
     outputFile.close();
 }
 
-void itemCopyConstructorTest()
+void testItemCopyConstructor()
 {
     Item itemOne;
 
@@ -160,11 +160,11 @@ void itemCopyConstructorTest()
 
     Item itemOneCopy(itemOne);
 
-    cout << endl << "Displaying the copied ADT Item" << endl;
-    cout << itemOneCopy << endl;
+    cout << endl << "Displaying the copied ADT Item between #s" << endl;
+    cout << "#" << itemOneCopy << "#" << endl;
 }
 
-void itemAssignTest()
+void testItemAssign()
 {
     Item itemOne, itemTwo, itemThree;
 
@@ -175,11 +175,11 @@ void itemAssignTest()
     cout << endl << "Items itemTwo and itemThree will be set equal to itemOne using operator=" << endl;
     itemThree = itemTwo = itemOne;
 
-    cout << "Displaying itemOne itemTwo and itemThree" << endl;
-    cout << itemOne << itemTwo << itemThree << endl;
+    cout << "Displaying itemOne itemTwo and itemThree between the #s" << endl;
+    cout << "#" << itemOne << "#" << endl << "#" << itemTwo << "#" << endl << "#" << itemThree << "#" << endl;
 }
 
-void itemIsLessThanTest()
+void testItemIsLessThan()
 {
     Item itemOne, itemTwo;
 
@@ -196,7 +196,7 @@ void itemIsLessThanTest()
 
 }
 
-void itemIsEqualTest()
+void testItemIsEqual()
 {
     Item itemOne, itemTwo;
 
@@ -213,7 +213,7 @@ void itemIsEqualTest()
 
 }
 
-void itemConvertToIntTest()
+void testItemConvertToInteger()
 {
     Item itemOne;
 
