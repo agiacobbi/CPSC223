@@ -139,7 +139,7 @@ void testItemFriendInputOutput()
     cout << "Enter three texting abbreviations and meanings using cascading input-> ";
     cin >> itemOne >> itemTwo >> itemThree; // cascading input
     cout << "Displaying itemOne, itemTwo, and itemThree between #s" << endl;
-    cout << "#" << itemOne << "#" << endl << "#" << itemTwo << "#" << endl << "#" << itemThree << "#" << endl; // cascading output
+    cout << "#" << itemOne << "#" << endl << "#" << itemTwo << "#" << endl << "#" << itemThree << "#" << endl << endl; // cascading output
 
     cout << "---Testing the ADT Item friends operator>> and operator<< for files---" << endl;
     cout << "Texting abbreviations from in.dat will be written to out.dat" << endl << endl;
