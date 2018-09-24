@@ -61,8 +61,9 @@ istream& operator>> (istream& input, Dictionary& rightHandSideDictionary)
 {
     Item itemInsert;
 
-    while (input >> itemInsert)
+    for (int i = 0; i < input.get(); i++)
     {
+        input >> itemInsert;
         rightHandSideDictionary.dictionaryPtr->hashTablePtr[hashFunction(itemInsert)] = itemInsert;
         rightHandSideDictionary.dictionaryPtr->numberStored++;
     }
