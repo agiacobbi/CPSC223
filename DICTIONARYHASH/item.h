@@ -1,10 +1,13 @@
-// Specification of ADT Item wherex
-//     an Item is-a Key  (technical computer science)
-//     class Item is a derived or child class of class Key
-
-//     data object: a meaning of a texting abbreviation
-//     operations: create, destroy, copy create, copy
-//                 input, output
+/*
+Alex Giacobbi and Nathan Flack
+agiacobbi
+17 September 2018
+Description: This is the header file for abstract data type Item. This file contains function prototypes
+and documentation for the methods of class Item. Item is a a derived class of class Key, so it can access
+protected data members of class Key and inherits some functions. Abstract data type Item is the meaning of
+a texting abbreviation stored in parent Key. This file contains protypes for member functions and friends
+that handle the following operations: create, destroy, copy create, copy, input, and output.
+*/
 
 #ifndef ITEM_H
 #define ITEM_H
@@ -40,7 +43,7 @@ friend ostream& operator<< (ostream& output, const Item& rightHandSideItem);
 public:
 
 //creates an empty item (texting abbreviation and its associated meaning)
-//post 
+//post Item object is an empty texting meaning
 //usage Item aitem;
 Item();
 
@@ -51,15 +54,15 @@ Item();
 ~Item();
 
 //creates a new item and copies the right hand side item into item
-//pre
-//post
+//pre rightHandSideItem is an Item assigned a string that represents a texting meaning
+//post Item object has a copy of the texting meaning in rightHandSideItem
 //usage  Item myItem(yourItem);
 Item(const Item& rightHandSideItem);
 
-//
-//pre
-//post
-//usage
+//copies a texting meaning
+//pre rightHandSideItem has been assigned a texting meaning
+//post Item object has a copy of rightHandSideItem
+//usage aItem = bItem;
 Item& operator=(const Item& rightHandSideItem);
 
 private:

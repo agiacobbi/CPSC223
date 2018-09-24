@@ -1,12 +1,17 @@
-// filename item.cpp
-// date September 17, 2018
-// Implementation of Abstract Data Type Item
-//
-//   data object: an item which is a texting meaning associated with a texting abbreviation
-//   operations: create, destroy, copy, 
-//               input, output, assign
+/*
+Alex Giacobbi and Nathan Flack
+agiacobbi
+17 September 2018
+Description: This is the implementation file for abstract data type Item. This file contains function headers and
+bodies for the class Item's methods as well as documentation for each function. This data object is an Item which 
+stores a texting abbreviation (inherited from Key) and an associated texting meaning. The class inherits functions 
+and data members from class Key and has its own methods and friends that create, destroy, copy, assign, input, and 
+output.
+*/
 
+#include "key.h"
 #include "item.h"
+
 
 //allows for input of an item from either the standard input device or a file
 //pre input has been opened and readied for the input of
@@ -20,11 +25,13 @@
 //usage cin >> myItem;
 istream& operator>> (istream& input, Item& rightHandSideItem)
 {
-	char newline;
-	input >> rightHandSideItem.textingAbbreviation;
-	input.get(newline);
-	getline(input, rightHandSideItem.meaning); // extracts the newline
-	return input;
+    char newLine;
+    
+    input >> rightHandSideItem.textingAbbreviation;
+    input.get(newLine);
+    getline(input, rightHandSideItem.textingMeaning);
+
+    return input;
 }
  
 //allows for the output of an item to the standard output device or a file
@@ -33,51 +40,50 @@ istream& operator>> (istream& input, Item& rightHandSideItem)
 //    output has been opened
 //post rightHandSideItem has been written to the output device
 //     lol:  laugh out loud
-//     there is no newline or eol after the meaning
+// 
 //usage  outfile << myItem;
 ostream& operator<< (ostream& output, const Item& rightHandSideItem)
 {
-	output << rightHandSideItem.textingAbbreviation << ": " << rightHandSideItem.meaning;
-	return output;
+    output << rightHandSideItem.textingAbbreviation << ":  " << rightHandSideItem.textingMeaning;
+    return output;
 }
 
-//creates an empty item (texting abbreviation and its associated meaning)
-//post Item object is an empty meaning
-//usage Item aitem;
+//creates an empty item
+//post Item object is an empty texting meaning
+//usage Item itemA();
 Item::Item()
 {
-	
+   
 }
 
-//releases memory for a texting abbreviation and its associated meaning
-//pre Item object exists
-//post Item object no longer exists, memory has been freed
+//creates a specific texting meaning
+//pre rightHandSideItem is an Item assigned a string that represents a texting meaning
+//post Item object has a copy of the texting meaning in rightHandSideItem
+//usage Item myItem(yourItem); 
+Item::Item(const Item& rightHandSideItem)
+{
+    textingAbbreviation = rightHandSideItem.textingAbbreviation;
+    textingMeaning = rightHandSideItem.textingMeaning;
+}
+
+//releases memory for a texting abbreviation
+//pre Key object exists
+//post Key object no longer exists, memory has been freed
 //usage automatically done at the end of scope
 Item::~Item()
 {
-	
+   
 }
 
-//creates a new item and copies the right hand side item into item
-//pre rightHandSideItem exists and contains a texting abbreviation and its associated meaning
-//post Item object is created and is a copy of rightHandSideItem
-//usage  Item myItem(yourItem);
-Item::Item(const Item& rightHandSideItem)
-{
-	textingAbbreviation = rightHandSideItem.textingAbbreviation;
-	meaning = rightHandSideItem.meaning;
-}
-
-//copies a texting abbreviation and its associated meaning
-//pre rightHandSideItem has been assigned a texting abbreviation and its associated meaning
+//copies a texting meaning
+//pre rightHandSideItem has been assigned a texting meaning
 //post Item object has a copy of rightHandSideItem
-//usage bitem = aitem;
+//usage aItem = bItem;
 Item& Item::operator=(const Item& rightHandSideItem)
 {
-	if (this != &rightHandSideItem)
-   {
-		textingAbbreviation = rightHandSideItem.textingAbbreviation;
-		meaning = rightHandSideItem.meaning;
-   }
-   return *this;
+    if (this != &rightHandSideItem) {
+        textingAbbreviation = rightHandSideItem.textingAbbreviation;
+        textingMeaning = rightHandSideItem.textingMeaning;
+    }
+    return *this;
 }

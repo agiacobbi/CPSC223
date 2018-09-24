@@ -13,7 +13,7 @@
 #include <iomanip>
 using namespace std;
 
-const int TABLESIZE = 7;
+const int TABLESIZE = 11;
 
 struct DictionaryRecord
 {
@@ -65,7 +65,7 @@ Dictionary::Dictionary()
 {
    dictionaryPtr = new DictionaryRecord;
    dictionaryPtr -> numberStored = 0;
-   dictionaryPtr -> hashTablePtr = new Item [TABLESIZE];
+   dictionaryPtr -> hashTablePtr = new Item [TABLESIZE - 1];
 }
 
 // destroys a dictionary
@@ -77,4 +77,48 @@ Dictionary::~Dictionary()
  
 }
 
-// you finish by copy pasting from dictionary.h
+// searchs for a meaning with a given text
+// pre targetText has been assigned 
+// post if an item with texting abbreviationthe same as targetText is found then
+//          isFound is true and theItem is that item
+//       else isFound is false
+// usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
+void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
+{
+
+}
+
+// inserts a new text' item into the dictionary
+// pre: newItem has been assigned
+// post: if there is room in the Dictionary object and newItem's text
+//            is not already there  isFull is false and isAlreadyThere is false
+//            and newItem is appropriately added
+//       else either isFull is true or isAlreadyThere is true, depending
+// usage: myDictionary.addNewEntry(myItem, isFull, isAlreadyThere);
+void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere)
+{
+
+}
+
+// removes the item associated with a given text from the dictionary
+// pre: targetText is assigned
+// post: if Dictionary object is not empty and 
+//           targetText is found in Dictionary object, isFound is true
+//           and the associated Item object (text and meaning) has been 
+//           removed from the Dictionary object 
+//       else isFound is false or isEmpty is true depending
+// usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
+void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound)
+{
+
+}
+
+bool Dictionary::isEmpty()
+{
+
+}
+
+int Dictionary::getNumberOfEntries()
+{
+
+}

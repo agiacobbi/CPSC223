@@ -82,6 +82,11 @@ void addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere);
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound);
 
+
+bool isEmpty();
+
+int getNumberOfEntries();
+
 private:
    DictionaryRecord* dictionaryPtr;
 };

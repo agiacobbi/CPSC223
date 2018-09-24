@@ -1,13 +1,13 @@
-//filename key.cpp
-//author  Dr. Y
-//date September 7, 2018
-//Implementation of Abstract Data Type Key
-//
-//   data object: a key which is a texting abbreviation
-//   operations: create, destroy, copy, 
-//               input, output, assign
-//               check if same, check if less than, 
-//               convert to an integer
+/*
+Alex Giacobbi and Nathan Flack
+agiacobbi
+17 September 2018
+Description: This is the implementation file for abstract data type Key. This file contains function headers and
+bodies for the class Key's methods as well as documentation for each function. This data object is a Key which 
+stores a texting abbreviation. The class has methods that create, destroy, copy, input, output, assign, check if
+two texting abbreviations are the same, check if one texting abreviation is less than another, and convert a 
+texting abbreviation to an integer.
+*/
 
 #include "key.h"
 
@@ -28,6 +28,7 @@ istream& operator>> (istream& input, Key& rightHandSideKey)
 ostream& operator<< (ostream& output, const Key& rightHandSideKey)
 {
    output << rightHandSideKey.textingAbbreviation;
+   return output;
 }
 
 //creates an empty texting abbreviation
@@ -44,7 +45,7 @@ Key::Key()
 //usage Key akey("lol"); 
 Key::Key(string keyText)
 {
-   
+   textingAbbreviation = keyText;
 }
 
 //releases memory for a texting abbreviation
@@ -62,7 +63,9 @@ Key::~Key()
 //usage bkey = akey;
 Key& Key::operator=(const Key& rightHandSideKey)
 {
-   
+   if (this != &rightHandSideKey)
+      textingAbbreviation = rightHandSideKey.textingAbbreviation;
+   return *this;
 }
 
 //converts a texting abbreviation to an integer
@@ -74,7 +77,7 @@ int Key::convertToInteger() const
    int asciiSum = 0;
    for (int k = 0; k < textingAbbreviation.length(); k++)
    {
-       asciiSum = asciiSum + textingAbbreviation.at(k);;
+       asciiSum = asciiSum + textingAbbreviation.at(k);
    }
    return asciiSum;
 }
@@ -85,7 +88,7 @@ int Key::convertToInteger() const
 //usage if (akey == bkey) { cout << "the texting abbreviations are the same" << endl;
 bool Key::operator==(const Key& rightHandSideKey) const
 {
-   
+	return (textingAbbreviation == rightHandSideKey.textingAbbreviation);
 }
 
 //checks if one texting abbreviation is less than another
@@ -94,5 +97,5 @@ bool Key::operator==(const Key& rightHandSideKey) const
 //usage if (akey < bkey) { cout << "left text is less than right text" << endl;
 bool Key::operator<(const Key& rightHandSideKey) const
 {
-   
+   return (textingAbbreviation < rightHandSideKey.textingAbbreviation);
 }
