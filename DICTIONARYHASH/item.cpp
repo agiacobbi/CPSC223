@@ -26,7 +26,7 @@ output.
 istream& operator>> (istream& input, Item& rightHandSideItem)
 {
     char newLine;
-    
+
     input >> rightHandSideItem.textingAbbreviation;
     input.get(newLine);
     getline(input, rightHandSideItem.textingMeaning);
@@ -44,7 +44,7 @@ istream& operator>> (istream& input, Item& rightHandSideItem)
 //usage  outfile << myItem;
 ostream& operator<< (ostream& output, const Item& rightHandSideItem)
 {
-    output << rightHandSideItem.textingAbbreviation << ":  " << rightHandSideItem.textingMeaning;
+    output << rightHandSideItem.textingAbbreviation << "\t" << rightHandSideItem.textingMeaning;
     return output;
 }
 

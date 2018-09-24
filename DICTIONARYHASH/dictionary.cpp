@@ -37,8 +37,13 @@ int hashFunction(const Key& theText)
 // usage: outfile << myDictionary;    
 ostream& operator<< (ostream& output, const Dictionary& rightHandSideDictionary)
 {
-
-   return output;
+    output << "address\ttext\tmeaning" << endl;
+    for (int i = 0; i < TABLESIZE; i++)
+    {
+        output << i << "\t";
+        output << rightHandSideDictionary.dictionaryPtr->hashTablePtr[i] << endl;
+    }
+    return output;
 }
 
 // inputs items into a dictionary
@@ -54,8 +59,14 @@ ostream& operator<< (ostream& output, const Dictionary& rightHandSideDictionary)
 // usage: infile >> myDictionary;
 istream& operator>> (istream& input, Dictionary& rightHandSideDictionary)
 {
- 
-   return input;
+    Item itemInsert;
+
+    while (input >> itemInsert)
+    {
+        rightHandSideDictionary.dictionaryPtr->hashTablePtr[hashFunction(itemInsert)] = itemInsert;
+        rightHandSideDictionary.dictionaryPtr->numberStored++;
+    }
+    return input;
 }
 
 // creates a new dictionary
@@ -65,7 +76,7 @@ Dictionary::Dictionary()
 {
    dictionaryPtr = new DictionaryRecord;
    dictionaryPtr -> numberStored = 0;
-   dictionaryPtr -> hashTablePtr = new Item [TABLESIZE - 1];
+   dictionaryPtr -> hashTablePtr = new Item [TABLESIZE];
 }
 
 // destroys a dictionary
