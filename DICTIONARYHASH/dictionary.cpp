@@ -60,8 +60,9 @@ ostream& operator<< (ostream& output, const Dictionary& rightHandSideDictionary)
 istream& operator>> (istream& input, Dictionary& rightHandSideDictionary)
 {
     Item itemInsert;
+    int numberToInsert = input.get();
 
-    for (int i = 0; i < input.get(); i++)
+    for (int i = 0; i < numberToInsert; i++)
     {
         input >> itemInsert;
         rightHandSideDictionary.dictionaryPtr->hashTablePtr[hashFunction(itemInsert)] = itemInsert;
