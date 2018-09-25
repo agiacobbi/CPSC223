@@ -60,12 +60,19 @@ ostream& operator<< (ostream& output, const Dictionary& rightHandSideDictionary)
 istream& operator>> (istream& input, Dictionary& rightHandSideDictionary)
 {
     Item itemInsert;
-    int numberToInsert = input.get();
+    int numberToInsert;
+    bool isFull, isAlreadyThere;
+
+    input >> numberToInsert;
+    input.ignore();
 
     for (int i = 0; i < numberToInsert; i++)
     {
         input >> itemInsert;
-        rightHandSideDictionary.dictionaryPtr->hashTablePtr[hashFunction(itemInsert)] = itemInsert;
+        isFull = (rightHandSideDictionary.dictionaryPtr->numberStored == TABLESIZE);
+        isAlreadyThere = rightHandSideDictionary.dictionaryPtr->hashTablePtr[hashFunction(itemInsert)] == itemInsert;
+
+        rightHandSideDictionary.addNewEntry(itemInsert, isFull, isAlreadyThere);
         rightHandSideDictionary.dictionaryPtr->numberStored++;
     }
     return input;
@@ -112,14 +119,18 @@ void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyT
 {
     int address = hashFunction(newItem);
 
-    if (!isFull && !isAlreadyThere)
+    if (!isFull)
     {
-        while (dictionaryPtr->hashTablePtr[address].isEmpty())
+        while (!dictionaryPtr->hashTablePtr[address].isEmpty() && !isAlreadyThere)
         {
             address = (address + 1) % TABLESIZE;
+            isAlreadyThere = (dictionaryPtr->hashTablePtr[address] == newItem);
         }
-        dictionaryPtr->hashTablePtr[address] = newItem;
-        dictionaryPtr->numberStored++;
+        if (!isAlreadyThere)
+        {
+            dictionaryPtr->hashTablePtr[address] = newItem;
+            dictionaryPtr->numberStored++;
+        }
     }
 }
 
