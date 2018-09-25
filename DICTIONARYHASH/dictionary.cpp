@@ -98,7 +98,23 @@ Dictionary::~Dictionary()
 // usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
 void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
 {
-
+    //cout << address << endl;
+    //compare target text with key in new table at address
+    for (int address = hashFunction(targetText); address < TABLESIZE; address = (address + 1) % TABLESIZE)
+    {
+		if(dictionaryPtr->hashTablePtr[address].isEmpty() and not dictionaryPtr->hashTablePtr[address].hasBeenMarked())
+		{
+			isFound = false;
+			return;
+		}
+        else if(targetText == dictionaryPtr->hashTablePtr[address])
+        {
+                anItem = dictionaryPtr->hashTablePtr[address];
+                isFound = true;
+                return;
+        }
+    }
+	isFound = false;
 }
 
 // inserts a new text' item into the dictionary
