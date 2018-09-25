@@ -118,13 +118,17 @@ void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isF
 void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere)
 {
     int address = hashFunction(newItem);
+    bool isEmptyAddress = dictionaryPtr->hashTablePtr[address].isEmpty();
+    bool isMarked = dictionaryPtr->hashTablePtr[address].isMarked();
 
     if (!isFull)
     {
-        while (!dictionaryPtr->hashTablePtr[address].isEmpty() && !isAlreadyThere)
+        while (!isEmptyAddress && !isAlreadyThere && !isMarked)
         {
             address = (address + 1) % TABLESIZE;
+            isEmptyAddress = dictionaryPtr->hashTablePtr[address].isEmpty();
             isAlreadyThere = (dictionaryPtr->hashTablePtr[address] == newItem);
+            isMarked = dictionaryPtr->hashTablePtr[address].isMarked();
         }
         if (!isAlreadyThere)
         {
@@ -144,12 +148,22 @@ void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyT
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound)
 {
+    int address = hashFunction(targetText);
 
+    if (!isEmpty && isFound)
+    {
+        while (!(dictionaryPtr->hashTablePtr[address] == targetText))
+        {
+            address = (address + 1) % TABLESIZE;
+        }
+        dictionaryPtr->hashTablePtr[address].mark();
+        dictionaryPtr->numberStored--;
+    }
 }
 
 bool Dictionary::isEmpty()
 {
-
+    
 }
 
 bool Dictionary::isFull()

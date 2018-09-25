@@ -96,10 +96,10 @@ bool Item::isEmpty()
 void Item::mark()
 {
     textingAbbreviation = "-deleted-";
-    
+    textingMeaning = "Item has been deleted";
 }
 
 bool Item::isMarked()
 {
-
+    return (textingAbbreviation == "-deleted-");
 }
