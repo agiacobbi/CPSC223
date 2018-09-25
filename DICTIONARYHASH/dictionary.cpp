@@ -112,11 +112,11 @@ void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyT
 {
     int address = hashFunction(newItem);
 
-    if (not isFull and not isAlreadyThere)
+    if (!isFull && !isAlreadyThere)
     {
         while (dictionaryPtr->hashTablePtr[address].isEmpty())
         {
-            address++;
+            address = (address + 1) % TABLESIZE;
         }
         dictionaryPtr->hashTablePtr[address] = newItem;
         dictionaryPtr->numberStored++;
@@ -137,6 +137,11 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
 }
 
 bool Dictionary::isEmpty()
+{
+
+}
+
+bool Dictionary::isFull()
 {
 
 }

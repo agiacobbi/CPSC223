@@ -85,6 +85,8 @@ void deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound);
 
 bool isEmpty();
 
+bool isFull();
+
 int getNumberOfEntries();
 
 private:

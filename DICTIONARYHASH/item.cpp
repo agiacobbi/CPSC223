@@ -90,5 +90,16 @@ Item& Item::operator=(const Item& rightHandSideItem)
 
 bool Item::isEmpty()
 {
-    return (this->textingAbbreviation.empty());
+    return (textingAbbreviation.empty());
+}
+
+void Item::mark()
+{
+    textingAbbreviation = "-deleted-";
+    
+}
+
+bool Item::isMarked()
+{
+
 }
