@@ -152,17 +152,23 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
 
 }
 
-bool Dictionary::isEmpty()
-{
-
-}
-
 bool Dictionary::isFull()
 {
+    if(dictionaryPtr->numberStored == 11)
+        return true;
+    else
+        return false;
+}
 
+bool Dictionary::isEmpty()
+{
+    if(dictionaryPtr->numberStored == 0)
+        return true;
+    else
+        return false;
 }
 
 int Dictionary::getNumberOfEntries()
 {
-
+    return dictionaryPtr->numberStored;
 }
