@@ -102,7 +102,7 @@ void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isF
     //compare target text with key in new table at address
     for (int address = hashFunction(targetText); address < TABLESIZE; address = (address + 1) % TABLESIZE)
     {
-		if(dictionaryPtr->hashTablePtr[address].isEmpty() and not dictionaryPtr->hashTablePtr[address].hasBeenMarked())
+		if(dictionaryPtr->hashTablePtr[address].isEmpty() and not dictionaryPtr->hashTablePtr[address].isMarked())
 		{
 			isFound = false;
 			return;
