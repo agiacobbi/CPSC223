@@ -65,6 +65,12 @@ Item(const Item& rightHandSideItem);
 //usage aItem = bItem;
 Item& operator=(const Item& rightHandSideItem);
 
+bool isEmpty();
+
+void mark();
+
+bool isMarked();
+
 private:
    string textingMeaning;
 };

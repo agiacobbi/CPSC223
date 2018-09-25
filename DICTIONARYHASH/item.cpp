@@ -87,3 +87,8 @@ Item& Item::operator=(const Item& rightHandSideItem)
     }
     return *this;
 }
+
+bool Item::isEmpty()
+{
+    return (this->textingAbbreviation.empty());
+}

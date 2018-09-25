@@ -110,7 +110,17 @@ void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isF
 // usage: myDictionary.addNewEntry(myItem, isFull, isAlreadyThere);
 void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere)
 {
+    int address = hashFunction(newItem);
 
+    if (not isFull and not isAlreadyThere)
+    {
+        while (dictionaryPtr->hashTablePtr[address].isEmpty())
+        {
+            address++;
+        }
+        dictionaryPtr->hashTablePtr[address] = newItem;
+        dictionaryPtr->numberStored++;
+    }
 }
 
 // removes the item associated with a given text from the dictionary
