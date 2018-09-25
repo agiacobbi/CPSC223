@@ -1,5 +1,5 @@
 #include <iostream>
-#include <ifstream>
+#include <fstream>
 #include "key.h"
 #include "item.h"
 #include "dictionary.h"
@@ -15,7 +15,7 @@ void printDictionary(Dictionary& testDictionary);
 int main()
 {
     Dictionary testDictionary;
-    ifstream inputFile;
+    fstream inputFile;
 
     inputFile.open("in.dat");
 
@@ -50,7 +50,7 @@ void testInputOperator(Dictionary& testDictionary, istream& inputFile)
 
 void testAddNewEntry(Dictionary& testDictionary, istream& inputFile)
 {
-    Item itemOne
+    Item itemOne;
     bool isFull, isAlreadyThere;
 
     cout << "--- Testing addNewEntry function to add a new item using linear probing ---" << endl;
@@ -71,7 +71,7 @@ void testSearchForMeaning(Dictionary& testDictionary, istream& inputFile)
     inputFile >> keyOne;
 
     cout << "Searching for key: " << keyOne << endl;
-    testDictionary.searchForMeaning(keyOne, ItemOne, isFound);
+    testDictionary.searchForMeaning(keyOne, itemOne, isFound);
 
     if(isFound)
         cout << "Found: " << itemOne << endl << endl;
@@ -86,6 +86,7 @@ void testDeleteEntry(Dictionary& testDictionary, istream& inputFile)
     bool isEmpty, isFound;
 
     cout << "--- Testing deleteEntry function to delete an item ---" << endl;
+    inputFile >> keyOne;
     isEmpty = testDictionary.isEmpty();
     testDictionary.searchForMeaning(keyOne, itemOne, isFound);
     testDictionary.deleteEntry(keyOne, isEmpty, isFound);
@@ -93,6 +94,6 @@ void testDeleteEntry(Dictionary& testDictionary, istream& inputFile)
 
 void printDictionary(Dictionary& testDictionary)
 {
-    cout << "Printing the dictionary to the screen" << endl << endl;
+    cout << endl <<  "Printing the dictionary to the screen" << endl;
     cout << testDictionary << endl << endl;
 }
