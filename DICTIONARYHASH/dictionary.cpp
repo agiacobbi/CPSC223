@@ -105,7 +105,19 @@ Dictionary::~Dictionary()
 // usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
 void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
 {
+    int address = hashFunction(targetText);
+    int count = 0;
+    isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
 
+    while (!dictionaryPtr->hashTablePtr[address].isEmpty() && !isFound && (count < TABLESIZE))
+    {
+        address = (address + 1) % TABLESIZE;
+        count++;
+        isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
+    }
+
+    if (isFound)
+        anItem = dictionaryPtr->hashTablePtr[address];
 }
 
 // inserts a new text' item into the dictionary
@@ -163,15 +175,15 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
 
 bool Dictionary::isEmpty()
 {
-    
+    return (dictionaryPtr->numberStored == 0);
 }
 
 bool Dictionary::isFull()
 {
-
+    return (dictionaryPtr->numberStored == TABLESIZE);
 }
 
 int Dictionary::getNumberOfEntries()
 {
-
+    return dictionaryPtr->numberStored;
 }
