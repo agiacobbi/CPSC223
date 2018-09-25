@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     Dictionary myDictionary;
-    Item itemOne;
+    Item itemOne, itemTwo, itemThree;
     fstream inputfile;
     bool isFull = false;
     bool isAlreadyThere = false;
@@ -19,6 +19,9 @@ int main()
     inputfile >> itemOne;
     cout << itemOne << endl;
     myDictionary.addNewEntry(itemOne, isFull, isAlreadyThere);
+    cout << myDictionary;
+    isAlreadyThere = true;
+    myDictionary.deleteEntry(itemOne, isFull, isAlreadyThere);
     cout << myDictionary;
     inputfile.close();
 
