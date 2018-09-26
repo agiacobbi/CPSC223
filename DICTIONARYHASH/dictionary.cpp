@@ -21,6 +21,10 @@ struct DictionaryRecord
    int numberStored;
 };
 
+// returns an integer between 0 and 10 that corresponds
+// to the textingAbbreviation in the Key object in the 
+// parameters
+// usage: int myInt = hashFunction(myKey);
 int hashFunction(const Key& theText)
 {
    return theText.convertToInteger() % TABLESIZE;
@@ -173,16 +177,25 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
     }
 }
 
+// returns true if the dictionary is full
+// returns false if the dictionary isnt full
+// usage: bool myBool = myDictionary.isFull();
 bool Dictionary::isFull()
 {
     return (dictionaryPtr->numberStored == TABLESIZE);
 }
 
+// returns true if the dictionary is empty
+// returns false if the dictionary isnt empty
+// usage: bool myBool = myDictionary.isEmpty();
 bool Dictionary::isEmpty()
 {
     return (dictionaryPtr->numberStored == 0);
 }
 
+// returns an integer of how many items are 
+// stored in the dictionary
+// usage: int myInt = myDictionary.getNumberofEntries();
 int Dictionary::getNumberOfEntries()
 {
     return dictionaryPtr->numberStored;
