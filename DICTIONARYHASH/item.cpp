@@ -1,7 +1,7 @@
 /*
 Alex Giacobbi and Nathan Flack
 agiacobbi
-25 September 2018
+17 September 2018
 Description: This is the implementation file for abstract data type Item. This file contains function headers and
 bodies for the class Item's methods as well as documentation for each function. This data object is an Item which 
 stores a texting abbreviation (inherited from Key) and an associated texting meaning. The class inherits functions 
@@ -88,17 +88,26 @@ Item& Item::operator=(const Item& rightHandSideItem)
     return *this;
 }
 
+// returns true if the textingAbbreviation is empty (length of 0)
+// returns false if the textingAbbreviation isnt empty (length > 0)
+// usage: bool myBool = myItem.isEmpty();
 bool Item::isEmpty()
 {
     return (textingAbbreviation.empty());
 }
 
+// sets the value of textingAbbreviation  to "---"
+// sets the value of textingMeaning to "Item has been deleted"
+// usage: myItem.mark();
 void Item::mark()
 {
     textingAbbreviation = "---";
     textingMeaning = "Item has been deleted";
 }
 
+// returns true if the textingAbbreviation is marked
+// returns false if the textingAbbreviation isnt marked
+// usage: bool myBool = myItem.isMarked();
 bool Item::isMarked()
 {
     return (textingAbbreviation == "---");
