@@ -173,16 +173,30 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
     }
 }
 
+// checks if the dictionary is empty
+// pre: none
+// post: if Dictionary object is empty function returns true
+//       else function will return false
+// usage: myDictionary.isEmpty();
 bool Dictionary::isEmpty()
 {
     return (dictionaryPtr->numberStored == 0);
 }
 
+// checks if the dictionary is full
+// pre: none
+// post: if Dictionary object is full function returns true
+//       else function will return false
+// usage: myDictionary.isFull();
 bool Dictionary::isFull()
 {
     return (dictionaryPtr->numberStored == TABLESIZE);
 }
 
+// tells user how many items are in dictionary object
+// pre: none
+// post: returns the number of entries in the dictionary as an integer
+// usage: myDictionary.getNumberOfEntries();
 int Dictionary::getNumberOfEntries()
 {
     return dictionaryPtr->numberStored;
