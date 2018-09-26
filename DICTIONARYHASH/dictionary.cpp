@@ -1,13 +1,13 @@
-// Implementation of ADT Dictionary
-//     data object: a bunch of texting abbreviations and their meanings 
-//     operations: create, destroy
-//                 search the dictionary for an item given its text
-//                 insert a new item into the dictionary
-//                 remove an item from the dictionary given its text
-//   associated operations: input and output
-// filename dictionary.cpp
-// authors: CPSC 223 class members section 1 and 2 and a few changes by Dr. Y
-// date September 14, 2018
+/*
+Alex Giacobbi and Nathan Flack
+agiacobbi
+25 September 2018
+Description: This is the implementation file for abstract data type Dictionary. This file 
+contains function headers and bodies for the class Dictionary's methods as well as documentation 
+for each function. This data object is a Dictionary which stores Items in a hash table. The class 
+has methods that create, destroy, search for a meaning, insert a new item, remove item, input, 
+output, check if dictionary is empty or full, and return number of entries.
+*/
 
 #include "dictionary.h"
 #include <iomanip>
@@ -133,6 +133,8 @@ void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyT
     bool isEmptyAddress = dictionaryPtr->hashTablePtr[address].isEmpty();
     bool isMarked = dictionaryPtr->hashTablePtr[address].isMarked();
 
+    isFull = (dictionaryPtr->numberStored == TABLESIZE);
+
     if (!isFull)
     {
         while (!isEmptyAddress && !isAlreadyThere && !isMarked)
@@ -161,15 +163,24 @@ void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyT
 void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound)
 {
     int address = hashFunction(targetText);
+    int count = 0;
 
-    if (!isEmpty && isFound)
+    isEmpty = (dictionaryPtr->numberStored == 0);
+    isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
+
+    if (!isEmpty)
     {
-        while (!(dictionaryPtr->hashTablePtr[address] == targetText))
+        while (!isFound && !dictionaryPtr->hashTablePtr[address].isEmpty() && count < TABLESIZE)
         {
             address = (address + 1) % TABLESIZE;
+            isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
+            count++;
         }
-        dictionaryPtr->hashTablePtr[address].mark();
-        dictionaryPtr->numberStored--;
+        if(isFound)
+        {
+            dictionaryPtr->hashTablePtr[address].mark();
+            dictionaryPtr->numberStored--;
+        }
     }
 }
 

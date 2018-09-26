@@ -1,3 +1,13 @@
+/*
+Alex Giacobbi and Nathan Flack
+agiacobbi
+25 September 2018
+Description: This is a client program that tests the member functions of abstract 
+data type Dictionary. This program is broken into functions that each test a different 
+member function. The program takes input from file in.dat to walk the user through each 
+function and show that each function works as documented.
+*/
+
 #include <iostream>
 #include <fstream>
 #include "key.h"
@@ -56,8 +66,6 @@ void testAddNewEntry(Dictionary& testDictionary, istream& inputFile)
     cout << "--- Testing addNewEntry function to add a new item using linear probing ---" << endl;
     inputFile >> itemOne;
 
-    isFull = testDictionary.isFull();
-    testDictionary.searchForMeaning(itemOne, itemOne, isAlreadyThere);
     testDictionary.addNewEntry(itemOne, isFull, isAlreadyThere);
 }
 
@@ -87,8 +95,6 @@ void testDeleteEntry(Dictionary& testDictionary, istream& inputFile)
 
     cout << "--- Testing deleteEntry function to delete an item ---" << endl;
     inputFile >> keyOne;
-    isEmpty = testDictionary.isEmpty();
-    testDictionary.searchForMeaning(keyOne, itemOne, isFound);
     testDictionary.deleteEntry(keyOne, isEmpty, isFound);
 }
 

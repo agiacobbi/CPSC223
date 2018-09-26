@@ -1,13 +1,13 @@
-// Specification of ADT Dictionary
-//     data object: a bunch of texting abbreviations and their meanings 
-//     operations: create, destroy
-//                 search the dictionary for an item given its text
-//                 insert a new item into the dictionary
-//                 remove an item from the dictionary given its text
-//   associated operations: input and output
-// filename dictionary.h
-// authors: CPSC 223 class members section 1 and 2 and a few changes by Dr. Y
-// date September 14, 2018
+/*
+Alex Giacobbi and Nathan Flack
+agiacobbi
+25 September 2018
+Description: This is the header file for abstract data type Item. This file contains function prototypes
+and documentation for the methods of class Dictionary. Abstract data type Dictionary will store Items in
+a hash table. This file contains protypes for member functions and friends that handle the following 
+operations: create, destroy, search for an item, insert an item, remove an item, check if dictionary is
+full, check if empty, return number of entries, input, and output.
+*/
 
 #ifndef DICTIONARY_H
 #define  DICTIONARY_H
@@ -82,11 +82,24 @@ void addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere);
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound);
 
-
+// checks if the dictionary is empty
+// pre: none
+// post: if Dictionary object is empty function returns true
+//       else function will return false
+// usage: myDictionary.isEmpty();
 bool isEmpty();
 
+// checks if the dictionary is full
+// pre: none
+// post: if Dictionary object is full function returns true
+//       else function will return false
+// usage: myDictionary.isFull();
 bool isFull();
 
+// tells user how many items are in dictionary object
+// pre: none
+// post: returns the number of entries in the dictionary as an integer
+// usage: myDictionary.getNumberOfEntries();
 int getNumberOfEntries();
 
 private:
