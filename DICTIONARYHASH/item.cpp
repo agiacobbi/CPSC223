@@ -88,17 +88,31 @@ Item& Item::operator=(const Item& rightHandSideItem)
     return *this;
 }
 
+//tells user if an item is empty
+//pre none
+//post  returns true if item abbreviation contains no text
+//      else returns false
+//usage if(myItem.isEmpty())
 bool Item::isEmpty()
 {
     return (textingAbbreviation.empty());
 }
 
+//marks an item for deletion proccess in dictionary hash table
+//pre item exists
+//post item's texting abbreviation has been set to --- and meaning displays Item has been deleted
+//usage myItem.mark();
 void Item::mark()
 {
     textingAbbreviation = "---";
     textingMeaning = "Item has been deleted";
 }
 
+//tells user if an item is marked
+//pre none
+//post returns true if item's texting abbreviation is ---
+//     else returns false
+//usage if(myItem.isMarked())
 bool Item::isMarked()
 {
     return (textingAbbreviation == "---");

@@ -65,10 +65,26 @@ Item(const Item& rightHandSideItem);
 //usage aItem = bItem;
 Item& operator=(const Item& rightHandSideItem);
 
+//tells user if item is empty
+//pre none
+//post returns true if item contains no text
+//     else returns false
+//usage if(myItem.isEmpty())
 bool isEmpty();
 
+//marks item as deleted for use in dictionary hash table
+//pre item exists
+//post  item's texting abbreviation is marked --- and meaning 
+//      shows item has been deleted
+//usage myItem.mark();
 void mark();
 
+
+//tells user if an item is marked
+//pre none
+//post returns true if item's textingAbbreviation is marked "---"
+//     else returns false
+//usage if(myItem.isMarked())
 bool isMarked();
 
 private:

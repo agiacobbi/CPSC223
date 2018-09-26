@@ -10,7 +10,6 @@ function and show that each function works as documented.
 
 #include <iostream>
 #include <fstream>
-#include "key.h"
 #include "item.h"
 #include "dictionary.h"
 using namespace std;
