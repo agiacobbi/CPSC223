@@ -79,12 +79,11 @@ bool isEmpty();
 //usage myItem.mark();
 void mark();
 
-
-//tells user if an item is marked
+//tells user if an item is marked as deleted
 //pre none
-//post returns true if item's textingAbbreviation is marked "---"
-//     else returns false
-//usage if(myItem.isMarked())
+//post  returns true if item's texting abbreviation is ---
+//      else returns false
+//usage bool myBool = myItem.isMarked();
 bool isMarked();
 
 private:
