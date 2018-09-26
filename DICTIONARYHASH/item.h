@@ -65,10 +65,19 @@ Item(const Item& rightHandSideItem);
 //usage aItem = bItem;
 Item& operator=(const Item& rightHandSideItem);
 
+// returns true if the textingAbbreviation is empty (length of 0)
+// returns false if the textingAbbreviation isnt empty (length > 0)
+// usage: bool myBool = myItem.isEmpty();
 bool isEmpty();
 
+// sets the value of textingAbbreviation  to "---"
+// sets the value of textingMeaning to "Item has been deleted"
+// usage: myItem.mark();
 void mark();
 
+// returns true if the textingAbbreviation is marked
+// returns false if the textingAbbreviation isnt marked
+// usage: bool myBool = myItem.isMarked();
 bool isMarked();
 
 private:
