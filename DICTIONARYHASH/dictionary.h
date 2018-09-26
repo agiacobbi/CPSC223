@@ -57,8 +57,8 @@ Dictionary();
 
 // searchs for a meaning with a given text
 // pre targetText has been assigned 
-// post if an item with texting abbreviationthe same as targetText is found then
-//          isFound is true and theItem is that item
+// post if an item with texting abbreviation the same as targetText is found then
+//          isFound is true and anItem is that item
 //       else isFound is false
 // usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
 void searchForMeaning(const Key& targetText, Item& anItem, bool& isFound);
@@ -82,6 +82,7 @@ void addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere);
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound);
 
+<<<<<<< HEAD
 // checks if the dictionary is empty
 // pre: none
 // post: if Dictionary object is empty function returns true
@@ -100,6 +101,21 @@ bool isFull();
 // pre: none
 // post: returns the number of entries in the dictionary as an integer
 // usage: myDictionary.getNumberOfEntries();
+=======
+// returns true if the dictionary is empty
+// returns false if the dictionary isn't empty
+// usage: bool myBool = myDictionary.isEmpty();
+bool isEmpty();
+
+// returns true if the dictionary is full
+// returns false if the dictionary isn't full
+// usage: bool myBool = myDictionary.isFull();
+bool isFull();
+   
+// returns an integer of how many items are 
+// stored in the dictionary
+// usage: int myInt = myDictionary.getNumberofEntries();
+>>>>>>> bf35b6f962e606692c33b997861f76f651f032cf
 int getNumberOfEntries();
 
 private:
