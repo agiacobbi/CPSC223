@@ -103,8 +103,8 @@ Dictionary::~Dictionary()
 
 // searchs for a meaning with a given text
 // pre targetText has been assigned 
-// post if an item with texting abbreviationthe same as targetText is found then
-//          isFound is true and theItem is that item
+// post if an item with texting abbreviation the same as targetText is found then
+//          isFound is true and anItem is that item
 //       else isFound is false
 // usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
 void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
