@@ -13,6 +13,7 @@
 #define  DICTIONARY_H
 
 #include "item.h"
+#include "stack.h"
 
 struct DictionaryRecord;
 
@@ -84,6 +85,26 @@ void addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere);
 //       else isFound is false or isEmpty is true depending
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound);
+
+// checks if the dictionary is empty
+// pre: none
+// post: if Dictionary object is empty function returns true
+//       else function will return false
+// usage: myDictionary.isEmpty();
+bool isEmpty();
+
+// checks if the dictionary is full
+// pre: none
+// post: if Dictionary object is full function returns true
+//       else function will return false
+// usage: myDictionary.isFull();
+bool isFull();
+
+// tells user how many items are in dictionary object
+// pre: none
+// post: returns the number of entries in the dictionary as an integer
+// usage: myDictionary.getNumberOfEntries();
+int getNumberOfEntries();
 
 private:
    DictionaryRecord* dictionaryPtr;
