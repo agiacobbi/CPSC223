@@ -34,7 +34,7 @@ void printStack(Stack stackOut)
     {
         stackOut.getTop(myItem);
         stackOut.pop();
-        cout << "\t\t->\t" << myItem << endl;
+        cout << "\t->\t" << myItem << endl;
     }
 }
 
