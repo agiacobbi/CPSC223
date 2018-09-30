@@ -1,5 +1,5 @@
 /*
-Alex Giacobbi and Nathan Flack
+Alex Giacobbi and Jalen Tacsiat Flack
 agiacobbi
 25 September 2018
 Description: This is the implementation file for abstract data type Dictionary. This file 
@@ -17,7 +17,7 @@ const int TABLESIZE = 11;
 
 struct DictionaryRecord
 {
-   Item* hashTablePtr;
+   Stack* hashTablePtr;
    int numberStored;
 };
 
@@ -26,22 +26,54 @@ int hashFunction(const Key& theText)
    return theText.convertToInteger() % TABLESIZE;
 }
 
+void printStack(Stack stackOut)
+{
+    Item myItem;
+
+    while (!stackOut.isEmpty())
+    {
+        stackOut.getTop(myItem);
+        stackOut.pop();
+        cout << "\t\t->\t" << myItem << endl;
+    }
+}
+
+void checkStack(Stack myStack, Key targetKey, Item myItem, bool isFound)
+{
+    Item checkItem;
+
+    while (!myStack.isEmpty() && !isFound)
+    {
+        myStack.getTop(checkItem);
+        isFound = (checkItem == targetKey);
+        myStack.pop();
+    }
+
+    if (isFound)
+    {
+        myItem = checkItem;
+    }
+}
+
 // displays a dictionary
 // pre: output has been opened if it is a file
 //      rightHandSideDictionary has been assigned items
 // post: output contains each item on a separate line in the format with headings.
-//       for example
-//       address    text       meaning
-//          0        lol       laugh out loud
-//          1        ttyl      talk to you later
-// usage: outfile << myDictionary;    
+//       for example (caveat: these texts may hash to a different address)
+//       address       text  meaning
+//           0:
+//                ->   lol   laugh out loud  
+//                ->   ttyl  talk to you later
+//           1:
+//                ->   smh   shake my head 
+// usage: outfile << myDictionary;  
 ostream& operator<< (ostream& output, const Dictionary& rightHandSideDictionary)
 {
-    output << "address\ttext\tmeaning" << endl;
+    output << "address\t\ttext\tmeaning" << endl;
     for (int i = 0; i < TABLESIZE; i++)
     {
-        output << i << "\t";
-        output << rightHandSideDictionary.dictionaryPtr->hashTablePtr[i] << endl;
+        output << i << ":" << endl;
+        printStack(rightHandSideDictionary.dictionaryPtr->hashTablePtr[i]);
     }
     return output;
 }
@@ -69,9 +101,6 @@ istream& operator>> (istream& input, Dictionary& rightHandSideDictionary)
     for (int i = 0; i < numberToInsert; i++)
     {
         input >> itemInsert;
-        isFull = (rightHandSideDictionary.dictionaryPtr->numberStored == TABLESIZE);
-        isAlreadyThere = rightHandSideDictionary.dictionaryPtr->hashTablePtr[hashFunction(itemInsert)] == itemInsert;
-
         rightHandSideDictionary.addNewEntry(itemInsert, isFull, isAlreadyThere);
         rightHandSideDictionary.dictionaryPtr->numberStored++;
     }
@@ -85,7 +114,7 @@ Dictionary::Dictionary()
 {
    dictionaryPtr = new DictionaryRecord;
    dictionaryPtr -> numberStored = 0;
-   dictionaryPtr -> hashTablePtr = new Item [TABLESIZE];
+   dictionaryPtr -> hashTablePtr = new Stack [TABLESIZE];
 }
 
 // destroys a dictionary
@@ -106,18 +135,8 @@ Dictionary::~Dictionary()
 void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
 {
     int address = hashFunction(targetText);
-    int count = 0;
-    isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
 
-    while (!dictionaryPtr->hashTablePtr[address].isEmpty() && !isFound && (count < TABLESIZE))
-    {
-        address = (address + 1) % TABLESIZE;
-        count++;
-        isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
-    }
-
-    if (isFound)
-        anItem = dictionaryPtr->hashTablePtr[address];
+    checkStack(dictionaryPtr->hashTablePtr[address], targetText, anItem, isFound);
 }
 
 // inserts a new text' item into the dictionary
@@ -130,26 +149,14 @@ void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isF
 void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyThere)
 {
     int address = hashFunction(newItem);
-    bool isEmptyAddress = dictionaryPtr->hashTablePtr[address].isEmpty();
-    bool isMarked = dictionaryPtr->hashTablePtr[address].isMarked();
+    bool isAdded;
+    Item checkItem;
 
-    isFull = (dictionaryPtr->numberStored == TABLESIZE);
+    isFull = false;     // with linked list chaining, dictionary will never be full (unless we run out of memory)
+    checkStack(dictionaryPtr->hashTablePtr[address], newItem, checkItem, isAlreadyThere);
 
-    if (!isFull)
-    {
-        while (!isEmptyAddress && !isAlreadyThere && !isMarked)
-        {
-            address = (address + 1) % TABLESIZE;
-            isEmptyAddress = dictionaryPtr->hashTablePtr[address].isEmpty();
-            isAlreadyThere = (dictionaryPtr->hashTablePtr[address] == newItem);
-            isMarked = dictionaryPtr->hashTablePtr[address].isMarked();
-        }
-        if (!isAlreadyThere)
-        {
-            dictionaryPtr->hashTablePtr[address] = newItem;
-            dictionaryPtr->numberStored++;
-        }
-    }
+    dictionaryPtr->hashTablePtr[address].push(newItem, isAdded);
+    dictionaryPtr->numberStored++;
 }
 
 // removes the item associated with a given text from the dictionary
@@ -163,25 +170,31 @@ void Dictionary::addNewEntry(const Item& newItem, bool& isFull, bool& isAlreadyT
 void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound)
 {
     int address = hashFunction(targetText);
-    int count = 0;
+    Item anItem;
+    Stack tempStack;
+    bool isAdded;
 
     isEmpty = (dictionaryPtr->numberStored == 0);
-    isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
+    checkStack(dictionaryPtr->hashTablePtr[address], targetText, anItem, isFound);
 
-    if (!isEmpty)
+    if (isFound)
     {
-        while (!isFound && !dictionaryPtr->hashTablePtr[address].isEmpty() && count < TABLESIZE)
+        dictionaryPtr->hashTablePtr[address].getTop(anItem);
+        while (!(anItem == targetText))
         {
-            address = (address + 1) % TABLESIZE;
-            isFound = (dictionaryPtr->hashTablePtr[address] == targetText);
-            count++;
+            dictionaryPtr->hashTablePtr[address].pop();
+            tempStack.push(anItem, isAdded);
+            dictionaryPtr->hashTablePtr[address].getTop(anItem);
         }
-        if(isFound)
+        dictionaryPtr->hashTablePtr[address].pop();
+        while (!tempStack.isEmpty())
         {
-            dictionaryPtr->hashTablePtr[address].mark();
-            dictionaryPtr->numberStored--;
+            tempStack.getTop(anItem);
+            dictionaryPtr->hashTablePtr[address].push(anItem, isAdded);
+            tempStack.pop();
         }
     }
+
 }
 
 // checks if the dictionary is empty
