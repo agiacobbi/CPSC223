@@ -80,7 +80,7 @@ void testSearchForMeaning(Dictionary& testDictionary, istream& inputFile)
     cout << "Searching for key: " << keyOne << endl;
     testDictionary.searchForMeaning(keyOne, itemOne, isFound);
 
-    if(isFound)
+    if (isFound)
         cout << "Found: " << itemOne << endl << endl;
     else
         cout << "Not Found" << endl << endl;

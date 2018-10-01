@@ -38,7 +38,7 @@ void printStack(Stack stackOut)
     }
 }
 
-void checkStack(Stack myStack, Key targetKey, Item myItem, bool isFound)
+void checkStack(Stack myStack, Key targetKey, Item& myItem, bool& isFound)
 {
     Item checkItem;
 
@@ -112,9 +112,9 @@ istream& operator>> (istream& input, Dictionary& rightHandSideDictionary)
 // usage: Dictionary myDictionary;
 Dictionary::Dictionary()
 {
-   dictionaryPtr = new DictionaryRecord;
-   dictionaryPtr -> numberStored = 0;
-   dictionaryPtr -> hashTablePtr = new Stack [TABLESIZE];
+    dictionaryPtr = new DictionaryRecord;
+    dictionaryPtr -> numberStored = 0;
+    dictionaryPtr -> hashTablePtr = new Stack [TABLESIZE];
 }
 
 // destroys a dictionary
@@ -123,7 +123,8 @@ Dictionary::Dictionary()
 // usage: automatically done at the end of scope
 Dictionary::~Dictionary()
 {
- 
+    delete dictionaryPtr;
+    dictionaryPtr = nullptr;  
 }
 
 // searchs for a meaning with a given text
@@ -135,6 +136,7 @@ Dictionary::~Dictionary()
 void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
 {
     int address = hashFunction(targetText);
+    isFound = false;
 
     checkStack(dictionaryPtr->hashTablePtr[address], targetText, anItem, isFound);
 }
@@ -180,7 +182,7 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
     if (isFound)
     {
         dictionaryPtr->hashTablePtr[address].getTop(anItem);
-        while (!(anItem == targetText))
+        while (!(anItem == targetText) && !dictionaryPtr->hashTablePtr[address].isEmpty())
         {
             dictionaryPtr->hashTablePtr[address].pop();
             tempStack.push(anItem, isAdded);
