@@ -1,7 +1,7 @@
 /*
 Alex Giacobbi and Nathan Flack
 agiacobbi
-25 September 2018
+3 October 2018
 Description: This is a client program that tests the member functions of abstract 
 data type Dictionary. This program is broken into functions that each test a different 
 member function. The program takes input from file in.dat to walk the user through each 
