@@ -1,7 +1,7 @@
 /*
-Alex Giacobbi and Nathan Flack
+Alex Giacobbi and Jalen Tacsiat
 agiacobbi
-25 September 2018
+3 October 2018
 Description: This is the header file for abstract data type Item. This file contains function prototypes
 and documentation for the methods of class Item. Item is a a derived class of class Key, so it can access
 protected data members of class Key and inherits some functions. Abstract data type Item is the meaning of

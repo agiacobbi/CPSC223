@@ -1,5 +1,5 @@
 /*
-Alex Giacobbi and Nathan Flack
+Alex Giacobbi and Jalen Tacsiat
 agiacobbi
 3 October 2018
 Description: This is a client program that tests the member functions of abstract 
@@ -28,24 +28,21 @@ int main()
 
     inputFile.open("in.dat");
 
-    // Reading in the first four items and inserting into the dictionary
     testInputOperator(testDictionary, inputFile);
     printDictionary(testDictionary);
 
-    // Adding new entries using linear probing method
     testAddNewEntry(testDictionary, inputFile);
     testAddNewEntry(testDictionary, inputFile);
     testAddNewEntry(testDictionary, inputFile);
     printDictionary(testDictionary);
 
     testSearchForMeaning(testDictionary, inputFile);     // finds item on first look
-    testSearchForMeaning(testDictionary, inputFile);     // finds item after linear probing chain
+    testSearchForMeaning(testDictionary, inputFile);     // finds item after checking entire stack
 
-    // Deleting an entry and marking the deleted address
     testDeleteEntry(testDictionary, inputFile);
     printDictionary(testDictionary);
 
-    testSearchForMeaning(testDictionary, inputFile);     //finds item after probing over deleted item
+    testSearchForMeaning(testDictionary, inputFile);     // finds item after an item has been deleted
     
     inputFile.close();
     return 0;
@@ -62,7 +59,7 @@ void testAddNewEntry(Dictionary& testDictionary, istream& inputFile)
     Item itemOne;
     bool isFull, isAlreadyThere;
 
-    cout << "--- Testing addNewEntry function to add a new item using linear probing ---" << endl;
+    cout << "--- Testing addNewEntry function to add a new item ---" << endl;
     inputFile >> itemOne;
 
     testDictionary.addNewEntry(itemOne, isFull, isAlreadyThere);
@@ -80,7 +77,7 @@ void testSearchForMeaning(Dictionary& testDictionary, istream& inputFile)
     cout << "Searching for key: " << keyOne << endl;
     testDictionary.searchForMeaning(keyOne, itemOne, isFound);
 
-    if(isFound)
+    if (isFound)
         cout << "Found: " << itemOne << endl << endl;
     else
         cout << "Not Found" << endl << endl;
@@ -95,6 +92,8 @@ void testDeleteEntry(Dictionary& testDictionary, istream& inputFile)
     cout << "--- Testing deleteEntry function to delete an item ---" << endl;
     inputFile >> keyOne;
     testDictionary.deleteEntry(keyOne, isEmpty, isFound);
+	if (isFound)
+		cout << "Deleting " << keyOne << endl;
 }
 
 void printDictionary(Dictionary& testDictionary)
