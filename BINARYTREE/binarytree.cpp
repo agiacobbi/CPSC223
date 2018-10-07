@@ -19,33 +19,48 @@ using namespace std;
 //recursive helper
 void preorderHelper(TreeNode tree[], int myroot)
 {
-    if (not (tree[myroot] == -1))
+    int left = tree[myroot].getLeftChild();
+    int right = tree[myroot].getRightChild();
+    Item outItem;
+
+    if (myroot != -1)
     {
-        cout << '\t' << tree[myroot] << endl;
-        preOrderHelper(tree, tree[myroot].leftChild);
-        preOrderHelper(tree, tree[myroot].rightChild);
+        tree[myroot].getItem(outItem);
+        cout << '\t' << outItem << endl;
+        preorderHelper(tree, left);
+        preorderHelper(tree, right);
     }
 }
 
 //recursive helper
 void inorderHelper(TreeNode tree[], int myroot)
 {
-    if (not (tree[myroot] == -1))
+    int left = tree[myroot].getLeftChild();
+    int right = tree[myroot].getRightChild();
+    Item outItem;
+
+    if (myroot != -1)
     {
-        preOrderHelper(tree, tree[myroot].leftChild);
-        cout << '\t' << tree[myroot] << endl;
-        preOrderHelper(tree, tree[myroot].rightChild);
+        inorderHelper(tree, left);
+        tree[myroot].getItem(outItem);
+        cout << '\t' << outItem << endl;
+        inorderHelper(tree, right);
     }
 }
 
 //recursive helper
 void postorderHelper(TreeNode tree[], int myroot)
 {
-    if (not (tree[myroot] == -1))
+    int left = tree[myroot].getLeftChild();
+    int right = tree[myroot].getRightChild();
+    Item outItem;
+
+    if (myroot != -1)
     {
-        preOrderHelper(tree, tree[myroot].leftChild);
-        preOrderHelper(tree, tree[myroot].rightChild);
-        cout << '\t' << tree[myroot] << endl;
+        postorderHelper(tree, left);
+        postorderHelper(tree, right);
+        tree[myroot].getItem(outItem);
+        cout << '\t' << outItem << endl;
     }
 }
 
@@ -81,6 +96,7 @@ void BinaryTree::insert(const Item& newItem, int left, int right)
         {
             root = 0;
         }
+        root = numberOfItems;
         numberOfItems++;
     }
 }
