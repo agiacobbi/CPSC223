@@ -19,46 +19,40 @@ using namespace std;
 //recursive helper
 void preorderHelper(TreeNode tree[], int myroot)
 {
-    int left = tree[myroot].getLeftChild();
-    int right = tree[myroot].getRightChild();
     Item outItem;
 
     if (myroot != -1)
     {
         tree[myroot].getItem(outItem);
         cout << '\t' << outItem << endl;
-        preorderHelper(tree, left);
-        preorderHelper(tree, right);
+        preorderHelper(tree, tree[myroot].getLeftChild());
+        preorderHelper(tree, tree[myroot].getRightChild());
     }
 }
 
 //recursive helper
 void inorderHelper(TreeNode tree[], int myroot)
 {
-    int left = tree[myroot].getLeftChild();
-    int right = tree[myroot].getRightChild();
     Item outItem;
 
     if (myroot != -1)
     {
-        inorderHelper(tree, left);
+        inorderHelper(tree, tree[myroot].getLeftChild());
         tree[myroot].getItem(outItem);
         cout << '\t' << outItem << endl;
-        inorderHelper(tree, right);
+        inorderHelper(tree, tree[myroot].getRightChild());
     }
 }
 
 //recursive helper
 void postorderHelper(TreeNode tree[], int myroot)
 {
-    int left = tree[myroot].getLeftChild();
-    int right = tree[myroot].getRightChild();
     Item outItem;
 
     if (myroot != -1)
     {
-        postorderHelper(tree, left);
-        postorderHelper(tree, right);
+        postorderHelper(tree, tree[myroot].getLeftChild());
+        postorderHelper(tree, tree[myroot].getRightChild());
         tree[myroot].getItem(outItem);
         cout << '\t' << outItem << endl;
     }
