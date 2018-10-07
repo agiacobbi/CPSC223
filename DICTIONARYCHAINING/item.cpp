@@ -1,7 +1,7 @@
 /*
-Alex Giacobbi and Nathan Flack
+Alex Giacobbi and Jalen Tacsiat
 agiacobbi
-17 September 2018
+3 October 2018
 Description: This is the implementation file for abstract data type Item. This file contains function headers and
 bodies for the class Item's methods as well as documentation for each function. This data object is an Item which 
 stores a texting abbreviation (inherited from Key) and an associated texting meaning. The class inherits functions 

@@ -1,13 +1,13 @@
-// Specification of ADT Dictionary
-//     data object: a bunch of texting abbreviations and their meanings 
-//     operations: create, destroy
-//                 search the dictionary for an item given its text
-//                 insert a new item into the dictionary
-//                 remove an item from the dictionary given its text
-//   associated operations: input and output
-// filename dictionary.h
-// authors: CPSC 223 class members section 1 and 2 and a few changes by Dr. Y
-// date September 14, 2018
+/* 
+Alex Giacobbi and Jalen Tacsiat 
+agiacobbi
+25 October 2018
+Description: This is the specification file for abstract data type Dictionary. This file 
+contains function prototypes for the class Dictionary's methods as well as documentation 
+for each function. This data object is a Dictionary which stores Items in a dynamically allocated 
+array of stacks. The class has methods that create, destroy, search for a meaning, insert a new 
+item, remove item, input, output, check if dictionary is empty or full, and return number of entries.
+*/
 
 #ifndef DICTIONARY_H
 #define  DICTIONARY_H

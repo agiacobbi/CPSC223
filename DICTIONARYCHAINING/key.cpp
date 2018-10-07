@@ -1,7 +1,7 @@
 /*
-Alex Giacobbi and Nathan Flack
+Alex Giacobbi and Jalen Tacsiat
 agiacobbi
-25 September 2018
+3 October 2018
 Description: This is the implementation file for abstract data type Key. This file contains function headers and
 bodies for the class Key's methods as well as documentation for each function. This data object is a Key which 
 stores a texting abbreviation. The class has methods that create, destroy, copy, input, output, assign, check if

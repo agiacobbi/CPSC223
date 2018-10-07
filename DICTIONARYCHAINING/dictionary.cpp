@@ -1,12 +1,12 @@
 /*
-Alex Giacobbi and Jalen Tacsiat
+Alex Giacobbi and Jalen Tacsiat 
 agiacobbi
-25 September 2018
+25 October 2018
 Description: This is the implementation file for abstract data type Dictionary. This file 
 contains function headers and bodies for the class Dictionary's methods as well as documentation 
-for each function. This data object is a Dictionary which stores Items in a hash table. The class 
-has methods that create, destroy, search for a meaning, insert a new item, remove item, input, 
-output, check if dictionary is empty or full, and return number of entries.
+for each function. This data object is a Dictionary which stores Items in a dynamically allocated 
+array of stacks. The class has methods that create, destroy, search for a meaning, insert a new 
+item, remove item, input, output, check if dictionary is empty or full, and return number of entries.
 */
 
 #include "dictionary.h"
@@ -37,6 +37,7 @@ void printStack(Stack stackOut)
         cout << "\t->\t" << myItem << endl;
     }
 }
+
 
 void checkStack(Stack myStack, Key targetKey, Item& myItem, bool& isFound)
 {
@@ -129,7 +130,7 @@ Dictionary::~Dictionary()
 
 // searchs for a meaning with a given text
 // pre targetText has been assigned 
-// post if an item with texting abbreviationthe same as targetText is found then
+// post if an item with texting abbreviation the same as targetText is found then
 //          isFound is true and theItem is that item
 //       else isFound is false
 // usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
@@ -137,7 +138,7 @@ void Dictionary::searchForMeaning(const Key& targetText, Item& anItem, bool& isF
 {
     int address = hashFunction(targetText);
     isFound = false;
-
+	
     checkStack(dictionaryPtr->hashTablePtr[address], targetText, anItem, isFound);
 }
 

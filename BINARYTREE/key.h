@@ -1,14 +1,13 @@
-/*
-Alex Giacobbi and Jalen Tacsiat
-agiacobbi
-3 October 2018
-Description: This is the header file for abstract data type key. This header file contains 
-the prototypes and documentation for each method of class key such. This class Key is
-a parent of class item and contains the protected data member textingAbbreviation that 
-can be accessed by derived classes. This header file contains prototypes for member functions 
-and friends that handle the following operations: create, destroy, copy, input, output, assign, 
-check if same, check if less than, and convert to an integer. 
-*/
+//filename key.h
+//author  Dr. Y
+//date September 7, 2018
+//Specification of Abstract Data Type Key
+//
+//   data object: a key which is a texting abbreviation
+//   operations: create, destroy, copy, 
+//               input, output, assign
+//               check if same, check if less than, 
+//               convert to an integer
 
 #ifndef KEY_H
 #define KEY_H
