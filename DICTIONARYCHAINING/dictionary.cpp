@@ -1,5 +1,5 @@
 /*
-Alex Giacobbi and Jalen Tacsiat Flack
+Alex Giacobbi and Jalen Tacsiat
 agiacobbi
 25 September 2018
 Description: This is the implementation file for abstract data type Dictionary. This file 
@@ -196,7 +196,6 @@ void Dictionary::deleteEntry(const Key& targetText, bool& isEmpty, bool& isFound
             tempStack.pop();
         }
     }
-
 }
 
 // checks if the dictionary is empty
