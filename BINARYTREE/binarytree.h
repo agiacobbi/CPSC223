@@ -46,6 +46,20 @@ void insert(const Item& newItem, int left, int right);
 //usage tree.preorder();
 void preorder();
 
+//performs an In-Order traversal of a binary tree
+//pre BinaryTree object exists
+//post the items of the BinaryTree object are printed in Pre-Order
+//     with items separated by a semi-colon
+//usage tree.preorder();
+void inorder();
+
+//performs a Post-Order traversal of a binary tree
+//pre BinaryTree object exists
+//post the items of the BinaryTree object are printed in Pre-Order
+//     with items separated by a semi-colon
+//usage tree.preorder();
+void postorder();
+
 private:
  
 int root;

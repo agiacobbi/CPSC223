@@ -12,7 +12,7 @@
 #ifndef _TREENODE_H
 #define _TREENODE_H
 
-#include "Item.h"
+#include "item.h"
 
 class TreeNode
 {

@@ -13,13 +13,40 @@
 //     Operations: create, destroy, insert a new node, 
 //                 traversals: preorder, inorder, postorder
 #include <iostream>
-#include "BinaryTree.h"
+#include "binarytree.h"
 using namespace std;
 
 //recursive helper
 void preorderHelper(TreeNode tree[], int myroot)
 {
+    if (not (tree[myroot] == -1)
+    {
+        cout << '\t' << tree[myroot] << endl;
+        preOrderHelper(tree, tree[myroot].leftChild);
+        preOrderHelper(tree, tree[myroot].rightChild);
+    }
+}
 
+//recursive helper
+void inorderHelper(TreeNode tree[], int myroot)
+{
+    if (not (tree[myroot] == -1)
+    {
+        preOrderHelper(tree, tree[myroot].leftChild);
+        cout << '\t' << tree[myroot] << endl;
+        preOrderHelper(tree, tree[myroot].rightChild);
+    }
+}
+
+//recursive helper
+void postorderHelper(TreeNode tree[], int myroot)
+{
+    if (not (tree[myroot] == -1)
+    {
+        preOrderHelper(tree, tree[myroot].leftChild);
+        preOrderHelper(tree, tree[myroot].rightChild);
+        cout << '\t' << tree[myroot] << endl;
+    }
 }
 
 //creates an empty binary tree
@@ -49,7 +76,12 @@ void BinaryTree::insert(const Item& newItem, int left, int right)
 {
     if (numberOfItems < MAXITEMS)
     {
-	
+        binaryTree[numberOfItems].setNode(newItem, left, right);
+        if (numberOfItems == 0)
+        {
+            root = 0;
+        }
+        numberOfItems++;
     }
 }
 
@@ -61,9 +93,20 @@ void BinaryTree::insert(const Item& newItem, int left, int right)
 //usage tree.preorder();
 void BinaryTree::preorder()
 {
-    preorderHelper(binaryTree, 5); // this line is not correct
+    preorderHelper(binaryTree, root); 
     cout << endl;
 }
 
+void BinaryTree::inorder()
+{
+    inorderHelper(binaryTree, root); 
+    cout << endl;
+}
+
+void BinaryTree::postorder()
+{
+    postorderHelper(binaryTree, root); 
+    cout << endl;
+}
 
 
