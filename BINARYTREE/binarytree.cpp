@@ -96,7 +96,6 @@ void BinaryTree::insert(const Item& newItem, int left, int right)
         {
             root = 0;
         }
-        root = numberOfItems;
         numberOfItems++;
     }
 }

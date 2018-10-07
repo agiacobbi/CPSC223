@@ -34,20 +34,18 @@ void makeFullTreeHeight3(BinaryTree& fullTree, ifstream& infile)
 {
     Item inItem;
 
-    // Creates third level
+    for (int i = 0; i < 7;)
+    {
+        infile >> inItem;
+        fullTree.insert(inItem, ++i, ++i);
+    }
+
     for (int i = 0; i < 4; i++)
     {
         infile >> inItem;
         fullTree.insert(inItem, -1, -1);
     }
 
-    infile >> inItem;
-    fullTree.insert(inItem, 0, 1);
-    infile >> inItem;
-    fullTree.insert(inItem, 2, 3);
-    // Creates first level
-    infile >> inItem;
-    fullTree.insert(inItem, 4, 5);
 }
 
 void makeDegenerateTreeHeight4(BinaryTree& degenerateTree, ifstream& infile)
