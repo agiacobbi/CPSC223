@@ -19,7 +19,7 @@ using namespace std;
 //recursive helper
 void preorderHelper(TreeNode tree[], int myroot)
 {
-    if (not (tree[myroot] == -1)
+    if (not (tree[myroot] == -1))
     {
         cout << '\t' << tree[myroot] << endl;
         preOrderHelper(tree, tree[myroot].leftChild);
@@ -30,7 +30,7 @@ void preorderHelper(TreeNode tree[], int myroot)
 //recursive helper
 void inorderHelper(TreeNode tree[], int myroot)
 {
-    if (not (tree[myroot] == -1)
+    if (not (tree[myroot] == -1))
     {
         preOrderHelper(tree, tree[myroot].leftChild);
         cout << '\t' << tree[myroot] << endl;
@@ -41,7 +41,7 @@ void inorderHelper(TreeNode tree[], int myroot)
 //recursive helper
 void postorderHelper(TreeNode tree[], int myroot)
 {
-    if (not (tree[myroot] == -1)
+    if (not (tree[myroot] == -1))
     {
         preOrderHelper(tree, tree[myroot].leftChild);
         preOrderHelper(tree, tree[myroot].rightChild);
