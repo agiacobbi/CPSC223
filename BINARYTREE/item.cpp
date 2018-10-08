@@ -1,10 +1,13 @@
-// filename item.cpp
-// date September 17, 2018
-// Implementation of Abstract Data Type Item
-//
-//   data object: an item which is a texting meaning associated with a texting abbreviation
-//   operations: create, destroy, copy, 
-//               input, output, assign
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+8 October 2018
+Description: This is the implementation file for abstract data type Item. This file contains function headers and
+bodies for the class Item's methods as well as documentation for each function. This data object is an Item which 
+stores a texting abbreviation (inherited from Key) and an associated texting meaning. The class inherits functions 
+and data members from class Key and has its own methods and friends that create, destroy, copy, assign, input, and 
+output.
+*/
 
 #include "item.h"
 

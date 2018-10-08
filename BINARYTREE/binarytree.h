@@ -1,15 +1,12 @@
-//file binarytree.h
-//author Dr. Y
-//date October 1, 2018
-
-//Specification of ADT Binary Tree
-//     Data object: a binary tree which is either empty or
-//                  in the form of     r
-//                                  /    \
-//                                TL     TR
-//                  where TL and TR are binary trees
-//     Operations: create, destroy, insert a new node, 
-//                 traversals: preorder, inorder, postorder
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+8 October 2018
+Description: This is the header file for abstract data type BinaryTree. This file contains function prototypes and
+documentation for the class BinaryTree's methods. This data object is a Binary Tree implemented using an array. The 
+traversal functions will use recursion to display the elements in the tree. The class has methods that create,
+destroy, insert a new node, traversals: preorder, inorder, postorder
+*/
 
 #ifndef _BINARYTREE_H
 #define _BINARYTREE_H

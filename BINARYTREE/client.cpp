@@ -1,3 +1,13 @@
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+8 October 2018
+Description: This is a client program that tests the member functions of abstract 
+data type BinaryTree. This program is broken into functions that each test a different 
+member function. The program takes input from file in.dat to walk the user through each 
+function and show that each function works as documented.
+*/
+
 #include <iostream>
 #include <fstream>
 #include "binarytree.h"
@@ -8,13 +18,14 @@ void makeDegenerateTreeHeight4(BinaryTree& degenerateTree, ifstream& infile);
 void printFullTree();
 void printDegenerateTree();
 void testPreorderInorderPostorder(BinaryTree& tree);
+void openFile(ifstream& infile);
 
 int main()
 {
     BinaryTree fullTree, degenerateTree;
     ifstream inputFile;
 
-    inputFile.open("in.dat");
+    openFile(inputFile);
 
     makeFullTreeHeight3(fullTree, inputFile);
     makeDegenerateTreeHeight4(degenerateTree, inputFile);
@@ -100,4 +111,14 @@ void testPreorderInorderPostorder(BinaryTree& tree)
 
     cout << "Postorder Traversal:" << endl;
     tree.postorder();
+}
+
+void openFile(ifstream& infile)
+{
+    infile.open("in.dat");
+    if (infile.fail())
+    {
+        cout << "ERROR: cannot open in.dat BOLTING" << endl;
+        exit(1);
+    }
 }

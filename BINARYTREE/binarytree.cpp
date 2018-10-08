@@ -1,22 +1,18 @@
-//file binarytree.cpp
-//author Dr. Y
-//date October 1, 2018
+/*
+Alex Giacobbi and Jalen Tacsiat
+agiacobbi
+8 October 2018
+Description: This is the implementation file for abstract data type BinaryTree. This file contains function headers and
+bodies for the class BinaryTree's methods as well as documentation for each function. This data object is a Binary Tree
+that implemented using an array. The traversal functions use recursion to display the elements in the tree. The class 
+has methods that create, destroy, insert a new node, traversals: preorder, inorder, postorder
+*/
 
-//Specification of ADT Binary Tree
-//     Data object: a binary tree which is either empty or
-//                  in the form of     r
-//                                  /    \
-//                                TL     TR
-//                  where TL and TR are binary trees
-//     Data Structure: 
-
-//     Operations: create, destroy, insert a new node, 
-//                 traversals: preorder, inorder, postorder
 #include <iostream>
 #include "binarytree.h"
 using namespace std;
 
-//recursive helper
+//recursive helper for preorder
 void preorderHelper(TreeNode tree[], int myroot)
 {
     Item outItem;
@@ -30,7 +26,7 @@ void preorderHelper(TreeNode tree[], int myroot)
     }
 }
 
-//recursive helper
+//recursive helper inorder
 void inorderHelper(TreeNode tree[], int myroot)
 {
     Item outItem;
@@ -44,7 +40,7 @@ void inorderHelper(TreeNode tree[], int myroot)
     }
 }
 
-//recursive helper
+//recursive helper postorder
 void postorderHelper(TreeNode tree[], int myroot)
 {
     Item outItem;
