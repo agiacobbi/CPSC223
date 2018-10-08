@@ -106,12 +106,24 @@ void BinaryTree::preorder()
     cout << endl;
 }
 
+//performs an In-Order traversal of a binary tree
+//pre BinaryTree object exists
+//post the items of the BinaryTree object are printed in In-Order
+//     with items separated by a semi-colon
+//     There is a newline after the last one
+//usage tree.inorder();
 void BinaryTree::inorder()
 {
     inorderHelper(binaryTree, root); 
     cout << endl;
 }
 
+//performs a Post-Order traversal of a binary tree
+//pre BinaryTree objext exists
+//post the items of the BinaryTree object are printed in Post-Order
+//     with items separated by a semi-colon
+//     There is a newline after the last one
+//usage tree.postorder();
 void BinaryTree::postorder()
 {
     postorderHelper(binaryTree, root); 
