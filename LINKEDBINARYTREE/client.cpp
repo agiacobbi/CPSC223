@@ -22,15 +22,16 @@ void printExceptionMessage(const Exception& except);
 
 int main()
 {
-   BinaryTree mytree, otherTree;
+   BinaryTree mytree;
    ifstream infile;
 
    openInputFile(infile, "in.dat");
    
    try {
-     mytree.makeFullTreeHeight2(infile);
+     mytree.makeCompleteTreeHeight3(infile);
      mytree.inorderTraverse();
-     mytree.prettyDisplay();
+     BinaryTree otherTree(mytree);
+     otherTree.prettyDisplay();
     }
    catch (Exception except)
    {

@@ -19,7 +19,14 @@ using namespace std;
 //usage: copyTree (newptr, oldptr);
 void copyTree (TreeNode*& newtreep, TreeNode* oldtreep) throw (Exception)
 {
-
+    if (oldtreep != nullptr)
+    {
+        newtreep = new (nothrow) TreeNode(oldtreep->item, nullptr, nullptr);
+        if (newtreep == nullptr)
+            throw Exception("in BinaryTree: no memory from the heap available for new TreeNode");
+        copyTree(newtreep->leftChild, oldtreep->leftChild);
+        copyTree(newtreep->rightChild, oldtreep->rightChild);
+    }
 }
 
 //Releases memory for a binary tree
@@ -47,9 +54,9 @@ void writePretty(TreeNode* treep, int level)
         writePretty(treep->rightChild, level + 1);
         if (level == 0)
             cout << "root ->";
-        for (int i = 0; i < level; i++)
+        for (int i = 0; i < 3 * level; i++)
             cout << '\t';
-        cout << treep->item.textingAbbreviation << endl;
+        cout << treep->item << endl;
         writePretty(treep->leftChild, level + 1);
     }
 }
@@ -142,9 +149,9 @@ bool BinaryTree::isEmpty() const
 //usage: atree = btree = ctree;
 BinaryTree& BinaryTree::operator=(const BinaryTree& rightHandSideTree) throw (Exception)
 {
-
+    destroyTree(root);
+    copyTree(root, rightHandSideTree.root);
     return *this;
-
 }
 
 //prints the tree to look like a computer science tree
@@ -212,9 +219,6 @@ void BinaryTree::makeFullTreeHeight2(istream& input) throw (Exception)
     root -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
     if (root -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
-
-    if (1 == 1)
-      throw Exception("Hi hows monday");
 }
 
 //makes a complete but not full binary tree of height 3 
@@ -250,6 +254,4 @@ void BinaryTree::makeCompleteTreeHeight3(istream& input) throw (Exception)
     if (root -> leftChild -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
-    if (1 == 1)
-      throw Exception("Hi hows monday");
 }
