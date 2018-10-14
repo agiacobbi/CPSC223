@@ -49,7 +49,7 @@ void writePretty(TreeNode* treep, int level)
             cout << "root ->";
         for (int i = 0; i < level; i++)
             cout << '\t';
-        cout << treep->item << endl;
+        cout << treep->item.textingAbbreviation << endl;
         writePretty(treep->leftChild, level + 1);
     }
 }

@@ -29,7 +29,8 @@ int main()
    
    try {
      mytree.makeFullTreeHeight2(infile);
-     mytree.preorderTraverse();
+     mytree.inorderTraverse();
+     mytree.prettyDisplay();
     }
    catch (Exception except)
    {
