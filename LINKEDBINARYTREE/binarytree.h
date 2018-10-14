@@ -89,7 +89,7 @@ public:
    //throws an exception if there is not enough room in the
    //       heap to make the tree
    //usage: tree.makeFullTreeHeight2(infile);
-   void makeFullTreeHeight2(istream& input) throw (Exception);
+   void makeFullTreeHeight3(istream& input) throw (Exception);
 
    //makes a complete binary tree of height 3
    //pre input is either cin or an open file
@@ -97,7 +97,7 @@ public:
    //throws an exception if there is not enough room in the
    //       heap to make the tree
    //usage: tree.makeCompleteTreeHeight3(infile);
-   void makeCompleteTreeHeight3(istream& input) throw (Exception);
+   void makeCompleteTreeHeight4(istream& input) throw (Exception);
 
 protected: 
 
