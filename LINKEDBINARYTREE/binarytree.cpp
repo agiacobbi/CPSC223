@@ -56,7 +56,7 @@ void writePretty(TreeNode* treep, int level)
             cout << "root ->";
         for (int i = 0; i < 3 * level; i++)
             cout << '\t';
-        cout << treep->item << endl;
+        cout << treep->item.textingAbbreviation << endl;
         writePretty(treep->leftChild, level + 1);
     }
 }
@@ -188,7 +188,6 @@ void BinaryTree::inorderTraverse ()
     inorder(root);
 }
 
-
 void BinaryTree::postorderTraverse()
 {
     postorder(root);
@@ -298,4 +297,7 @@ void BinaryTree::makeCompleteTreeHeight4(istream& input) throw (Exception)
     root->leftChild->rightChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
     if (root->leftChild->rightChild->leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
+
+    if (root->leftChild->rightChild->leftChild != nullptr)
+        throw Exception("I am throwing an exception at you, Dr. Y. Do you have your catcher’s mitt ready?");
 }
