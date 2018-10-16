@@ -30,22 +30,20 @@ void printTraversals(BinaryTree& aTree);
 
 int main()
 {
-    BinaryTree mytree;
+    BinaryTree fullTree, completeTree;
     ifstream infile;
 
     openInputFile(infile, "in.dat");
    
-    try {
-        mytree.makeCompleteTreeHeight3(infile);
-        mytree.inorderTraverse();
-        BinaryTree otherTree(mytree);
-        otherTree.prettyDisplay();
-    }
-        catch (Exception except)
-    {
-        printExceptionMessage(except);
-    }
-  
+    makeFullTreeHeight3(fullTree, infile);
+    makeCompleteTreeHeight4(completeTree, infile);
+
+    printBinaryTree(fullTree);
+    printTraversals(fullTree);
+
+    printBinaryTree(completeTree);
+    printTraversals(completeTree);
+ 
     return 0;
 }
 
@@ -98,21 +96,20 @@ void makeCompleteTreeHeight4(BinaryTree& aTree, istream& infile)
     }
 }
 
-void printBinaryTree(BinaryTree& aTree);
+void printBinaryTree(BinaryTree& aTree)
 {
     cout << endl;
-    aTree.prettyDisplay(aTree);
+    aTree.prettyDisplay();
     cout << endl;
 }
 
-void printTraversals(BinaryTree& aTree);
+void printTraversals(BinaryTree& aTree)
 {
-    cout << endl;
-    cout << "Preorder Traversal:" << endl;
+    cout << endl << "Preorder Traversal:" << endl << endl;
     aTree.preorderTraverse();
-    cout << "Inorder Traversal:" << endl;
+    cout << endl << "Inorder Traversal:" << endl << endl;
     aTree.inorderTraverse();
-    cout << "Postorder Traversal:" << endl;
+    cout << endl << "Postorder Traversal:" << endl << endl;
     aTree.postorderTraverse();
     cout << endl;
 }

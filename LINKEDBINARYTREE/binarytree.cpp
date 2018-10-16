@@ -49,14 +49,17 @@ void destroyTree (TreeNode*& treep)
 // recursive helper for prettyDisplay. You do the doc
 void writePretty(TreeNode* treep, int level)
 {
+    Key abbreviation;
+
     if (treep != nullptr)
     {
         writePretty(treep->rightChild, level + 1);
         if (level == 0)
             cout << "root ->";
-        for (int i = 0; i < 3 * level; i++)
+        for (int i = 0; i < level + 1; i++)
             cout << '\t';
-        cout << treep->item.textingAbbreviation << endl;
+        abbreviation = treep->item;
+        cout << abbreviation << endl;
         writePretty(treep->leftChild, level + 1);
     }
 }
