@@ -18,10 +18,15 @@ class TreeNode
 {
 public:
  
-//YOU DO     
+//creates a treenode
+//post: left and right child are set to null pointer
+//usage treeNode();    
 TreeNode();
 
-//YOU DO
+//creates a treenode
+//pre: memory is allocated
+//post: item, leftChild, and rightChild are assigned
+//usage: treeNode(item, leftChild, rightChild);
 TreeNode(const Item& newItem, TreeNode* theLeft, TreeNode* theRight);
    
 Item item;

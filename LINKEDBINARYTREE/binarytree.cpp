@@ -1,10 +1,26 @@
 //file binarytree.cpp
-//author and 
-//date
+//Alex Giacobbi and Jalen Tacsiat
+//date: 10/17/18
+//Specification file for binarytree.cpp
 
-//data object: a binary tree which is YOU DO
-//data structure: a linked binary tree
-//operations: YOU DO
+//data object: a binary tree which is in the form of empty or 
+//data structure: a linked binary tree which each node containing texting abbreviations 
+//and their meanings. 
+/*
+operations: This is the implementation file of the BinaryTree class. 
+This file contains the headers and bodies of each function for the BinaryTree class. 
+This data object is a BinaryTree that is implemented using a linked list. The traversal 
+functions preorderTraverse, inorderTraverse, and postorderTraverse use a recursive helper 
+function to display each item in the tree. There are two constructors the first constructor is 
+used for setting the root equal to null pointer. The second constructor is used to copy a tree
+to another tree. The destructor uses a recursive helper function to delete each node in 
+the BinaryTree. The isEmpty function is used to check if a tree is empty, by checking to see if
+the root is equal to null pointer. The equals operator is used to assign a tree to another tree.
+The function prettyDisplay uses recursive helper function called writePretty to print out each 
+texting abbreviation of each item in the tree. The makeFullTreeHeight3 method is used to create 
+a full binary tree of height 3. The makeCompleteTreeHeight4 method is used to create a complete tree
+of height 4. 
+*/
 
 #include "binarytree.h"
 #include <iostream>
@@ -47,6 +63,9 @@ void destroyTree (TreeNode*& treep)
 }
 
 // recursive helper for prettyDisplay. You do the doc
+//Pre: treep points to the root of the binaryTree
+//Post: Displays the contents of the binary tree
+//Usage: writePretty(root, int)
 void writePretty(TreeNode* treep, int level)
 {
     Key abbreviation;
@@ -57,7 +76,7 @@ void writePretty(TreeNode* treep, int level)
         if (level == 0)
             cout << "root ->";
         for (int i = 0; i < level + 1; i++)
-            cout << '\t';
+            cout << '\t' ;
         abbreviation = treep->item;
         cout << abbreviation << endl;
         writePretty(treep->leftChild, level + 1);
@@ -80,6 +99,11 @@ void preorder(TreeNode* treep)
     }
 }
 
+// ********** recursive helpers for the traversals ****************
+//pre: treep points to the root of a binary tree to be traversed
+//post: prints the item objects in the nodes on the screen in the 
+//     specified order. the items are separated by commas
+//usage: inorder (mroot);   
 void inorder(TreeNode* treep)
 {
     if (treep != nullptr)
@@ -90,7 +114,11 @@ void inorder(TreeNode* treep)
     }
 }
 
-
+// ********** recursive helpers for the traversals ****************
+//pre: treep points to the root of a binary tree to be traversed
+//post: prints the item objects in the nodes on the screen in the 
+//     specified order. the items are separated by commas
+//usage: inorder(mroot);
 void postorder(TreeNode* treep)
 {
     if (treep != nullptr)
@@ -186,23 +214,29 @@ void BinaryTree::preorderTraverse ()
     preorder(root);
 }
 
+//post: prints the objects in the tree in order specified
+//usage: tree.inorderTraverse();  
+//similarly for the other traversals
 void BinaryTree::inorderTraverse ()
 {
     inorder(root);
 }
 
+//post: prints the objects in the tree in order specified
+//usage: tree.postorderTraverse();  
+//similarly for the other traversals
 void BinaryTree::postorderTraverse()
 {
     postorder(root);
 }
 
-//makes a full binary tree of height 2
+//makes a full binary tree of height 3
 //pre input is either cin or an open file
 //    input's pointer is before the first item
 //post: object is a full binary tree of height 2
 //throws an exception if there is not enough room in the
 //       heap to make the tree
-//usage: YOU DO
+//usage: tree.makeFullTreeHeight3(inputstream);
 void BinaryTree::makeFullTreeHeight3(istream& input) throw (Exception)
 {
     Item newguy;
@@ -244,9 +278,12 @@ void BinaryTree::makeFullTreeHeight3(istream& input) throw (Exception)
 }
 
 //makes a complete but not full binary tree of height 3 
-//YOU FINISH
+//pre input is either cin or an open file
+//    input's pointer is before the first item
+//post: object is a complete but not full binary tree of height 4
 //throws an exception if there is not enough room in the
 //       heap to make the tree
+//usage: tree.makeCompleteTreeHeight4(input);
 void BinaryTree::makeCompleteTreeHeight4(istream& input) throw (Exception)
 {
     Item newguy;

@@ -28,22 +28,32 @@ void printBinaryTree(BinaryTree& aTree);
 
 void printTraversals(BinaryTree& aTree);
 
+void testEqualsOperator(BinaryTree& firstTree, BinaryTree& secondTree); 
+
 int main()
 {
     BinaryTree fullTree, completeTree;
     ifstream infile;
 
+	cout << endl << endl;
+	
     openInputFile(infile, "in.dat");
-   
-    makeFullTreeHeight3(fullTree, infile);
-    makeCompleteTreeHeight4(completeTree, infile);
-
+    
+	cout << "---- Testing printing and traversal of Full Tree of Height 3 ----" << endl;
+	makeFullTreeHeight3(fullTree, infile);
+	
     printBinaryTree(fullTree);
     printTraversals(fullTree);
-
+	
+	cout << "---- Testing printing and traversal of Complete Tree of Height 4 ----" << endl;
+	makeCompleteTreeHeight4(completeTree, infile);
+	
     printBinaryTree(completeTree);
     printTraversals(completeTree);
  
+	testEqualsOperator(fullTree, completeTree);
+	
+	
     return 0;
 }
 
@@ -113,6 +123,16 @@ void printTraversals(BinaryTree& aTree)
     aTree.postorderTraverse();
     cout << endl;
 }
+
+void testEqualsOperator(BinaryTree& firstTree, BinaryTree& secondTree)
+{
+	//printBinaryTree(firstTree);
+	cout << "----Testing = operator by setting completeTree to fullTree and printing both trees after operation----" << endl;
+	firstTree = secondTree;
+	printBinaryTree(secondTree);
+	printBinaryTree(firstTree);
+	
+}	
    
 
    
