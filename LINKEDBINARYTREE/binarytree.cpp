@@ -1,11 +1,15 @@
 //file binarytree.cpp
 //Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
 //date: 10/17/18
-//Specification file for binarytree.cpp
+//implementation file for binarytree.cpp
 
 //data object: a binary tree which is in the form of empty or 
+//consists of a root with left and right trees that are binarytrees
+
 //data structure: a linked binary tree which each node containing texting abbreviations 
-//and their meanings. 
+//and their meanings and pointers to child nodes. 
+
 /*
 operations: This is the implementation file of the BinaryTree class. 
 This file contains the headers and bodies of each function for the BinaryTree class. 

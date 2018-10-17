@@ -18,7 +18,7 @@ an item and their children.
 
 //creates a treenode
 //post: left and right child are set to null pointer
-//usage treeNode();
+//usage TreeNode mytreeNode;    
 TreeNode::TreeNode()
 {
    leftChild = nullptr;
@@ -26,9 +26,8 @@ TreeNode::TreeNode()
 }
 
 //creates a treenode
-//pre: memory is allocated
 //post: item, leftChild, and rightChild are assigned
-//usage: treeNode(item, leftChild, rightChild);
+//usage: TreeNode myTree(anItem, treeLeft, treeRight);
 TreeNode::TreeNode(const Item& newItem, TreeNode* theLeft, TreeNode* theRight)
 {
    item = newItem;
