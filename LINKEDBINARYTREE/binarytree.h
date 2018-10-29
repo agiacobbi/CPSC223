@@ -1,14 +1,31 @@
 //file binarytree.h
-//author Dr. Y
-//date October 8, 2018
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 10/17/18
+//specification file for binarytree.cpp
 
-// Specification of ADT Binary Tree
-//    Data object: A binary tree T that is either empty or in the form
-// you finish
+//data object: a binary tree which is in the form of empty or 
+//consists of a root with left and right trees that are binarytrees
 
-//    Operations: (a scaled-down version)
-//       create, destroy, copy, operator=,
-//       traversals (preorder, inorder, postorder)
+//data structure: a linked binary tree which each node containing texting abbreviations 
+//and their meanings and pointers to child nodes. 
+
+/*
+operations: This is the specification file of the BinaryTree class. 
+This file contains the prototypes and documentation of each function for the BinaryTree class. 
+This data object is a BinaryTree that is implemented using a linked list. The traversal 
+functions preorderTraverse, inorderTraverse, and postorderTraverse use a recursive helper 
+function to display each item in the tree. There are two constructors the first constructor is 
+used for setting the root equal to null pointer. The second constructor is used to copy a tree
+to another tree. The destructor uses a recursive helper function to delete each node in 
+the BinaryTree. The isEmpty function is used to check if a tree is empty, by checking to see if
+the root is equal to null pointer. The equals operator is used to assign a tree to another tree.
+The function prettyDisplay uses recursive helper function called writePretty to print out each 
+texting abbreviation of each item in the tree. The makeFullTreeHeight3 method is used to create 
+a full binary tree of height 3. The makeCompleteTreeHeight4 method is used to create a complete tree
+of height 4. 
+*/
+
 // Contract: Assumes the this class can access private data members of class Node.
 //    Those data members are: Item item, Node* leftptr, Node* rightptr.
 //    There is a constructor that allows caller to give item, left and right ptrs.
