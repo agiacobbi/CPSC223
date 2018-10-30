@@ -6,36 +6,21 @@
 #include <iostream>
 using namespace std;
 
-
 void testSearchForMeaning(BinarySearchTree& aTree);
-
 void testAddNewEntry(BinarySearchTree& aTree);
-
-void testRebalanceTree(BinarySearchTree& aTree, istream& input);
-
+void testRebalanceTree(BinarySearchTree& aTree);
+void testInputOperator(BinarySearchTree& aTree);
+void testInorderTraverse(BinarySearchTree& aTree);
 
 int main()
 {
-	ofstream output;
-	ifstream inputfile;
-	BinarySearchTree aTree;
-	inputfile.open("dictionary.dat");
+	BinarySearchTree myBinarySearchTree;
 	
-	inputfile >> aTree;
-	testSearchForMeaning(aTree);
-	inputfile.close();
-	testAddNewEntry(aTree);
-	output.open("testfile.dat");
-	cout << aTree << endl;
-	aTree.inorderTraverse(output);
-	output.close();
-	inputfile.open("testfile.dat");
-	testRebalanceTree(aTree, inputfile);
-	cout << aTree << endl;
-	inputfile.close();
-	
-	
-	
+	testInputOperator(myBinarySearchTree)
+	testSearchForMeaning(myBinarySearchTree);
+	testAddNewEntry(myBinarySearchTree);
+	testInorderTraverse(myBinarySearchTree);
+	testRebalanceTree(myBinarySearchTree);	
 }
 
 void testSearchForMeaning(BinarySearchTree& aTree)
@@ -44,16 +29,13 @@ void testSearchForMeaning(BinarySearchTree& aTree)
 	Key aKey("lol");
 	bool isFound;
 	
-	cout << "------ Testing searchForMeaning, searching for key lol -------" << endl;
+	cout << "----- Testing searchForMeaning, searching for key 'lol' -----" << endl;
 	aTree.searchForMeaning(aKey, anItem, isFound);
+
 	if (isFound)
-	{
-		cout << "Found it" << endl;
-	}
+		cout << "Found: " << anItem << endl;
 	else
-	{
 		cout << "Not found" << endl;
-	}
 }
 
 void testAddNewEntry(BinarySearchTree& aTree)
@@ -61,21 +43,52 @@ void testAddNewEntry(BinarySearchTree& aTree)
 	Item anItem;
 	
 	cout << "---- Testing addNewEntry ---" << endl;
-	cout << "enter an item to add -> ";
+	cout << "Enter an item to add -> ";
 	cin >> anItem;
-	try
-	{
+
+	try {
 		aTree.addNewEntry(anItem);
-	}
-	catch(Exception e)
-	{
+	} 
+	catch(Exception e) {
 		cout << endl << e.what() << endl << endl;
 	}
 }
 
-void testRebalanceTree(BinarySearchTree& aTree, istream& input)
+void testRebalanceTree(BinarySearchTree& aTree)
 {
-	
-	cout << "testing RebalanceTreeFunction" << endl;
-	aTree.rebalanceTree(input);
+	ifstream inputFile;
+
+	inputFile.open("testfile.dat");
+
+	cout << "----- Testing rebalance function and printing balanced tree -----" << endl;
+	aTree.rebalanceTree(inputFile);
+	cout << aTree << endl;
+
+	inputFile.close();
+}
+
+void testInputOperator(BinarySearchTree& aTree)
+{
+	ifstream inputFile;
+
+	inputFile.open("dictionary.dat");
+
+	cout << "----- Testing the input operator and printing the tree -----" << endl;
+	inputFile >> aTree;
+	cout << aTree << endl;
+
+	inputFile.close();
+}
+
+void testInorderTraverse(BinarySearchTree& aTree)
+{
+	ofstream outputFile;
+
+	outputFile.open("testfile.dat");
+
+	cout << "----- Testing inorder traversal and printing to screen and testfile.dat -----" << endl;
+	aTree.inorderTraverse(cout);
+	aTree.inorderTraverse(outputFile);
+
+	outputFile.close();
 }

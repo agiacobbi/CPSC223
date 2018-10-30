@@ -19,7 +19,7 @@
 //usage throw cexception ("BAD MOVE");
 Exception::Exception(string theMessage) 
 {
-   message = theMessage;
+    message = theMessage;
 }
 
 //outputs a message exception
@@ -28,5 +28,5 @@ Exception::Exception(string theMessage)
 //usage cout << except.what() << endl;
 string Exception::what() const
 {
-   return message;
+    return message;
 }

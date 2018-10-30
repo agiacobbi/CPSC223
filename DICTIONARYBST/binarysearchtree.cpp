@@ -62,25 +62,20 @@ void addHelper(TreeNode*& treep, const Item& newItem, int& numberOfEntries) thro
 void rebalanceTreeHelper(TreeNode*& treep, istream& input, int numberOfEntries)
 {
 	Item anItem;
+
 	if (numberOfEntries > 0)
 	{
 		treep = new (nothrow) TreeNode(anItem, nullptr, nullptr);
 		
 		rebalanceTreeHelper(treep -> leftChild, input, numberOfEntries / 2);
-		
 		input >> treep -> item;
-		
-		rebalanceTreeHelper(treep -> rightChild, input, (numberOfEntries - 1) / 2);
-		
+		rebalanceTreeHelper(treep -> rightChild, input, (numberOfEntries - 1) / 2);	
 	}
 	
 }
 
-
-
-void inordertraverseHelper(TreeNode* treep,ostream& output)
+void inordertraverseHelper(TreeNode* treep, ostream& output)
 {
-	
 	if (treep != nullptr)
 	{
 		
@@ -155,11 +150,8 @@ istream& operator>> (istream& input, BinarySearchTree& rightHandSideDictionary)
 		{
 			input >> newItem;
 			rightHandSideDictionary.addNewEntry(newItem);
-			
 		}
-	
 	}
-	
 	catch (Exception ex)
 	{
 		cout << ex.what() << endl << endl;
@@ -229,9 +221,7 @@ void BinarySearchTree::inorderTraverse(ostream &output)
 
 void BinarySearchTree::rebalanceTree(istream& input)
 {
-	int num;
-	
-	input >> num;
+	getline(input);
 	rebalanceTreeHelper(root, input, num);
 }
 

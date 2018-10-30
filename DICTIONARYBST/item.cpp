@@ -1,5 +1,5 @@
 // filename item.cpp
-// date September 17, 2018
+// date October 30, 2018
 // Implementation of Abstract Data Type Item
 //
 //   data object: an item which is a texting meaning associated with a texting abbreviation
