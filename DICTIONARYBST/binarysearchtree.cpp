@@ -38,7 +38,7 @@ bool searchHelper(TreeNode* treep, const Key& targetText, Item& anItem)
    }
 }
 
-void addHelper(TreeNode*& treep, const Item& newItem, int numberOfEntries) throw (Exception)
+void addHelper(TreeNode*& treep, const Item& newItem, int& numberOfEntries) throw (Exception)
 {
     if (treep != nullptr)
     {
@@ -54,30 +54,29 @@ void addHelper(TreeNode*& treep, const Item& newItem, int numberOfEntries) throw
         treep = new (nothrow) TreeNode(newItem, nullptr, nullptr);
         if (treep == nullptr)
             throw Exception("not enough memory");
-        //numberOfEntries++;
+		else
+			numberOfEntries++;
     }
 }
 
-TreeNode* rebalanceTreeHelper(TreeNode* treep, istream& input, int numberOfEntries)
+void rebalanceTreeHelper(TreeNode*& treep, istream& input, int numberOfEntries)
 {
 	Item anItem;
 	if (numberOfEntries > 0)
 	{
-		treep = new(nothrow) TreeNode(anItem, nullptr, nullptr);
+		treep = new (nothrow) TreeNode(anItem, nullptr, nullptr);
 		
-		treep -> leftChild = rebalanceTreeHelper(treep -> leftChild, input, numberOfEntries / 2);
+		rebalanceTreeHelper(treep -> leftChild, input, numberOfEntries / 2);
 		
-		//treep =  
+		input >> treep -> item;
 		
-		treep -> rightChild = rebalanceTreeHelper(treep -> rightChild, input, numberOfEntries / 2);
+		rebalanceTreeHelper(treep -> rightChild, input, (numberOfEntries - 1) / 2);
 		
-		return treep;
 	}
 	
-	else 
-		return nullptr;
-	
 }
+
+
 
 void inordertraverseHelper(TreeNode* treep,ostream& output)
 {
@@ -206,7 +205,7 @@ void BinarySearchTree::searchForMeaning(const Key& targetText, Item& anItem, boo
 // usage: myDictionary.addNewEntry(myItem, isFull, isAlreadyThere);
 void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 {  
-        addHelper(root, newItem, numberOfEntries);   
+    addHelper(root, newItem, numberOfEntries);   
 }
 
 // removes the item associated with a given text from the dictionary
@@ -224,7 +223,15 @@ void BinarySearchTree::deleteEntry(const Key& targetText) throw (Exception)
 
 void BinarySearchTree::inorderTraverse(ostream &output)
 {
+	output << numberOfEntries << endl; 
 	inordertraverseHelper(root, output);
 }
 
+void BinarySearchTree::rebalanceTree(istream& input)
+{
+	int num;
+	
+	input >> num;
+	rebalanceTreeHelper(root, input, num);
+}
 

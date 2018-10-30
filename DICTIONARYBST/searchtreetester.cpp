@@ -11,22 +11,31 @@ void testSearchForMeaning(BinarySearchTree& aTree);
 
 void testAddNewEntry(BinarySearchTree& aTree);
 
+void testRebalanceTree(BinarySearchTree& aTree, istream& input);
 
 
 int main()
 {
+	ofstream output;
 	ifstream inputfile;
 	BinarySearchTree aTree;
 	inputfile.open("dictionary.dat");
 	
 	inputfile >> aTree;
 	testSearchForMeaning(aTree);
-	testAddNewEntry(aTree);
-	
-	cout << aTree << endl;
-	aTree.inorderTraverse(cout);
-	
 	inputfile.close();
+	testAddNewEntry(aTree);
+	output.open("testfile.dat");
+	cout << aTree << endl;
+	aTree.inorderTraverse(output);
+	output.close();
+	inputfile.open("testfile.dat");
+	testRebalanceTree(aTree, inputfile);
+	cout << aTree << endl;
+	inputfile.close();
+	
+	
+	
 }
 
 void testSearchForMeaning(BinarySearchTree& aTree)
@@ -62,4 +71,11 @@ void testAddNewEntry(BinarySearchTree& aTree)
 	{
 		cout << endl << e.what() << endl << endl;
 	}
+}
+
+void testRebalanceTree(BinarySearchTree& aTree, istream& input)
+{
+	
+	cout << "testing RebalanceTreeFunction" << endl;
+	aTree.rebalanceTree(input);
 }
