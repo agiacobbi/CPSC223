@@ -81,8 +81,12 @@ void deleteEntry(const Key& targetText) throw (Exception);
 
 void inorderTraverse(ostream& output);
 
+void rebalanceTree(TreeNode* treep, Item& anItem, int numberOfEntries);
+
+
+
 private:
-   int numberOfItems;
+   int numberOfEntries;
 };
 #endif
 

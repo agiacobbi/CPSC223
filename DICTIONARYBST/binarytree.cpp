@@ -11,7 +11,7 @@
 //       create, destroy, copy, operator=,
 //       traversals (preorder, inorder, postorder)
 
-#include "BinaryTree.h"
+#include "binarytree.h"
 #include <iostream>
 using namespace std;
 
@@ -42,6 +42,32 @@ void destroyTree (TreeNode*& treep)
 // recursive helper for prettyDisplay. You do the doc
 void writePretty (TreeNode* treep, int level)
 {
+		if (treep != nullptr)
+	{
+		writePretty(treep -> rightChild, level += 1);
+		if (treep -> rightChild != nullptr)
+		{
+			for (int j = 0;j <= level;j++)
+				cout << '\t';
+			cout << "/" << endl;
+		}
+		if (level == 1)
+			cout << "root ->" ;
+		else	
+		{			
+			for (int i = 0; i < level; i++)
+				cout << '\t' ;
+		}
+		Key text = treep -> item;
+		cout << "  " << text << endl;
+		 if (treep -> leftChild != nullptr)
+        {
+            for (int i = 0; i <= level; i++)
+                cout << '\t';
+            cout << "\\" << endl;
+			writePretty(treep -> leftChild, level);
+		}
+	}	
 }
 
 // ********** recursive helpers for the traversals ****************
@@ -56,7 +82,7 @@ void preorder (TreeNode* treep)
 	{
 		cout << treep -> item;
 		preorder(treep -> leftChild);
-		preorder(treep -> rightChild)
+		preorder(treep -> rightChild);
 	}
 }
 

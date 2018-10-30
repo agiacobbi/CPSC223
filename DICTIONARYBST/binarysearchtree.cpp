@@ -38,7 +38,7 @@ bool searchHelper(TreeNode* treep, const Key& targetText, Item& anItem)
    }
 }
 
-void addHelper(TreeNode*& treep, const Item& newItem) throw (Exception)
+void addHelper(TreeNode*& treep, const Item& newItem, int numberOfEntries) throw (Exception)
 {
     if (treep != nullptr)
     {
@@ -46,17 +46,80 @@ void addHelper(TreeNode*& treep, const Item& newItem) throw (Exception)
         {
             throw Exception("already in tree");
         } else if (newItem < treep->item) {
-            addHelper(treep->leftChild, newItem);
+            addHelper(treep->leftChild, newItem, numberOfEntries);
         } else {
-            addHelper(treep->rightChild, newItem);
+            addHelper(treep->rightChild, newItem, numberOfEntries);
         }
     } else {
         treep = new (nothrow) TreeNode(newItem, nullptr, nullptr);
         if (treep == nullptr)
             throw Exception("not enough memory");
-        numberOfItems++;
+        //numberOfEntries++;
     }
 }
+
+TreeNode* rebalanceTreeHelper(TreeNode* treep, istream& input, int numberOfEntries)
+{
+	Item anItem;
+	if (numberOfEntries > 0)
+	{
+		treep = new(nothrow) TreeNode(anItem, nullptr, nullptr);
+		
+		treep -> leftChild = rebalanceTreeHelper(treep -> leftChild, input, numberOfEntries / 2);
+		
+		//treep =  
+		
+		treep -> rightChild = rebalanceTreeHelper(treep -> rightChild, input, numberOfEntries / 2);
+		
+		return treep;
+	}
+	
+	else 
+		return nullptr;
+	
+}
+
+void inordertraverseHelper(TreeNode* treep,ostream& output)
+{
+	
+	if (treep != nullptr)
+	{
+		
+		inordertraverseHelper(treep -> leftChild, output);
+		output << treep -> item << endl;
+		inordertraverseHelper(treep -> rightChild, output);
+	}
+}
+
+void outputHelper (TreeNode* treep, int level, ostream& output)
+{
+	if (treep != nullptr)
+	{
+		outputHelper(treep -> rightChild, level += 1, output);
+		if (treep -> rightChild != nullptr)
+		{
+			for (int j = 0;j <= level;j++)
+				output << '\t';
+			output << "/" << endl;
+		}
+		if (level == 1)
+			output << "root ->" ;
+		else	
+		{			
+			for (int i = 0; i < level; i++)
+				output << '\t' ;
+		}
+		Key text = treep -> item;
+		output << "  " << text << endl;
+		 if (treep -> leftChild != nullptr)
+        {
+            for (int i = 0; i <= level; i++)
+                output << '\t';
+            output << "\\" << endl;
+			outputHelper(treep -> leftChild, level, output);
+		}
+	}		
+}	
 
 // displays a dictionary
 // pre: output has been opened if it is a file
@@ -66,6 +129,7 @@ void addHelper(TreeNode*& treep, const Item& newItem) throw (Exception)
 // usage: outfile << myDictionary;    
 ostream& operator<< (ostream& output, const BinarySearchTree& rightHandSideDictionary)
 {
+	outputHelper(rightHandSideDictionary.root, 1 , output);
 	return output;
 }
 
@@ -82,6 +146,26 @@ ostream& operator<< (ostream& output, const BinarySearchTree& rightHandSideDicti
 // usage: infile >> myDictionary;
 istream& operator>> (istream& input, BinarySearchTree& rightHandSideDictionary)
 {
+	int numberToInsert;
+	Item newItem;
+	input >> numberToInsert;
+	
+	try
+	{ 
+		for (int i = 0; i < numberToInsert; i++)
+		{
+			input >> newItem;
+			rightHandSideDictionary.addNewEntry(newItem);
+			
+		}
+	
+	}
+	
+	catch (Exception ex)
+	{
+		cout << ex.what() << endl << endl;
+	}
+	
 	return input;
 }
 
@@ -90,7 +174,7 @@ istream& operator>> (istream& input, BinarySearchTree& rightHandSideDictionary)
 // usage: BinarySearchTree myDictionary;	
 BinarySearchTree::BinarySearchTree()
 {
-	
+	numberOfEntries = 0;
 }
 
 // destroys a dictionary
@@ -122,7 +206,7 @@ void BinarySearchTree::searchForMeaning(const Key& targetText, Item& anItem, boo
 // usage: myDictionary.addNewEntry(myItem, isFull, isAlreadyThere);
 void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 {  
-        addHelper(root, newItem);   
+        addHelper(root, newItem, numberOfEntries);   
 }
 
 // removes the item associated with a given text from the dictionary
@@ -136,6 +220,11 @@ void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 void BinarySearchTree::deleteEntry(const Key& targetText) throw (Exception)
 {
 	
+}
+
+void BinarySearchTree::inorderTraverse(ostream &output)
+{
+	inordertraverseHelper(root, output);
 }
 
 

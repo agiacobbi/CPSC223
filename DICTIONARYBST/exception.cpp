@@ -11,7 +11,7 @@
 //    data structure: whatever the string class uses
 //    operations: create and What
 
-#include "Exception.h"
+#include "exception.h"
 
 //creates an exception message
 //pre  theMessage passed may be a literal string
