@@ -221,7 +221,9 @@ void BinarySearchTree::inorderTraverse(ostream &output)
 
 void BinarySearchTree::rebalanceTree(istream& input)
 {
-	getline(input);
-	rebalanceTreeHelper(root, input, num);
+    int num;
+
+    input >> num;
+    rebalanceTreeHelper(root, input, num);
 }
 

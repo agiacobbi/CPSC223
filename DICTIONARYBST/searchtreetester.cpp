@@ -16,7 +16,7 @@ int main()
 {
 	BinarySearchTree myBinarySearchTree;
 	
-	testInputOperator(myBinarySearchTree)
+	testInputOperator(myBinarySearchTree);
 	testSearchForMeaning(myBinarySearchTree);
 	testAddNewEntry(myBinarySearchTree);
 	testInorderTraverse(myBinarySearchTree);
