@@ -95,16 +95,17 @@ void findSuccessor(TreeNode*& treep, TreeNode*& successor)
 	}
 }
 
-void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
+void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) throw (Exception)
 {
 	if (treep != nullptr)
 	{
 		if (targetText == treep -> item)
 		{
-			if (treep -> leftChild ==  nullptr && treep -> rightChild != nullptr)
+			if (treep -> leftChild ==  nullptr && treep -> rightChild == nullptr)
 			{
 				delete treep;
 				treep = nullptr;
+				numberOfItems--;
 			}
 			else if (treep -> leftChild != nullptr && treep -> rightChild == nullptr)
 			{
@@ -112,6 +113,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 				treep = treep -> leftChild;
 				deletePtr -> leftChild = nullptr;
 				delete deletePtr;
+				numberOfItems--;
 			}
 			else if (treep -> leftChild == nullptr && treep -> rightChild != nullptr)
 			{
@@ -119,6 +121,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 				treep = treep -> rightChild;
 				deletePtr -> rightChild = nullptr;
 				delete deletePtr;
+				numberOfItems--;
 			}
 			/*
 			else 
@@ -136,16 +139,16 @@ void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 		}
 		else if (targetText < treep -> item)
 		{
-			return deleteHelper(treep -> leftChild, targetText);
+			return deleteHelper(treep -> leftChild, targetText, numberOfItems);
 		}
 		else 
 		{
-			return deleteHelper(treep -> rightChild, targetText);
+			return deleteHelper(treep -> rightChild, targetText, numberOfItems);
 		}
 	}
 	else
 	{
-		throw ("Not in the tree");
+		throw Exception("Not in the tree");
 	}
 }	
 
@@ -200,7 +203,7 @@ void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void BinarySearchTree::deleteEntry(const Key& targetText) throw (Exception)
 {
-	deleteHelper(root, targetText);
+	deleteHelper(root, targetText, numberOfEntries);
 }
 
 void BinarySearchTree::inorderTraverse(ostream& output)
