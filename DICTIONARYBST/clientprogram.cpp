@@ -1,24 +1,27 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "binarysearchtree.h"
 using namespace std;
 
 void printMenu();
 char getOption();
-void executeOption(char option);
+void executeOption(char option, BinarySearchTree& myDictionary);
 void loadDictionary(BinarySearchTree& myDictionary);
-void findItem();
-void insertItem();
-void listItems();
-void printDictionary();
-void rebalanceTree();
+void findItem(BinarySearchTree& myDictionary);
+void insertItem(BinarySearchTree& myDictionary);
+void listItems(BinarySearchTree& myDictionary);
+void printDictionary(BinarySearchTree& myDictionary);
+void rebalanceTree(BinarySearchTree& myDictionary);
 void saveToFile();
 
 int main()
 {
     char option;
-
+	BinarySearchTree myDictionary;
     printMenu();
     option = getOption();
+	executeOption(option, myDictionary);
     return 0;
 }
 
@@ -36,39 +39,39 @@ void printMenu()
 
 char getOption()
 {
-    char userInput, newline;
-
+    char newline, userInput;
     cout << "Enter your option > ";
-    getline(cin, userInput);
-    cin.get(newline);
+	cin.get(userInput);
+    //cin.ignore(userInput);
+	cin.get(newline);
 
     return userInput;
 }
 
-void executeOption(char option)
+void executeOption(char option, BinarySearchTree& myDictionary)
 {
     switch (option)
     {
         case 'f':
-            findItem();
+            findItem(myDictionary);
             break;
         case 'i':
-            insertItem();
+            //insertItem();
             break;
         case 'l':
-            listItems();
+            //listItems();
             break;
         case 'p':
-            printDictionary();
+            //printDictionary();
             break;
         case 'r':
-            rebalanceTree();
+            //rebalanceTree();
             break;
         case 's':
-            saveToFile();
+            //saveToFile();
             break;
         case 'e':
-            saveToFile();
+            //saveToFile();
             break;
         default:
             break;
@@ -81,5 +84,28 @@ void loadDictionary(BinarySearchTree& myDictionary)
 
     inputFile.open("dictionary.dat");
     inputFile >> myDictionary;
-    inputfile.close();
+    inputFile.close();
+}
+
+void findItem(BinarySearchTree& myDictionary)
+{
+	Item anItem;
+	Key aKey;
+	bool isFound;
+	
+	//cout << "----- Testing searchForMeaning, searching for key 'lol' -----" << endl;
+	cout << endl << "----- Please enter a testing abbreviation you would like to search for: " ;
+	cin >> aKey; 
+	cout << endl << "----- Searching for: " << aKey << endl; 
+	myDictionary.searchForMeaning(aKey, anItem, isFound);
+
+	if (isFound)
+		cout << "Found: " << anItem << endl;
+	else
+		cout << "Not found" << endl;
+}
+
+void insertItem(BinarySearchTree& myDictionary)
+{
+	
 }
