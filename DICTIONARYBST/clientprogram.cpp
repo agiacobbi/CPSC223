@@ -11,6 +11,7 @@ bool isValidOption(char input, string restOfInput);
 bool isValidKey(string restOfInput);
 void executeOption(char option, BinarySearchTree& aDictionary);
 void loadDictionary(BinarySearchTree& aDictionary);
+void deleteItem(BinarySearchTree& aDictionary);
 void findItem(BinarySearchTree& aDictionary);
 void insertItem(BinarySearchTree& aDictionary);
 void listItems(BinaryTree aDictionary);
@@ -49,6 +50,7 @@ void printBreakLine()
 void printMenu()
 {
     cout << "Your options are:" << endl <<  endl;
+	cout << "d: delete an item from the tree given the text" << endl;
     cout << "f: find the meaning of a texting abbreviation, given the text" << endl;
     cout << "i: insert a new item (texting abbreviation and meaning) into the dictionary" << endl;
     cout << "l: list the items in the entire dictionary on the screen in inorder fashion" << endl;
@@ -87,6 +89,8 @@ bool isValidOption(char input, string restOfInput)
 	}
     switch (input)
     {
+		case 'd':
+			return true;
         case 'f':
             return true;
         case 'i':
@@ -118,6 +122,9 @@ void executeOption(char option, BinarySearchTree& aDictionary)
 {
     switch (option)
     {
+		case 'd':
+			deleteItem(aDictionary);
+			break;
         case 'f':
             findItem(aDictionary);
             break;
@@ -151,6 +158,14 @@ void loadDictionary(BinarySearchTree& aDictionary)
     inputFile.open("dictionary.dat");
     aDictionary.rebalanceTree(inputFile);
     inputFile.close();
+}
+
+void deleteItem(BinarySearchTree& aDictionary)
+{
+	Key delItem;
+	cout << "Enter an item to delete > ";
+	cin >> delItem;
+	aDictionary.deleteEntry(delItem);
 }
 
 void findItem(BinarySearchTree& aDictionary)

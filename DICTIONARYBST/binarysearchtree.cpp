@@ -85,55 +85,70 @@ void inorderTraverseHelper(TreeNode* treep, ostream& output)
 	}
 }
 
-void outputHelper (TreeNode* treep, int level, ostream& output)
-{
-		
-}	
-
-// displays a dictionary
-// pre: output has been opened if it is a file
-//      rightHandSideDictionary has been assigned items
-// post: output contains each item on a separate line in the format with headings.
-
-// usage: outfile << myDictionary;    
-ostream& operator<< (ostream& output, const BinarySearchTree& rightHandSideDictionary)
-{
-	outputHelper(rightHandSideDictionary.root, 1 , output);
-	return output;
+void findSuccessor(TreeNode*& treep, TreeNode*& successor)
+{	
+	if (treep -> leftChild == nullptr)
+	{
+		successor = treep;
+	} else {
+		findSuccessor(treep -> leftChild, successor);
+	}
 }
 
-// inputs items into a dictionary
-// pre: input has been opened if it is a file
-//      items are arranged in the following format
-//      2
-//      lol
-//      laugh out loud
-//      ttyl
-//      talk to you later
-// post: if there is room, 
-//       all items in the input have been stored in rightHandSideDictionary
-// usage: infile >> myDictionary;
-istream& operator>> (istream& input, BinarySearchTree& rightHandSideDictionary)
+void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 {
-	int numberToInsert;
-	Item newItem;
-	input >> numberToInsert;
-	
-	try
-	{ 
-		for (int i = 0; i < numberToInsert; i++)
+	if (treep != nullptr)
+	{
+		if (targetText == treep -> item)
 		{
-			input >> newItem;
-			rightHandSideDictionary.addNewEntry(newItem);
+			if (treep -> leftChild ==  nullptr && treep -> rightChild != nullptr)
+			{
+				delete treep;
+				treep = nullptr;
+			}
+			else if (treep -> leftChild != nullptr && treep -> rightChild == nullptr)
+			{
+				TreeNode* deletePtr = treep;
+				treep = treep -> leftChild;
+				deletePtr -> leftChild = nullptr;
+				delete deletePtr;
+			}
+			else if (treep -> leftChild == nullptr && treep -> rightChild != nullptr)
+			{
+				TreeNode* deletePtr = treep;
+				treep = treep -> rightChild;
+				deletePtr -> rightChild = nullptr;
+				delete deletePtr;
+			}
+			/*
+			else 
+			{
+				TreeNode* deletePtr;
+				TreeNode* successorPtr;
+				findSuccessor(treep -> rightChild, deletePtr);
+				treep -> item = deletePtr -> item;
+				successorPtr = deletePtr;
+				deletePtr = deletePtr -> rightChild;
+				delete successorPtr;
+				successorPtr = nullptr;
+			}
+			*/
+		}
+		else if (targetText < treep -> item)
+		{
+			return deleteHelper(treep -> leftChild, targetText);
+		}
+		else 
+		{
+			return deleteHelper(treep -> rightChild, targetText);
 		}
 	}
-	catch (Exception ex)
+	else
 	{
-		cout << ex.what() << endl << endl;
+		throw ("Not in the tree");
 	}
-	
-	return input;
-}
+}	
+
 
 // creates a new dictionary
 // post: BinarySearchTree object exists but is empty
@@ -185,7 +200,7 @@ void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void BinarySearchTree::deleteEntry(const Key& targetText) throw (Exception)
 {
-	
+	deleteHelper(root, targetText);
 }
 
 void BinarySearchTree::inorderTraverse(ostream& output)
@@ -203,4 +218,5 @@ void BinarySearchTree::rebalanceTree(istream& input)
 	
 	numberOfEntries = num;
 }
+
 
