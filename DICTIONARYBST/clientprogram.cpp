@@ -4,21 +4,28 @@ using namespace std;
 
 void printMenu();
 char getOption();
-void executeOption(char option);
-void loadDictionary(BinarySearchTree& myDictionary);
-void findItem();
-void insertItem();
-void listItems();
-void printDictionary();
-void rebalanceTree();
-void saveToFile();
+void executeOption(char option, BinarySearchTree& aDictionary);
+void loadDictionary(BinarySearchTree& aDictionary);
+void findItem(BinarySearchTree& aDictionary);
+void insertItem(BinarySearchTree& aDictionary);
+void listItems(BinarySearchTree& aDictionary);
+void printDictionary(BinarySearchTree& aDictionary);
+void rebalanceTree(BinarySearchTree& aDictionary);
+void saveToFile(BinarySearchTree& aDictionary);
 
 int main()
 {
     char option;
+    BinarySearchTree userDictionary;
 
-    printMenu();
-    option = getOption();
+    loadDictionary(userDictionary);
+
+    while (option != 'e')
+    {
+        printMenu();
+        option = getOption();
+        executeOption(e);
+    }
     return 0;
 }
 
@@ -38,48 +45,103 @@ char getOption()
 {
     char userInput, newline;
 
-    cout << "Enter your option > ";
-    getline(cin, userInput);
-    cin.get(newline);
+    do {
+        cout << "Enter your option > ";
+        getline(cin, userInput);
+        cin.get(newline);
+    } while (!isValidInput(userInput));
 
     return userInput;
 }
 
-void executeOption(char option)
+bool isValidInput(char input)
+{
+    switch (input)
+    {
+        case 'f':
+            return true;
+        case 'i':
+            return true;
+        case 'l':
+            return true;
+        case 'p':
+            return true;
+        case 'r':
+            return true;
+        case 's':
+            return true;
+        case 'e':
+            return true;
+        default:
+            return false;
+    }
+}
+
+void executeOption(char option, BinarySearchTree& aDictionary)
 {
     switch (option)
     {
         case 'f':
-            findItem();
+            findItem(aDictionary);
             break;
         case 'i':
-            insertItem();
+            insertItem(aDictionary);
             break;
         case 'l':
-            listItems();
+            listItems(aDictionary);
             break;
         case 'p':
-            printDictionary();
+            printDictionary(aDictionary);
             break;
         case 'r':
-            rebalanceTree();
+            rebalanceTree(aDictionary);
             break;
         case 's':
-            saveToFile();
+            saveToFile(aDictionary);
             break;
         case 'e':
-            saveToFile();
+            saveToFile(aDictionary);
             break;
         default:
             break;
     }
 }
 
-void loadDictionary(BinarySearchTree& myDictionary)
+void loadDictionary(BinarySearchTree& aDictionary)
 {
     ifstream inputFile;
 
     inputFile.open("dictionary.dat");
-    inputFile >> myDictionary;
+    aDictionary.rebalanceTree(inputFile);
     inputfile.close();
+}
+
+void findItem(BinarySearchTree& aDictionary)
+{
+
+}
+
+void insertItem(BinarySearchTree& aDictionary)
+{
+
+}
+
+void listItems(BinarySearchTree& aDictionary)
+{
+
+}
+
+void printDictionary(BinarySearchTree& aDictionary)
+{
+
+}
+
+void rebalanceTree(BinarySearchTree& aDictionary)
+{
+
+}
+
+void saveToFile(BinarySearchTree& aDictionary)
+{
+
 }
