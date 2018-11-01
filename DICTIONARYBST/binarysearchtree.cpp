@@ -38,7 +38,7 @@ bool searchHelper(TreeNode* treep, const Key& targetText, Item& anItem)
    }
 }
 
-void addHelper(TreeNode*& treep, const Item& newItem, int& numberOfEntries) throw (Exception)
+void addHelper(TreeNode*& treep, const Item& newItem, int& number) throw (Exception)
 {
     if (treep != nullptr)
     {
@@ -46,73 +46,48 @@ void addHelper(TreeNode*& treep, const Item& newItem, int& numberOfEntries) thro
         {
             throw Exception("already in tree");
         } else if (newItem < treep->item) {
-            addHelper(treep->leftChild, newItem, numberOfEntries);
+            addHelper(treep->leftChild, newItem, number);
         } else {
-            addHelper(treep->rightChild, newItem, numberOfEntries);
+            addHelper(treep->rightChild, newItem, number);
         }
     } else {
         treep = new (nothrow) TreeNode(newItem, nullptr, nullptr);
         if (treep == nullptr)
             throw Exception("not enough memory");
 		else
-			numberOfEntries++;
+			number++;
     }
 }
 
-void rebalanceTreeHelper(TreeNode*& treep, istream& input, int numberOfEntries)
+void rebalanceTreeHelper(TreeNode*& treep, istream& input, int number)
 {
 	Item anItem;
 
-	if (numberOfEntries > 0)
+	if (number > 0)
 	{
 		treep = new (nothrow) TreeNode(anItem, nullptr, nullptr);
 		
-		rebalanceTreeHelper(treep -> leftChild, input, numberOfEntries / 2);
+		rebalanceTreeHelper(treep -> leftChild, input, number / 2);
 		input >> treep -> item;
-		rebalanceTreeHelper(treep -> rightChild, input, (numberOfEntries - 1) / 2);	
+		rebalanceTreeHelper(treep -> rightChild, input, (number - 1) / 2);	
 	}
 	
 }
 
-void inordertraverseHelper(TreeNode* treep, ostream& output)
+void inorderTraverseHelper(TreeNode* treep, ostream& output)
 {
 	if (treep != nullptr)
 	{
 		
-		inordertraverseHelper(treep -> leftChild, output);
+		inorderTraverseHelper(treep -> leftChild, output);
 		output << treep -> item << endl;
-		inordertraverseHelper(treep -> rightChild, output);
+		inorderTraverseHelper(treep -> rightChild, output);
 	}
 }
 
 void outputHelper (TreeNode* treep, int level, ostream& output)
 {
-	if (treep != nullptr)
-	{
-		outputHelper(treep -> rightChild, level += 1, output);
-		if (treep -> rightChild != nullptr)
-		{
-			for (int j = 0;j <= level;j++)
-				output << '\t';
-			output << "/" << endl;
-		}
-		if (level == 1)
-			output << "root ->" ;
-		else	
-		{			
-			for (int i = 0; i < level; i++)
-				output << '\t' ;
-		}
-		Key text = treep -> item;
-		output << "  " << text << endl;
-		 if (treep -> leftChild != nullptr)
-        {
-            for (int i = 0; i <= level; i++)
-                output << '\t';
-            output << "\\" << endl;
-			outputHelper(treep -> leftChild, level, output);
-		}
-	}		
+		
 }	
 
 // displays a dictionary
@@ -197,7 +172,7 @@ void BinarySearchTree::searchForMeaning(const Key& targetText, Item& anItem, boo
 // usage: myDictionary.addNewEntry(myItem, isFull, isAlreadyThere);
 void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 {  
-    addHelper(root, newItem, numberOfEntries);   
+    addHelper(root, newItem, numberOfEntries);
 }
 
 // removes the item associated with a given text from the dictionary
@@ -213,10 +188,10 @@ void BinarySearchTree::deleteEntry(const Key& targetText) throw (Exception)
 	
 }
 
-void BinarySearchTree::inorderTraverse(ostream &output)
+void BinarySearchTree::inorderTraverse(ostream& output)
 {
 	output << numberOfEntries << endl; 
-	inordertraverseHelper(root, output);
+	inorderTraverseHelper(root, output);
 }
 
 void BinarySearchTree::rebalanceTree(istream& input)
@@ -225,5 +200,7 @@ void BinarySearchTree::rebalanceTree(istream& input)
 
     input >> num;
     rebalanceTreeHelper(root, input, num);
+	
+	numberOfEntries = num;
 }
 

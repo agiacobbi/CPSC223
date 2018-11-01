@@ -75,16 +75,31 @@ void writePretty(TreeNode* treep, int level)
     Key abbreviation;
 
     if (treep != nullptr)
-    {
-        writePretty(treep->rightChild, level + 1);
-        if (level == 0)
-            cout << "root ->";
-        for (int i = 0; i < level + 1; i++)
-            cout << '\t' ;
-        abbreviation = treep->item;
-        cout << abbreviation << endl;
-        writePretty(treep->leftChild, level + 1);
-    }
+	{
+		writePretty(treep -> rightChild, level += 1);
+			if (treep -> rightChild != nullptr)
+			{
+				for (int j = 0;j <= level;j++)
+				cout << '\t';
+				cout << "/" << endl;
+			}
+		if (level == 1)
+			cout << "root ->" ;
+		else	
+		{			
+			for (int i = 0; i < level; i++)
+				cout << '\t' ;
+		}
+		Key text = treep -> item;
+		cout << "  " << text << endl;
+		 if (treep -> leftChild != nullptr)
+        {
+            for (int i = 0; i <= level; i++)
+                cout << '\t';
+            cout << "\\" << endl;
+			writePretty(treep -> leftChild, level);
+		}
+	}
 }
 
 // ********** recursive helpers for the traversals ****************

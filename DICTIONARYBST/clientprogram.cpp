@@ -4,108 +4,236 @@
 #include "binarysearchtree.h"
 using namespace std;
 
+void printBreakLine();
 void printMenu();
 char getOption();
-void executeOption(char option, BinarySearchTree& myDictionary);
-void loadDictionary(BinarySearchTree& myDictionary);
-void findItem(BinarySearchTree& myDictionary);
-void insertItem(BinarySearchTree& myDictionary);
-void listItems(BinarySearchTree& myDictionary);
-void printDictionary(BinarySearchTree& myDictionary);
-void rebalanceTree(BinarySearchTree& myDictionary);
-void saveToFile();
+bool isValidOption(char input, string restOfInput);
+bool isValidKey(string restOfInput);
+void executeOption(char option, BinarySearchTree& aDictionary);
+void loadDictionary(BinarySearchTree& aDictionary);
+void findItem(BinarySearchTree& aDictionary);
+void insertItem(BinarySearchTree& aDictionary);
+void listItems(BinaryTree aDictionary);
+void printDictionary(BinarySearchTree& aDictionary);
+void rebalanceTree(BinarySearchTree& aDictionary);
+void saveToFile(BinarySearchTree& aDictionary);
+
 
 int main()
 {
     char option;
-	BinarySearchTree myDictionary;
-    printMenu();
-    option = getOption();
-	executeOption(option, myDictionary);
+	BinarySearchTree userDictionary;
+    
+    loadDictionary(userDictionary);
+
+    do
+    {
+		printBreakLine();
+        option = getOption();
+		printBreakLine();
+        executeOption(option, userDictionary);		
+    } while (option != 'e');
+
+	cout << "Goodbye." << endl << endl;
+	
     return 0;
+}
+
+void printBreakLine()
+{
+	for (int i = 0; i < 80; i++)
+		cout << '-';
+	cout << endl;
 }
 
 void printMenu()
 {
-    cout << endl << endl << "Your options are:" << endl <<  endl;
-    cout << "f: find" << endl;
-    cout << "i: insert" << endl;
-    cout << "l: list" << endl;
-    cout << "p: print" << endl;
-    cout << "r: rebalance" << endl;
-    cout << "s: save" << endl;
-    cout << "e: exit" << endl << endl;
+    cout << "Your options are:" << endl <<  endl;
+    cout << "f: find the meaning of a texting abbreviation, given the text" << endl;
+    cout << "i: insert a new item (texting abbreviation and meaning) into the dictionary" << endl;
+    cout << "l: list the items in the entire dictionary on the screen in inorder fashion" << endl;
+    cout << "p: print the tree in pretty fashion (showing only the texts)" << endl;
+    cout << "r: rebalance the tree" << endl;
+    cout << "s: save the dictionary to the file in sorted order - inorder - ready to be read" << endl;
+    cout << "e: exit the program which automatically does option s" << endl << endl;
 }
 
 char getOption()
 {
-    char newline, userInput;
-    cout << "Enter your option > ";
-	cin.get(userInput);
-    //cin.ignore(userInput);
-	cin.get(newline);
+    char userInput;
+	string restOfInput;
+
+	printMenu();
+	cout << "Enter your option as a single character then press Enter" << endl;
+	cout << "     EXAMPLE-> f\n" << endl;
+	
+    do {
+        cout << "Enter your option > ";
+        cin.get(userInput);
+		getline(cin, restOfInput);
+    } while (!isValidOption(userInput, restOfInput));
+	
+	cout << endl;
 
     return userInput;
 }
 
-void executeOption(char option, BinarySearchTree& myDictionary)
+bool isValidOption(char input, string restOfInput)
+{
+	if (restOfInput.length() > 1)
+	{
+		cout << endl << "ERROR: Input too long. Please enter one of the listed options as a SINGLE character" << endl << endl;
+		return false;
+	}
+    switch (input)
+    {
+        case 'f':
+            return true;
+        case 'i':
+            return true;
+        case 'l':
+            return true;
+        case 'p':
+            return true;
+        case 'r':
+            return true;
+        case 's':
+            return true;
+        case 'e':
+            return true;
+        default:
+			cout << endl << "ERROR: Invalid input. Please enter one of the listed options as a SINGLE character" << endl << endl;
+            return false;
+    }
+}
+
+bool isValidKey(string restOfInput)
+{
+	if (restOfInput.length() > 1)
+		return false;
+	return true;
+}
+
+void executeOption(char option, BinarySearchTree& aDictionary)
 {
     switch (option)
     {
         case 'f':
-            findItem(myDictionary);
+            findItem(aDictionary);
             break;
         case 'i':
-            //insertItem();
+            insertItem(aDictionary);
             break;
         case 'l':
-            //listItems();
+            listItems(aDictionary);
             break;
         case 'p':
-            //printDictionary();
+            printDictionary(aDictionary);
             break;
         case 'r':
-            //rebalanceTree();
+            rebalanceTree(aDictionary);
             break;
         case 's':
-            //saveToFile();
+            saveToFile(aDictionary);
             break;
         case 'e':
-            //saveToFile();
+            saveToFile(aDictionary);
             break;
         default:
             break;
     }
 }
 
-void loadDictionary(BinarySearchTree& myDictionary)
+void loadDictionary(BinarySearchTree& aDictionary)
 {
     ifstream inputFile;
 
     inputFile.open("dictionary.dat");
-    inputFile >> myDictionary;
+    aDictionary.rebalanceTree(inputFile);
     inputFile.close();
 }
 
-void findItem(BinarySearchTree& myDictionary)
+void findItem(BinarySearchTree& aDictionary)
 {
 	Item anItem;
 	Key aKey;
 	bool isFound;
+	string restOfInput;
 	
-	//cout << "----- Testing searchForMeaning, searching for key 'lol' -----" << endl;
-	cout << endl << "----- Please enter a testing abbreviation you would like to search for: " ;
-	cin >> aKey; 
-	cout << endl << "----- Searching for: " << aKey << endl; 
-	myDictionary.searchForMeaning(aKey, anItem, isFound);
+	cout << endl << "What texting abbreviation would you like to search for?" << endl;
+	cout << "Enter a single abbreviation and press Enter" << endl;
+	cout << "     EXAMPLE-> lol\n" << endl;
+	
+	do {
+	cout << "Enter an abbreviation to search for > ";
+	cin >> aKey;
+	getline(cin, restOfInput);
+	} while (!isValidKey(restOfInput));
+	
+	cout << endl << "Searching for " << aKey << "..." << endl; 
+	aDictionary.searchForMeaning(aKey, anItem, isFound);
 
 	if (isFound)
 		cout << "Found: " << anItem << endl;
 	else
-		cout << "Not found" << endl;
+		cout << aKey << " was not found in the dictionary" << endl;
 }
 
-void insertItem(BinarySearchTree& myDictionary)
+void insertItem(BinarySearchTree& aDictionary)
 {
+	string restOfInput;	
+	Item anItem;
 	
+	cout << "What item would you like to add to the dictionary" << endl;
+	
+	cout << "Enter your item as a texting abbreviation followed by a space, followed by its meaning. When you are finished, press Enter" << endl;
+	cout << "     EXAMPLE-> lol laugh out loud\n" << endl; 
+	cout << "Enter an item to add > ";
+	cin >> anItem;
+
+	try {
+		aDictionary.addNewEntry(anItem);
+	} 
+	catch(Exception e) {
+		cout << endl << e.what() << endl << endl;
+	}
+}
+
+void listItems(BinaryTree aDictionary)
+{
+	aDictionary.inorderTraverse();
+}
+
+void printDictionary(BinarySearchTree& aDictionary)
+{
+	cout << endl;
+	aDictionary.prettyDisplay();
+	cout << endl;
+}
+
+void rebalanceTree(BinarySearchTree& aDictionary)
+{
+	ifstream inputFile;
+	ofstream outputFile;
+	
+	cout << endl << "Rebalancing the tree..." << endl << endl;
+	
+	outputFile.open("dictionary.dat");
+	aDictionary.inorderTraverse(outputFile);
+	outputFile.close();
+	
+	inputFile.open("dictionary.dat");
+	aDictionary.rebalanceTree(inputFile);
+	inputFile.close();
+}
+
+void saveToFile(BinarySearchTree& aDictionary)
+{
+	ofstream outputFile;
+	
+	cout << endl << "Saving to file dictionary.dat..." << endl << endl;
+	
+	outputFile.open("dictionary.dat");
+	aDictionary.inorderTraverse(outputFile);
+	outputFile.close();
 }
