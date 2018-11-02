@@ -37,14 +37,16 @@ using namespace std;
 //usage: copyTree (newptr, oldptr);
 void copyTree (TreeNode*& newtreep, TreeNode* oldtreep) throw (Exception)
 {
-    if (oldtreep != nullptr)
+    if (oldtreep == nullptr)
     {
-        newtreep = new (nothrow) TreeNode(oldtreep->item, nullptr, nullptr);
+
+    } else {
+        newtreep = new (nothrow) TreeNode(oldtreep -> item, nullptr, nullptr);
         if (newtreep == nullptr)
             throw Exception("in BinaryTree: no memory from the heap available for new TreeNode");
-        copyTree(newtreep->leftChild, oldtreep->leftChild);
-        copyTree(newtreep->rightChild, oldtreep->rightChild);
-    }
+        copyTree(newtreep -> leftChild, oldtreep -> leftChild);
+        copyTree(newtreep -> rightChild, oldtreep -> rightChild);
+	}
 }
 
 //Releases memory for a binary tree
@@ -195,8 +197,8 @@ bool BinaryTree::isEmpty() const
 //usage: atree = btree = ctree;
 BinaryTree& BinaryTree::operator=(const BinaryTree& rightHandSideTree) throw (Exception)
 {
-    destroyTree(root);
-    copyTree(root, rightHandSideTree.root);
+	destroyTree(root);
+	copyTree(root, rightHandSideTree.root);
     return *this;
 }
 
@@ -262,33 +264,33 @@ void BinaryTree::makeFullTreeHeight3(istream& input) throw (Exception)
         throw Exception("in BinaryTree: no memory from heap available for root item");
 
     input >> newguy;
-    root->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild == nullptr)
+    root -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->rightChild == nullptr)
+    root -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
     input >> newguy;
-    root->leftChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->leftChild == nullptr)
+    root -> leftChild -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->leftChild->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->rightChild == nullptr)
+    root -> leftChild -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
     input >> newguy;
-    root->rightChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->rightChild->leftChild == nullptr)
+    root -> rightChild -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> rightChild -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->rightChild->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->rightChild->rightChild == nullptr)
+    root -> rightChild -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> rightChild -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 }
 
@@ -309,50 +311,50 @@ void BinaryTree::makeCompleteTreeHeight4(istream& input) throw (Exception)
         throw Exception("in BinaryTree: no memory from heap available for root item");
 
     input >> newguy;
-    root->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild == nullptr)
+    root -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->rightChild == nullptr)
+    root -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
     input >> newguy;
-    root->leftChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->leftChild == nullptr)
+    root -> leftChild -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->leftChild->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->rightChild == nullptr)
+    root -> leftChild -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
     input >> newguy;
-    root->rightChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->rightChild->leftChild == nullptr)
+    root -> rightChild -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> rightChild -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->rightChild->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->rightChild->rightChild == nullptr)
+    root -> rightChild -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> rightChild -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
     input >> newguy;
-    root->leftChild->leftChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->leftChild->leftChild == nullptr)
+    root -> leftChild -> leftChild -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> leftChild -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
     input >> newguy;
-    root->leftChild->leftChild->rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->leftChild->rightChild == nullptr)
+    root -> leftChild -> leftChild -> rightChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> leftChild -> rightChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for rightChild");
 
     input >> newguy;
-    root->leftChild->rightChild->leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
-    if (root->leftChild->rightChild->leftChild == nullptr)
+    root -> leftChild -> rightChild -> leftChild = new (nothrow) TreeNode(newguy, nullptr, nullptr);
+    if (root -> leftChild -> rightChild -> leftChild == nullptr)
         throw Exception("in BinaryTree: no memory from heap available for leftChild");
 
-    if (root->leftChild->rightChild->leftChild != nullptr)
+    if (root -> leftChild -> rightChild -> leftChild != nullptr)
         throw Exception("I am throwing an exception at you, Dr. Y. Do you have your catcher’s mitt ready?");
 }

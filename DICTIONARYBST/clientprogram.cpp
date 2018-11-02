@@ -1,23 +1,121 @@
+// binarysearchtree.cpp
+// Alex Giacobbi and Jalen Tacsiat
+// agiacobbi
+// date: 11/1/18
+// filename: clientprogram.cpp
+// description: This is the client program that allows users to create and interact with a dictionary
+//              of texting abbreviations. The dictionary's data structure is a BinarySearchTree object.
+//              This will allow the user to insert, search, and delete items in logarithmic
+//              time (very fast). When the program starts, a menus of options is displayed for the user.
+//              The user is allowed to select an option by inputting a single character. When a 
+//              good option is inputted, the program executes the option and walks the user through any
+//              necessary steps. The items for the dictionary are loaded automatically at the beginning of
+//              the program from the file dictionary.dat which contains the number of items at the top followed
+//              by each item (one per line) in alphabetical order. When the program is closed, the 
+//              updated dictionary is automatically written to dictionary.dat. All user inputs are validated
+//              through error handling functions and give user-friendly errors. All exceptions are written
+//              with user-friendly messages.
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "binarysearchtree.h"
 using namespace std;
 
+// printing a line at the beginning of the screen to make the program easier to read
+// pre: none
+// post: a line is printed at theb top of the screen
+// usage: printBreakLine(); 
 void printBreakLine();
+
+// prints the menu with the options the user can pick 
+// pre: none
+// post: menu is printed to the screen
+// usage: printMenu();
 void printMenu();
+
+// gets the input from the user
+// pre: user enters an option
+// post: returns the char the user entered
+// usage: getOption();
 char getOption();
+
+// checks to see if the user entered a valid option
+// pre: user enters a character 
+// post: returns true if the user entered a valid option
+//       else: returns false and throws an error if userInput if the 
+//             user enters more than 1 character or if they enter an invalid input
+// usage: isValidOption(userInput, extraInputs)
 bool isValidOption(char input, string restOfInput);
+
+// checks to see if the user enters a single key and only a key 
+// pre: rest of input is a string of characters following the first key entered
+// post: returns false if the user enters characters other than the newline after key
+// usage: isValidKey(extraCharacters); 
 bool isValidKey(string restOfInput);
+
+// prints out a header based on the option the user selects
+// pre: option is a valid option
+// post: header is printed to the screen. Example: 
+//       SELECTED OPTION: Find Item
+// usage: printOptionHeader(userOption);
 void printOptionHeader(char option);
+
+// executes option selected by the user 
+// pre: option is a valid option and a dictionary is a binarysearchtree object
+// post: executes the option selected by the user
+// usage: executeOption(userOption, myDictionary);
 void executeOption(char option, BinarySearchTree& aDictionary);
+
+// loads the dictionary into the program
+// pre: BinarySearchTree aDictionary object exists
+// post: loads items from dictionary.dat into binarysearchtree object aDictionary 
+//       creating a balanced binarysearchtree
+// usage: loadDictionary(aDictionary);
 void loadDictionary(BinarySearchTree& aDictionary);
+
+// walks user through the delete process for the delete item option 
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: deletes item specified by user and restricts user items that are leaves and items with 
+// one child
+// usage: deleteItem(aDictionary);
 void deleteItem(BinarySearchTree& aDictionary);
+
+// allows user to search for an item in the dictionary
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: outputs the texting abbreviation and meaning if found in the dictionary else 
+//       outputs not found
+// usage: findItem(aDictionary);
 void findItem(BinarySearchTree& aDictionary);
+
+// allows user to insert an item continaing a texting abbreviation and its meaning
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: the item specified by user is inserted into the dictionary else throws an exception
+// usage: insertItem(aDictionary);
 void insertItem(BinarySearchTree& aDictionary);
+
+// lists the items in the dictionary in alphabetical order
+// pre: aDictionary is a BinaryTree object that is equal to the dictionary binarysearchtree 
+// post: items in a dictionary are printed using BinaryTree's inorderTraverse
+// usage: listItems(myDictionary);
 void listItems(BinaryTree aDictionary);
+
+// prints the structure of the binarysearchtree in pretty fashion
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: items in the dictionary are printed and structure is shown
+// usage: printDictionary(aDictionary);
 void printDictionary(BinarySearchTree& aDictionary);
+
+// rebalances the binarysearchtree
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: items in the dictionary are rebalanced
+// usage: rebalanceTree(aDictionary);
 void rebalanceTree(BinarySearchTree& aDictionary);
+
+// saves the dictionary to a file
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: dictionary is saved to a file
+// usage: saveToFile(aDictionary);
 void saveToFile(BinarySearchTree& aDictionary);
 
 
@@ -41,6 +139,10 @@ int main()
     return 0;
 }
 
+// printing a line at the beginning of the screen to make the program easier to read
+// pre: none
+// post: a line is printed at theb top of the screen
+// usage: printBreakLine(); 
 void printBreakLine()
 {
 	for (int i = 0; i < 80; i++)
@@ -48,6 +150,10 @@ void printBreakLine()
 	cout << endl;
 }
 
+// prints the menu with the options the user can pick 
+// pre: none
+// post: menu is printed to the screen
+// usage: printMenu();
 void printMenu()
 {
     cout << "Your options are:" << endl <<  endl;
@@ -61,6 +167,10 @@ void printMenu()
     cout << "e: exit the program which automatically does option s" << endl << endl;
 }
 
+// gets the input from the user
+// pre: user enters an option
+// post: returns the char the user entered
+// usage: getOption();
 char getOption()
 {
     char userInput;
@@ -81,11 +191,17 @@ char getOption()
     return userInput;
 }
 
+// checks to see if the user entered a valid option
+// pre: user enters a character 
+// post: returns true if the user entered a valid option
+//       else: returns false and throws an error if userInput if the 
+//             user enters more than 1 character or if they enter an invalid input
+// usage: isValidOption(userInput, extraInputs)
 bool isValidOption(char input, string restOfInput)
 {
 	if (restOfInput.length() > 1)
 	{
-		cout << endl << "ERROR: Input too long. Please enter one of the listed options as a SINGLE character" << endl << endl;
+		cout << endl << "ERROR: Uh-oh, looks like that input is too long.\nPlease enter one of the listed options as a SINGLE character" << endl << endl;
 		return false;
 	}
     switch (input)
@@ -107,18 +223,30 @@ bool isValidOption(char input, string restOfInput)
         case 'e':
             return true;
         default:
-			cout << endl << "ERROR: Invalid input. Please enter one of the listed options as a SINGLE character" << endl << endl;
+			cout << endl << "ERROR: Uh-oh, that wasn't one of the options.\nPlease enter one of the listed options as a SINGLE character" << endl << endl;
             return false;
     }
 }
 
+// checks to see if the user enters a single key and only a key 
+// pre: rest of input is a string of characters following the first key entered
+// post: returns false if the user enters characters other than the newline after key
+// usage: isValidKey(extraCharacters); 
 bool isValidKey(string restOfInput)
 {
 	if (restOfInput.length() > 1)
+	{
+		cout << endl << "ERROR: Uh-oh, looks like there is some extra text after that abbreviation.\nPlease enter a single texting abbreviation only." << endl << endl;
 		return false;
+	}
 	return true;
 }
 
+// prints out a header based on the option the user selects
+// pre: option is a valid option
+// post: header is printed to the screen. Example: 
+//       SELECTED OPTION: Find Item
+// usage: printOptionHeader(userOption);
 void printOptionHeader(char option)
 {
 	cout << "SELECTED OPTION: ";
@@ -150,6 +278,10 @@ void printOptionHeader(char option)
 	}
 }
 
+// executes option selected by the user 
+// pre: option is a valid option and a dictionary is a binarysearchtree object
+// post: executes the option selected by the user
+// usage: executeOption(userOption, myDictionary);
 void executeOption(char option, BinarySearchTree& aDictionary)
 {
     printOptionHeader(option);
@@ -185,6 +317,11 @@ void executeOption(char option, BinarySearchTree& aDictionary)
     }
 }
 
+// loads the dictionary into the program
+// pre: BinarySearchTree aDictionary object exists
+// post: loads items from dictionary.dat into binarysearchtree object aDictionary 
+//       creating a balanced binarysearchtree
+// usage: loadDictionary(aDictionary);
 void loadDictionary(BinarySearchTree& aDictionary)
 {
     ifstream inputFile;
@@ -194,12 +331,18 @@ void loadDictionary(BinarySearchTree& aDictionary)
     inputFile.close();
 }
 
+// walks user through the delete process for the delete item option 
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: deletes item specified by user and restricts user items that are leaves and items with 
+// one child
+// usage: deleteItem(aDictionary);
 void deleteItem(BinarySearchTree& aDictionary)
 {
 	Key delItem;
 	string restOfInput;
 
 	cout << endl << "What texting abbreviation would you like to delete?" << endl;
+	cout << "NOTE: You can only delete an item that has 0 or 1 child" << endl;
 	cout << "Type a single abbreviation and press Enter" << endl;
 	cout << "     EXAMPLE-> lol\n" << endl;
 
@@ -218,6 +361,11 @@ void deleteItem(BinarySearchTree& aDictionary)
 	}
 }
 
+// allows user to search for an item in the dictionary
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: outputs the texting abbreviation and meaning if found in the dictionary else 
+//       outputs not found
+// usage: findItem(aDictionary);
 void findItem(BinarySearchTree& aDictionary)
 {
 	Item anItem;
@@ -244,6 +392,10 @@ void findItem(BinarySearchTree& aDictionary)
 		cout << aKey << " was not found in the dictionary" << endl;
 }
 
+// allows user to insert an item continaing a texting abbreviation and its meaning
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: the item specified by user is inserted into the dictionary else throws an exception
+// usage: insertItem(aDictionary);
 void insertItem(BinarySearchTree& aDictionary)
 {
 	string restOfInput;	
@@ -264,11 +416,19 @@ void insertItem(BinarySearchTree& aDictionary)
 	}
 }
 
+// lists the items in the dictionary in alphabetical order
+// pre: aDictionary is a BinaryTree object that is equal to the dictionary binarysearchtree 
+// post: items in a dictionary are printed using BinaryTree's inorderTraverse
+// usage: listItems(myDictionary);
 void listItems(BinaryTree aDictionary)
 {
 	aDictionary.inorderTraverse();
 }
 
+// prints the structure of the binarysearchtree in pretty fashion
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: items in the dictionary are printed and structure is shown
+// usage: printDictionary(aDictionary);
 void printDictionary(BinarySearchTree& aDictionary)
 {
 	cout << endl;
@@ -276,6 +436,10 @@ void printDictionary(BinarySearchTree& aDictionary)
 	cout << endl;
 }
 
+// rebalances the binarysearchtree
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: items in the dictionary are rebalanced
+// usage: rebalanceTree(aDictionary);
 void rebalanceTree(BinarySearchTree& aDictionary)
 {
 	ifstream inputFile;
@@ -292,6 +456,10 @@ void rebalanceTree(BinarySearchTree& aDictionary)
 	inputFile.close();
 }
 
+// saves the dictionary to a file
+// pre: aDictionary exists and is a BinarySearchTree object
+// post: dictionary is saved to a file
+// usage: saveToFile(aDictionary);
 void saveToFile(BinarySearchTree& aDictionary)
 {
 	ofstream outputFile;

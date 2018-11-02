@@ -6,17 +6,26 @@
 // Specification of ADT Dictionary as ADT Binary Search Tree
 //     
 // data object: a linked binarytree with each node containing items with texting 
-//                  abbreviations and their meanings 
+//                  abbreviations, their meanings, and their children  
+
 /* operations: This is the implementation of the binarysearchtree class. 
 //             This file contains the headers and bodies of the binarysearchtree
 //             class. The constructor for this file is used to create a new dictionary. 	
                This file contains recursive helper functions used for each method. searchHelper
 			   is used for searching for a specific testing abbreviation which returns true if 
 			   the target texting abbreviation is found within the tree. searchHelper is called by 
-			   the method searchForMeaning which is used to search for a meaning. The addHelper function
-			   is used to add an item to the binarysearchtree. addHelper is called by by the method addNewEntry, which
-			   is used to add an item to the dictionary. rebalanceTreeHelper is used to reblance the tree. rebalanceTreeHelper 
-			   is called by the method rebalanceTree, which is used to rebalance the tree. The inorderTraverseHelper is used for 
+			   the method searchForMeaning which is used to search for a meaning. The addHelper 
+			   functionis used to add an item to the binarysearchtree. addHelper is called by by 
+			   the method addNewEntry, which is used to add an item to the dictionary. rebalanceTreeHelper 
+			   is used to reblance the tree. rebalanceTreeHelper is called by the method rebalanceTree, 
+			   which is used to rebalance the tree. The inorderTraverseHelper is used to list the 
+			   binarysearchtree in order alphabetically. inorderTraverseHelper helper is called by the 
+			   method inorderTraverse, which is used to output the items in the dictionary in alphabetical 
+			   order. The deleteHelper function is used for deleting a node in the binarysearchtree. 
+			   deleteHelper is called by the method deleteEntry, which is used to delete an entry in the 
+			   binarysearchtree. 
+			   
+			   
 			   
 */   
 // filename binarysearchtree.cpp
@@ -65,7 +74,7 @@ void addHelper(TreeNode*& treep, const Item& newItem, int& number) throw (Except
     {
         if (newItem == treep->item)
         {
-            throw Exception("already in tree");
+            throw Exception("ERROR: Oops, looks like that item is already in the tree.");
         } else if (newItem < treep->item) {
             addHelper(treep->leftChild, newItem, number);
         } else {
@@ -74,7 +83,7 @@ void addHelper(TreeNode*& treep, const Item& newItem, int& number) throw (Except
     } else {
         treep = new (nothrow) TreeNode(newItem, nullptr, nullptr);
         if (treep == nullptr)
-            throw Exception("not enough memory");
+            throw Exception("ERROR: Oops, looks like there is no more room for this item. Your dictionary is full.");
 		else
 			number++;
     }
@@ -99,6 +108,23 @@ void rebalanceTreeHelper(TreeNode*& treep, istream& input, int number)
 	
 }
 
+//Releases memory for a binary tree
+//pre: treep points to the root of a binary tree
+//post: releases all of the nodes in the tree pointed to by treep
+//    and leaves treep empty.
+//usage: destroyTree (mroot);
+void destroyBinaryTree (TreeNode*& treep)
+{
+   if (treep != nullptr)
+   {
+      destroyBinaryTree(treep -> leftChild);
+      destroyBinaryTree(treep -> rightChild);
+      delete treep;
+      treep = nullptr;
+   }
+
+}
+
 // lists the tree in alphabetical order (a-z)
 // pre: TreeNode pointer is assigned a pointer to a root node of a binary search tree
 // post: Tree is listed in alphabetical order
@@ -114,16 +140,11 @@ void inorderTraverseHelper(TreeNode* treep, ostream& output)
 	}
 }
 
-void findSuccessor(TreeNode*& treep, TreeNode*& successor)
-{	
-	if (treep -> leftChild == nullptr)
-	{
-		successor = treep;
-	} else {
-		findSuccessor(treep -> leftChild, successor);
-	}
-}
-
+// delete a node in the tree  
+// pre: TreeNode pointer is assigned a pointer to a root node of a binary search tree 
+// post: if targetText is found delete its node and sets it to nullptr
+//       and if targetText is not found within the tree throw an excepetion saying targetText is not found
+// usage: deleteHelper(TreeNodePtr, targetText, numberOfEntries);
 void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) throw (Exception)
 {
 	if (treep != nullptr)
@@ -152,19 +173,12 @@ void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) t
 				delete deletePtr;
 				numberOfItems--;
 			}
-			/*
+			
 			else 
 			{
-				TreeNode* deletePtr;
-				TreeNode* successorPtr;
-				findSuccessor(treep -> rightChild, deletePtr);
-				treep -> item = deletePtr -> item;
-				successorPtr = deletePtr;
-				deletePtr = deletePtr -> rightChild;
-				delete successorPtr;
-				successorPtr = nullptr;
+				throw Exception ("ERROR: Oops, two-child deletion is not yet supported. Sorry!");
 			}
-			*/
+			
 		}
 		else if (targetText < treep -> item)
 		{
@@ -177,7 +191,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) t
 	}
 	else
 	{
-		throw Exception("Not in the tree");
+		throw Exception("ERROR: Oops, we couldn't find that item in the dictionary.");
 	}
 }	
 
@@ -253,6 +267,7 @@ void BinarySearchTree::rebalanceTree(istream& input)
 {
     int num;
 
+	destroyBinaryTree(root);
     input >> num;
     rebalanceTreeHelper(root, input, num);
 	
