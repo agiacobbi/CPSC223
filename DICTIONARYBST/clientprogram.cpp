@@ -9,6 +9,7 @@ void printMenu();
 char getOption();
 bool isValidOption(char input, string restOfInput);
 bool isValidKey(string restOfInput);
+void printOptionHeader(char option);
 void executeOption(char option, BinarySearchTree& aDictionary);
 void loadDictionary(BinarySearchTree& aDictionary);
 void deleteItem(BinarySearchTree& aDictionary);
@@ -118,8 +119,41 @@ bool isValidKey(string restOfInput)
 	return true;
 }
 
+void printOptionHeader(char option)
+{
+	cout << "SELECTED OPTION: ";
+	switch (option)
+	{
+		case 'd':
+			cout << "Delete Entry" << endl << endl;
+			break;
+		case 'f':
+			cout << "Find Item" << endl << endl;
+			break;
+		case 'l':
+			cout << "List Items" << endl << endl;
+			break;
+		case 'p':
+			cout << "Print Tree" << endl << endl;
+			break;
+		case 'r':
+			cout << "Rebalance Tree" << endl << endl;
+			break;
+		case 's':
+			cout << "Save Tree" << endl << endl;
+			break;
+		case 'e':
+			cout << "Exit" << endl << endl;
+			break;
+		default:
+			break;
+	}
+}
+
 void executeOption(char option, BinarySearchTree& aDictionary)
 {
+    printOptionHeader(option);
+
     switch (option)
     {
 		case 'd':
@@ -163,9 +197,25 @@ void loadDictionary(BinarySearchTree& aDictionary)
 void deleteItem(BinarySearchTree& aDictionary)
 {
 	Key delItem;
+	string restOfInput;
+
+	cout << endl << "What texting abbreviation would you like to delete?" << endl;
+	cout << "Type a single abbreviation and press Enter" << endl;
+	cout << "     EXAMPLE-> lol\n" << endl;
+
+	do {
 	cout << "Enter an item to delete > ";
 	cin >> delItem;
-	aDictionary.deleteEntry(delItem);
+	getline(cin, restOfInput);
+	} while (!isValidKey(restOfInput));
+
+	cout << endl << "Deleting " << delItem << "..."  << endl;
+
+	try {
+		aDictionary.deleteEntry(delItem);
+	} catch (Exception e) {
+		cout << endl << e.what() << endl << endl;
+	}
 }
 
 void findItem(BinarySearchTree& aDictionary)
@@ -176,7 +226,7 @@ void findItem(BinarySearchTree& aDictionary)
 	string restOfInput;
 	
 	cout << endl << "What texting abbreviation would you like to search for?" << endl;
-	cout << "Enter a single abbreviation and press Enter" << endl;
+	cout << "Type a single abbreviation and press Enter" << endl;
 	cout << "     EXAMPLE-> lol\n" << endl;
 	
 	do {
@@ -201,7 +251,7 @@ void insertItem(BinarySearchTree& aDictionary)
 	
 	cout << "What item would you like to add to the dictionary" << endl;
 	
-	cout << "Enter your item as a texting abbreviation followed by a space, followed by its meaning. When you are finished, press Enter" << endl;
+	cout << "Type an abbreviation, followed by a space, followed by its meaning. When you are finished, press Enter" << endl;
 	cout << "     EXAMPLE-> lol laugh out loud\n" << endl; 
 	cout << "Enter an item to add > ";
 	cin >> anItem;

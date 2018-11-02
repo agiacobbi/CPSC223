@@ -16,7 +16,7 @@
 			   the method searchForMeaning which is used to search for a meaning. The addHelper function
 			   is used to add an item to the binarysearchtree. addHelper is called by by the method addNewEntry, which
 			   is used to add an item to the dictionary. rebalanceTreeHelper is used to reblance the tree. rebalanceTreeHelper 
-			   is called by the method rebalanceTree, which is used to rebalance the tree. the  
+			   is called by the method rebalanceTree, which is used to rebalance the tree. The inorderTraverseHelper is used for 
 			   
 */   
 // filename binarysearchtree.cpp
@@ -130,7 +130,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) t
 	{
 		if (targetText == treep -> item)
 		{
-			if (treep -> leftChild == nullptr && treep -> rightChild == nullptr)
+			if (treep -> leftChild ==  nullptr && treep -> rightChild == nullptr)
 			{
 				delete treep;
 				treep = nullptr;
@@ -177,7 +177,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) t
 	}
 	else
 	{
-		throw ("Not in the tree");
+		throw Exception("Not in the tree");
 	}
 }	
 
