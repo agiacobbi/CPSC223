@@ -6,23 +6,44 @@
 #include <iostream>
 using namespace std;
 
+//tests searchForMeaning function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post searches for key 'lol' and printss found if found
+//     else prints not found
 void testSearchForMeaning(BinarySearchTree& aTree);
+
+//tests addNewEntry function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post gets item from user to add and inserts it into the search tree
 void testAddNewEntry(BinarySearchTree& aTree);
+
+//tests rebalanceTree function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post writes items in tree using BinarySearchTree's inorderTraverse
+//     reads items from file and inserts into a balanced BinarySearchTree
 void testRebalanceTree(BinarySearchTree& aTree);
-void testInputOperator(BinarySearchTree& aTree);
+
+//tests inorderTraverse function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post writes items in tree to an output file 'testfile.dat' using 
+//     BinarySearchTree's inorder traverse
 void testInorderTraverse(BinarySearchTree& aTree);
 
 int main()
 {
 	BinarySearchTree myBinarySearchTree;
 	
-	testInputOperator(myBinarySearchTree);
+	testRebalanceTree(myBinarySearchTree);
 	testSearchForMeaning(myBinarySearchTree);
 	testAddNewEntry(myBinarySearchTree);
 	testInorderTraverse(myBinarySearchTree);
 	testRebalanceTree(myBinarySearchTree);	
 }
 
+//tests searchForMeaning function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post searches for key 'lol' and printss found if found
+//     else prints not found
 void testSearchForMeaning(BinarySearchTree& aTree)
 {
 	Item anItem;
@@ -38,6 +59,9 @@ void testSearchForMeaning(BinarySearchTree& aTree)
 		cout << "Not found" << endl;
 }
 
+//tests addNewEntry function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post gets item from user to add and inserts it into the search tree
 void testAddNewEntry(BinarySearchTree& aTree)
 {
 	Item anItem;
@@ -54,6 +78,10 @@ void testAddNewEntry(BinarySearchTree& aTree)
 	}
 }
 
+//tests rebalanceTree function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post writes items in tree using BinarySearchTree's inorderTraverse
+//     reads items from file and inserts into a balanced BinarySearchTree
 void testRebalanceTree(BinarySearchTree& aTree)
 {
 	ifstream inputFile;
@@ -62,24 +90,15 @@ void testRebalanceTree(BinarySearchTree& aTree)
 
 	cout << "----- Testing rebalance function and printing balanced tree -----" << endl;
 	aTree.rebalanceTree(inputFile);
-	cout << aTree << endl;
+	aTree.prettyDisplay();
 
 	inputFile.close();
 }
 
-void testInputOperator(BinarySearchTree& aTree)
-{
-	ifstream inputFile;
-
-	inputFile.open("dictionary.dat");
-
-	cout << "----- Testing the input operator and printing the tree -----" << endl;
-	inputFile >> aTree;
-	cout << aTree << endl;
-
-	inputFile.close();
-}
-
+//tests inorderTraverse function of binary search tree
+//pre aTree is a BinarySearchTree object
+//post writes items in tree to an output file 'testfile.dat' using 
+//     BinarySearchTree's inorder traverse
 void testInorderTraverse(BinarySearchTree& aTree)
 {
 	ofstream outputFile;

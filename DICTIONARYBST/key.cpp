@@ -1,10 +1,11 @@
-//filename key.cpp
-//author  Dr. Y
-//date September 7, 2018
-//Implementation of Abstract Data Type Key
+//file key.cpp
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 11/1/18
+//implementation file for key.cpp
 //
-//   data object: a key which is a texting abbreviation
-//   operations: create, destroy, copy, 
+//    data object: a key which is a texting abbreviation
+//    operations: create, destroy, copy, 
 //               input, output, assign
 //               check if same, check if less than, 
 //               convert to an integer

@@ -1,9 +1,11 @@
-// filename item.cpp
-// date October 30, 2018
-// Implementation of Abstract Data Type Item
-//
-//   data object: an item which is a texting meaning associated with a texting abbreviation
-//   operations: create, destroy, copy, 
+//file item.cpp
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 11/1/18
+//implementation file for item.cpp
+
+//    data object: an item which is a texting meaning associated with a texting abbreviation
+//    operations: create, destroy, copy, 
 //               input, output, assign
 
 #include "item.h"

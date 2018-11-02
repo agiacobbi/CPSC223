@@ -1,4 +1,4 @@
-// Implementation of ADT TreeNode
+//Implementation of ADT TreeNode
 //file treenode.cpp
 //author Dr. Y
 //date October 17, 2018

@@ -1,7 +1,9 @@
 //file exception.h
-//author Dr Y
-//date October 8, 2018
-// Specification for ADT Exception Message
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 11/1/18
+//specification file for exception.cpp
+
 //    data object: a message explaining an exception
 //    operations: constructor, what
 

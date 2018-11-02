@@ -1,10 +1,12 @@
-// Specification of ADT Item wherex
-//     an Item is-a Key  (technical computer science)
-//     class Item is a derived or child class of class Key
+//file item.h
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 11/1/18
+//specification file for item.cpp
 
-//     data object: a meaning of a texting abbreviation
-//     operations: create, destroy, copy create, copy
-//                 input, output
+//    data object: an item which is a texting meaning associated with a texting abbreviation
+//    operations: create, destroy, copy, 
+//               input, output, assign
 
 #ifndef ITEM_H
 #define ITEM_H

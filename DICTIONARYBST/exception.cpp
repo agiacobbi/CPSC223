@@ -1,15 +1,11 @@
-// Implementation of ADT Exception
+//file exception.cpp
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 11/1/18
+//implementation file for exception.cpp
+
 //    data object: a message explaining an exception
 //    operations: constructor, what
-
-//file exception.cpp
-//author Dr Y
-//date Feb 8, 2011
-
-//Implementation of ADT Exception message
-//    data object: a message explaining an exception
-//    data structure: whatever the string class uses
-//    operations: create and What
 
 #include "exception.h"
 

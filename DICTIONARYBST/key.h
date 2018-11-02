@@ -1,10 +1,11 @@
-//filename key.h
-//author  Dr. Y
-//date September 7, 2018
-//Specification of Abstract Data Type Key
+//file key.h
+//Alex Giacobbi and Jalen Tacsiat
+//agiacobbi
+//date: 11/1/18
+//specification file for key.cpp
 //
-//   data object: a key which is a texting abbreviation
-//   operations: create, destroy, copy, 
+//    data object: a key which is a texting abbreviation
+//    operations: create, destroy, copy, 
 //               input, output, assign
 //               check if same, check if less than, 
 //               convert to an integer
