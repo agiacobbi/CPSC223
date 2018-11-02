@@ -79,8 +79,16 @@ void addNewEntry(const Item& newItem) throw (Exception);
 // usage: myDictionary.deleteEntry(myText);
 void deleteEntry(const Key& targetText) throw (Exception);
 
+// puts the items in the dictionary in alphabetical order
+// pre: Tree exists with items in it 
+// post: Items of tree are listed in order 
+// usage: myBinarySearchTree.inorderTraverse(outputFile)
 void inorderTraverse(ostream& output);
 
+// rebalances the tree 
+// pre: tree exists
+// post: tree is rebalanced 
+// usage: myBinarySearchTree.rebalanceTree(inputFile)
 void rebalanceTree(istream& input);
 
 

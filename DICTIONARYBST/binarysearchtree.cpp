@@ -1,12 +1,26 @@
+// binarysearchtree.cpp
+// Alex Giacobbi and Jalen Tacsiat
+// agiacobbi
+// date: 11/1/18
+// implementation file for binarysearchtree.cpp
 // Specification of ADT Dictionary as ADT Binary Search Tree
-//     data object: a bunch of texting abbreviations and their meanings 
-//     operations: create, destroy
-//                 search the dictionary for an item given its text
-//                 insert a new item into the dictionary
-//                 remove an item from the dictionary given its text
-//   associated operations: input and output
-// filename binarysearchtree.h
-// date October 24, 2018
+//     
+// data object: a linked binarytree with each node containing items with texting 
+//                  abbreviations and their meanings 
+/* operations: This is the implementation of the binarysearchtree class. 
+//             This file contains the headers and bodies of the binarysearchtree
+//             class. The constructor for this file is used to create a new dictionary. 	
+               This file contains recursive helper functions used for each method. searchHelper
+			   is used for searching for a specific testing abbreviation which returns true if 
+			   the target texting abbreviation is found within the tree. searchHelper is called by 
+			   the method searchForMeaning which is used to search for a meaning. The addHelper function
+			   is used to add an item to the binarysearchtree. addHelper is called by by the method addNewEntry, which
+			   is used to add an item to the dictionary. rebalanceTreeHelper is used to reblance the tree. rebalanceTreeHelper 
+			   is called by the method rebalanceTree, which is used to rebalance the tree. the  
+			   
+*/   
+// filename binarysearchtree.cpp
+// 
 
 
 #include "binarysearchtree.h"
@@ -38,6 +52,13 @@ bool searchHelper(TreeNode* treep, const Key& targetText, Item& anItem)
    }
 }
 
+
+// adds an Item containing a texting abbreviation and its meaning to the binarysearchtree
+// pre: treep is assigned a pointer to a root node of a binary search tree
+//      and newItem is not in treep 
+// post: if newItem is not found in tree a new TreeNode is created containing the newItem
+//       
+// usage: addHelper(root, newItem, numberOfEntries);
 void addHelper(TreeNode*& treep, const Item& newItem, int& number) throw (Exception)
 {
     if (treep != nullptr)
@@ -59,6 +80,10 @@ void addHelper(TreeNode*& treep, const Item& newItem, int& number) throw (Except
     }
 }
 
+// rebalances the tree 
+// pre: number of items in the tree is greater than 0
+// post: tree is rebalanced 
+// usage: rebalanceTreeHelper(TreePtr, inputfile, numberOfItems)
 void rebalanceTreeHelper(TreeNode*& treep, istream& input, int number)
 {
 	Item anItem;
@@ -74,6 +99,10 @@ void rebalanceTreeHelper(TreeNode*& treep, istream& input, int number)
 	
 }
 
+// lists the tree in alphabetical order (a-z)
+// pre: TreeNode pointer is assigned a pointer to a root node of a binary search tree
+// post: Tree is listed in alphabetical order
+// usage: inorderTraverseHelper(TreePtr, outputFile)
 void inorderTraverseHelper(TreeNode* treep, ostream& output)
 {
 	if (treep != nullptr)
@@ -95,16 +124,17 @@ void findSuccessor(TreeNode*& treep, TreeNode*& successor)
 	}
 }
 
-void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
+void deleteHelper(TreeNode*& treep, const Key& targetText, int& numberOfItems) throw (Exception)
 {
 	if (treep != nullptr)
 	{
 		if (targetText == treep -> item)
 		{
-			if (treep -> leftChild ==  nullptr && treep -> rightChild != nullptr)
+			if (treep -> leftChild == nullptr && treep -> rightChild == nullptr)
 			{
 				delete treep;
 				treep = nullptr;
+				numberOfItems--;
 			}
 			else if (treep -> leftChild != nullptr && treep -> rightChild == nullptr)
 			{
@@ -112,6 +142,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 				treep = treep -> leftChild;
 				deletePtr -> leftChild = nullptr;
 				delete deletePtr;
+				numberOfItems--;
 			}
 			else if (treep -> leftChild == nullptr && treep -> rightChild != nullptr)
 			{
@@ -119,6 +150,7 @@ void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 				treep = treep -> rightChild;
 				deletePtr -> rightChild = nullptr;
 				delete deletePtr;
+				numberOfItems--;
 			}
 			/*
 			else 
@@ -136,11 +168,11 @@ void deleteHelper(TreeNode*& treep, const Key& targetText) throw (Exception)
 		}
 		else if (targetText < treep -> item)
 		{
-			return deleteHelper(treep -> leftChild, targetText);
+			return deleteHelper(treep -> leftChild, targetText, numberOfItems);
 		}
 		else 
 		{
-			return deleteHelper(treep -> rightChild, targetText);
+			return deleteHelper(treep -> rightChild, targetText, numberOfItems);
 		}
 	}
 	else
@@ -167,12 +199,12 @@ BinarySearchTree::~BinarySearchTree()
 	
 }
 
-// searchs for a meaning with a given text
-// pre targetText has been assigned a value not already in the hash table
-// post if an item with texting abbreviationthe same as targetText is found then
-//          isFound is true and theItem is that item
-//       else isFound is false
-// usage  myDictionary.searchForMeaning(targetText, anItem, isFound);
+// searches for a meaning with a given text
+// pre: targetText has been assigned a value not already in the hash table
+// post: if an item's texting abbreviation is the same as the targetText 
+//          isFound is true and theItem is the targetText item
+//      
+// usage: myDictionary.searchForMeaning(targetText, anItem, isFound);
 void BinarySearchTree::searchForMeaning(const Key& targetText, Item& anItem, bool& isFound)
 {
 	isFound = searchHelper(root, targetText, anItem);
@@ -200,15 +232,23 @@ void BinarySearchTree::addNewEntry(const Item& newItem) throw (Exception)
 // usage: myDictionary.deleteEntry(myText, isEmpty, isFound);
 void BinarySearchTree::deleteEntry(const Key& targetText) throw (Exception)
 {
-	deleteHelper(root, targetText);
+	deleteHelper(root, targetText, numberOfEntries);
 }
 
+// puts the items in the dictionary in alphabetical order
+// pre: Tree exists with items in it 
+// post: Items of tree are listed in order 
+// usage: myBinarySearchTree.inorderTraverse(outputFile)
 void BinarySearchTree::inorderTraverse(ostream& output)
 {
 	output << numberOfEntries << endl; 
 	inorderTraverseHelper(root, output);
 }
 
+// rebalances the tree 
+// pre: tree exists
+// post: tree is rebalanced 
+// usage: myBinarySearchTree.rebalanceTree(inputFile)
 void BinarySearchTree::rebalanceTree(istream& input)
 {
     int num;
