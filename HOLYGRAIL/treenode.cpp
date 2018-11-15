@@ -28,9 +28,10 @@ TreeNode::TreeNode()
 //creates a treenode
 //post: item, leftChild, and rightChild are assigned
 //usage: TreeNode myTree(anItem, treeLeft, treeRight);
-TreeNode::TreeNode(const Item& newItem, TreeNode* theLeft, TreeNode* theRight)
+TreeNode::TreeNode(const Item& newItem, int nodeBalance, TreeNode* theLeft, TreeNode* theRight)
 {
    item = newItem;
+   balance = nodeBalance;
    leftChild = theLeft;
    rightChild = theRight;
 }

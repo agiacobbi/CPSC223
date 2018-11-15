@@ -1,12 +1,18 @@
 // file: avltree.h
 
+#ifndef AVLTREE_H
+#define AVLTREE_H
+
+#include "binarysearchtree.h"
+
 class AVLTree: public BinarySearchTree
 {
-    public:
+public:
 
-    AVLTree();
+AVLTree();
 
-    ~AVLTree();
+~AVLTree();
 
-    void addNewEntry(const Item& newItem) throw (Exception);
+void addNewEntry(const Item& newItem) throw (Exception);
 };
+#endif

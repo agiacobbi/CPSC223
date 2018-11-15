@@ -66,7 +66,7 @@ void destroyTree (TreeNode*& treep)
 
 }
 
-// recursive helper for prettyDisplay. You do the doc
+//recursive helper for prettyDisplay. You do the doc
 //Pre: treep points to the root of the binaryTree
 //Post: Displays the contents of the binary tree
 //Usage: writePretty(root, int)
