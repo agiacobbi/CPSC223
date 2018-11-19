@@ -7,9 +7,11 @@
 //    data object: a binary tree which is in the form of empty or 
 //                 consists of a root with left and right trees 
 //                 that are binary trees
+//
 //    data structure: a linked binary tree which each node containing 
 //                    texting abbreviations and their meanings and pointers 
 //                    to left and right child nodes. 
+//
 //    operations:  The traversal functions preorderTraverse, inorderTraverse, 
 //                 and postorderTraverse use a recursive helper function to display 
 //                 items in the tree. There are two constructors. The first 

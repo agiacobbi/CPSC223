@@ -10,7 +10,7 @@ struct SearchPath
     int size;
     int pivotIndex;
     SearchPath();
-}
+};
 
 SearchPath::SearchPath()
 {
@@ -30,7 +30,7 @@ void writePrettyWithBalances(TreeNode* treep, int level)
 {
     if (treep != nullptr)
 	{
-		writePretty(treep -> rightChild, level += 1);
+		writePrettyWithBalances(treep -> rightChild, level += 1);
 			if (treep -> rightChild != nullptr)
 			{
 				for (int j = 0; j <= level; j++)
@@ -51,7 +51,7 @@ void writePrettyWithBalances(TreeNode* treep, int level)
             for (int i = 0; i <= level; i++)
                 cout << '\t';
             cout << "\\" << endl;
-			writePretty(treep -> leftChild, level);
+			writePrettyWithBalances(treep -> leftChild, level);
 		}
 	}
 }
@@ -159,7 +159,7 @@ bool isSingleRotateRight(const SearchPath& search)
 bool isSingleRotateLeft(const SearchPath& search)
 {
 	return ((search.path[search.pivotIndex]->rightChild == search.path[search.pivotIndex + 1]) && 
-            (search.path[search.pivotIndex]->rightChild->rightChild == search.path[search.pivotIndex + 2]))
+            (search.path[search.pivotIndex]->rightChild->rightChild == search.path[search.pivotIndex + 2]));
 }
 
 // goes to the pivot and checks to see if the avl tree goes left then right 
@@ -169,8 +169,23 @@ bool isSingleRotateLeft(const SearchPath& search)
 bool isDoubleRotateLeftRight(const SearchPath& search)
 {
 	return (search.path[search.pivotIndex] -> leftChild == search.path[search.pivotIndex + 1]) &&
-	       (search.path[search.pivotIndex + 1] -> rightChild == search.path[search.pivotIndex + 2])
+	       (search.path[search.pivotIndex + 1] -> rightChild == search.path[search.pivotIndex + 2]);
 }
+
+/*void doSingleLeftRotation(const SearchPath& search)
+{
+	TreeNode* treePrevious;
+	TreeNode* treePivot;
+	tempPrevious = search[search.pivotIndex - 1];
+	treePrevious = search[search.pivotIndex];
+	
+}*/
+
+void dosSingleRightRotation(const SearchPath& search)
+{
+	
+}
+
 
 // ---------------  MEMBER FUNCTIONS  ---------------
 AVLTree::AVLTree()
@@ -186,15 +201,27 @@ AVLTree::~AVLTree()
 void AVLTree::addNewEntry(const Item& newItem) throw (Exception)
 {
     SearchPath search;
-
-    addNewEntryAndMakeSearchPath(root, newItem, search);
+	
+    addnewEntryAndMakeSearchPath(newItem, root, search);
     if (hasNoPivot(search))
+	{
+		cout << newItem << endl;
         fixBalances(search, 0);
+	}
     else if (isAddedToShortSide(search))
-        fixBalances(search, search.pivotIndex)
-    else if (isSingleRotateleft(search))
+	{
+        fixBalances(search, search.pivotIndex);
+		cout << "added to shortside" << endl;
+	}
+    /*else if (isSingleRotateLeft(search))
+	{
         //do singleLeftRotation
+	}
     else if (isSingleRotateRight(search))
+	{
         //do singleRightRotation
-    else if (
+	}
+    else if ()
+	{
+	}*/
 }

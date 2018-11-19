@@ -32,7 +32,7 @@ TreeNode();
 //creates a treenode
 //post: item, balance, leftChild, and rightChild are assigned
 //usage: TreeNode myTree(anItem, 0, treeLeft, treeRight);
-TreeNode(const Item& newItem, int nodeBalance, TreeNode* theLeft, TreeNode* theRight);
+TreeNode(const Item& newItem, TreeNode* theLeft, TreeNode* theRight);
    
 Item item;
 int balance;

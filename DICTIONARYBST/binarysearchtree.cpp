@@ -1,16 +1,19 @@
-// binarysearchtree.cpp
+// filename: binarysearchtree.cpp
 // Alex Giacobbi and Jalen Tacsiat
 // agiacobbi
 // date: 11/1/18
 // implementation file for binarysearchtree.cpp
 // Specification of ADT Dictionary as ADT Binary Search Tree
-//     
-// data object: a linked binarytree with each node containing items with texting 
-//                  abbreviations, their meanings, and their children  
+// 
+// data object: a binarysearchtree which is in the form of empty or consists of a root 
+//              with left and right trees that are binarysearchtrees
+//    
+// data structure: a linked binarysearchtree with each node containing items with texting 
+//                 abbreviations, their meanings, and pointers to the left and right child nodes 
 
 /* operations: This is the implementation of the binarysearchtree class. 
-//             This file contains the headers and bodies of the binarysearchtree
-//             class. The constructor for this file is used to create a new dictionary. 	
+               This file contains the headers and bodies of the binarysearchtree
+               class. The constructor for this file is used to create a new dictionary. 	
                This file contains recursive helper functions used for each method. searchHelper
 			   is used for searching for a specific testing abbreviation which returns true if 
 			   the target texting abbreviation is found within the tree. searchHelper is called by 
@@ -23,13 +26,9 @@
 			   method inorderTraverse, which is used to output the items in the dictionary in alphabetical 
 			   order. The deleteHelper function is used for deleting a node in the binarysearchtree. 
 			   deleteHelper is called by the method deleteEntry, which is used to delete an entry in the 
-			   binarysearchtree. 
-			   
-			   
-			   
+			   binarysearchtree. 			   
 */   
-// filename binarysearchtree.cpp
-// 
+
 
 
 #include "binarysearchtree.h"
