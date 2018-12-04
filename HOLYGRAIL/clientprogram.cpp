@@ -240,5 +240,3 @@ void printDivide(ofstream& output)
 		output << '-';
 	output << endl;
 }
-
-

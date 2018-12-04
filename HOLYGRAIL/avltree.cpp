@@ -196,6 +196,7 @@ bool isDoubleRotateLeftRight(const SearchPath& search)
 	       (search.path[search.pivotIndex + 1] -> rightChild == search.path[search.pivotIndex + 2]);
 }
 
+<<<<<<< HEAD
 // does a single rotation to the left at the pivot point
 // pre: SearchPath and TreeNode root exists 
 // post: pivot point is rotated once to the left
@@ -296,7 +297,6 @@ void doubleRotateRightLeft(SearchPath& search, TreeNode*& root)
 	pivot -> rightChild = grandchild -> leftChild;
 	grandchild -> rightChild = child;
 	grandchild -> leftChild = pivot;
-}
 
 // ---------------  MEMBER FUNCTIONS  ---------------
 AVLTree::AVLTree()
@@ -329,15 +329,15 @@ void AVLTree::addNewEntry(const Item& newItem) throw (Exception)
 	} else if (isSingleRotateRight(search)) {
         singleRotateRight(search, root);
 		fixBalances(search, search.pivotIndex + 2);
-		search.path[search.pivotIndex] -> balance ++;
+		search.path[search.pivotIndex] -> balance++;
     } else if (isDoubleRotateLeftRight(search)) {
 		doubleRotateLeftRight(search, root);
 		fixBalances(search, search.pivotIndex + 2);
-		search.path[search.pivotIndex] -> balance ++;
+		search.path[search.pivotIndex] -> balance++;
 	} else {
 		doubleRotateRightLeft(search, root);
 		fixBalances(search, search.pivotIndex + 2);
-		search.path[search.pivotIndex] -> balance --;
+		search.path[search.pivotIndex] -> balance--;
 	}
 }
 
