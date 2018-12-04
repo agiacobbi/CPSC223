@@ -1,0 +1,1086 @@
+--------------------------------------------------------------------------------
+
+CASE OF NO PIVOT
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CASE: Empty tree
+
+Pre Tree:
+
+
+
+Adding aaa aaa...
+
+Post Tree: 
+root ->  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 1 leftChild
+
+Pre Tree:
+
+root ->  bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+root ->  bbb: -1
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 1 rightChild
+
+Pre Tree:
+
+root ->  bbb: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 1
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 left side leftChild
+
+Pre Tree:
+
+                  eee: 0
+                /
+root ->  ddd: 0
+                \
+                  bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 left side rightChild
+
+Pre Tree:
+
+                  eee: 0
+                /
+root ->  ddd: 0
+                \
+                  bbb: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          ccc: 0
+                        /
+                  bbb: 1
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 right side leftChild
+
+Pre Tree:
+
+                  fff: 0
+                /
+root ->  ddd: 0
+                \
+                  bbb: 0
+
+
+Adding eee eee...
+
+Post Tree: 
+                  fff: -1
+                        \
+                          eee: 0
+                /
+root ->  ddd: 1
+                \
+                  bbb: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 right side rightChild
+
+Pre Tree:
+
+                  fff: 0
+                /
+root ->  ddd: 0
+                \
+                  bbb: 0
+
+
+Adding ggg ggg...
+
+Post Tree: 
+                          ggg: 0
+                        /
+                  fff: 1
+                /
+root ->  ddd: 1
+                \
+                  bbb: 0
+
+--------------------------------------------------------------------------------
+
+CASE OF ADDED TO SHORT SIDE
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 1 leftChild
+
+Pre Tree:
+
+                  ccc: 0
+                /
+root ->  bbb: 1
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 0
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 1 rightChild
+
+Pre Tree:
+
+root ->  bbb: -1
+                \
+                  aaa: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 0
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 left side leftChild
+
+Pre Tree:
+
+                          ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                /
+root ->  ddd: 1
+                \
+                  bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                          ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                /
+root ->  ddd: 0
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 left side rightChild
+
+Pre Tree:
+
+                          ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                /
+root ->  ddd: 1
+                \
+                  bbb: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                          ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                /
+root ->  ddd: 0
+                \
+                          ccc: 0
+                        /
+                  bbb: 1
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 right side leftChild
+
+Pre Tree:
+
+                  hhh: 0
+                /
+root ->  fff: -1
+                \
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          bbb: 0
+
+
+Adding ggg ggg...
+
+Post Tree: 
+                  hhh: -1
+                        \
+                          ggg: 0
+                /
+root ->  fff: 0
+                \
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          bbb: 0
+
+--------------------------------------------------------------------------------
+CASE: Added to tree of height 2 right side rightChild
+
+Pre Tree:
+
+                  hhh: 0
+                /
+root ->  fff: -1
+                \
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          bbb: 0
+
+
+Adding iii iii...
+
+Post Tree: 
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  fff: 0
+                \
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          bbb: 0
+
+--------------------------------------------------------------------------------
+
+CASE OF SINGLE ROTATE LEFT
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1-3 are height 0
+
+Pre Tree:
+
+                  bbb: 0
+                /
+root ->  aaa: 1
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 0
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1-3 are height 1
+
+Pre Tree:
+
+                          ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+
+Adding hhh hhh...
+
+Post Tree: 
+                          hhh: 0
+                        /
+                  ggg: 0
+                /
+root ->  fff: 0
+                \
+                          eee: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1-3 are height 0
+
+Pre Tree:
+
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          bbb: 0
+                        /
+                  aaa: 1
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          ccc: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1-3 are height 1
+
+Pre Tree:
+
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                                  eee: 0
+                                /
+                          ddd: 0
+                                \
+                                  ccc: 0
+                        /
+                  bbb: 1
+                        \
+                          aaa: 0
+
+
+Adding fff fff...
+
+Post Tree: 
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                                  fff: 0
+                                /
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                                  ccc: 0
+                                /
+                          bbb: 0
+                                \
+                                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1-3 are height 0
+
+Pre Tree:
+
+                          ddd: 0
+                        /
+                  ccc: 1
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+
+Adding eee eee...
+
+Post Tree: 
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          ccc: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1-3 are height 1
+
+Pre Tree:
+
+                                  hhh: 0
+                                /
+                          ggg: 0
+                                \
+                                  fff: 0
+                        /
+                  eee: 1
+                        \
+                          ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+
+Adding iii iii...
+
+Post Tree: 
+                                  iii: 0
+                                /
+                          hhh: 0
+                        /
+                  ggg: 0
+                        \
+                                  fff: 0
+                                /
+                          eee: 0
+                                \
+                                  ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+
+CASE OF SINGLE ROTATE RIGHT
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1-3 are height 0
+
+Pre Tree:
+
+root ->  ccc: -1
+                \
+                  bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 0
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1-3 are height 1
+
+Pre Tree:
+
+                  ggg: 0
+                /
+root ->  fff: -1
+                \
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                          ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                /
+root ->  ddd: 0
+                \
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1-3 are height 0
+
+Pre Tree:
+
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                  ccc: -1
+                        \
+                          bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          ccc: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1-3 are height 1
+
+Pre Tree:
+
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                          fff: 0
+                        /
+                  eee: -1
+                        \
+                                  ddd: 0
+                                /
+                          ccc: 0
+                                \
+                                  bbb: 0
+
+
+Adding aaa aaa...
+
+Post Tree: 
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                                  fff: 0
+                                /
+                          eee: 0
+                                \
+                                  ddd: 0
+                        /
+                  ccc: 0
+                        \
+                          bbb: 0
+                                \
+                                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1-3 are height 0
+
+Pre Tree:
+
+                  eee: -1
+                        \
+                          ddd: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          ccc: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1-3 are height 1
+
+Pre Tree:
+
+                          iii: 0
+                        /
+                  hhh: -1
+                        \
+                                  ggg: 0
+                                /
+                          fff: 0
+                                \
+                                  eee: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+
+Adding ddd ddd...
+
+Post Tree: 
+                                  iii: 0
+                                /
+                          hhh: 0
+                                \
+                                  ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                                \
+                                  ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+
+CASE OF DOUBLE ROTATE LEFT RIGHT
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1-4 are height 0
+
+Pre Tree:
+
+root ->  ccc: -1
+                \
+                  aaa: 0
+
+
+Adding bbb bbb...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 0
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1T4 are height 1 and T2T3 are height 0
+
+Pre Tree:
+
+                  ggg: 0
+                /
+root ->  fff: -1
+                \
+                          ddd: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                          ggg: 0
+                        /
+                  fff: 0
+                /
+root ->  ddd: 0
+                \
+                          ccc: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1-4 are height 0
+
+Pre Tree:
+
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                  ccc: -1
+                        \
+                          aaa: 0
+
+
+Adding bbb bbb...
+
+Post Tree: 
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          ccc: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1T4 are height 1 and T2T3 are height 0
+
+Pre Tree:
+
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                          fff: 0
+                        /
+                  eee: -1
+                        \
+                                  ddd: 0
+                                /
+                          bbb: 0
+                                \
+                                  aaa: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                                  fff: 0
+                                /
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                                  ccc: 0
+                                /
+                          bbb: 0
+                                \
+                                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1-4 are height 0
+
+Pre Tree:
+
+                  eee: -1
+                        \
+                          ccc: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+
+Adding ddd ddd...
+
+Post Tree: 
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          ccc: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1T4 are height 1 and T2T3 are height 0
+
+Pre Tree:
+
+                          iii: 0
+                        /
+                  hhh: -1
+                        \
+                                  fff: 0
+                                /
+                          eee: 0
+                                \
+                                  ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+
+Adding ggg ggg...
+
+Post Tree: 
+                                  iii: 0
+                                /
+                          hhh: 0
+                                \
+                                  ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                                \
+                                  ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+
+CASE OF DOUBLE ROTATE RIGHT LEFT
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1-4 are height 0
+
+Pre Tree:
+
+                  ccc: 0
+                /
+root ->  aaa: 1
+
+
+Adding bbb bbb...
+
+Post Tree: 
+                  ccc: 0
+                /
+root ->  bbb: 0
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Root is pivot and T1T4 are height 1 and T2T3 are height 0
+
+Pre Tree:
+
+                          fff: 0
+                        /
+                  eee: 0
+                        \
+                          ddd: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                          fff: 0
+                        /
+                  eee: 0
+                /
+root ->  ddd: 0
+                \
+                          ccc: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1-4 are height 0
+
+Pre Tree:
+
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          ccc: 0
+                        /
+                  aaa: 1
+
+
+Adding bbb bbb...
+
+Post Tree: 
+                  eee: 0
+                /
+root ->  ddd: -1
+                \
+                          ccc: 0
+                        /
+                  bbb: 0
+                        \
+                          aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is leftChild of cloud and T1T4 are height 1 and T2T3 are height 0
+
+Pre Tree:
+
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                                  fff: 0
+                                /
+                          eee: 0
+                                \
+                                  ddd: 0
+                        /
+                  bbb: 1
+                        \
+                          aaa: 0
+
+
+Adding ccc ccc...
+
+Post Tree: 
+                          iii: 0
+                        /
+                  hhh: 1
+                /
+root ->  ggg: -1
+                \
+                                  fff: 0
+                                /
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                                  ccc: 0
+                                /
+                          bbb: 0
+                                \
+                                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1-4 are height 0
+
+Pre Tree:
+
+                          eee: 0
+                        /
+                  ccc: 1
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+
+Adding ddd ddd...
+
+Post Tree: 
+                          eee: 0
+                        /
+                  ddd: 0
+                        \
+                          ccc: 0
+                /
+root ->  bbb: 1
+                \
+                  aaa: 0
+
+--------------------------------------------------------------------------------
+CASE: Pivot is rightChild of cloud and T1T4 are height 1 and T2T3 are height 0
+
+Pre Tree:
+
+                                  iii: 0
+                                /
+                          hhh: 0
+                                \
+                                  fff: 0
+                        /
+                  eee: 1
+                        \
+                          ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+
+
+Adding ggg ggg...
+
+Post Tree: 
+                                  iii: 0
+                                /
+                          hhh: 0
+                                \
+                                  ggg: 0
+                        /
+                  fff: 0
+                        \
+                          eee: 0
+                                \
+                                  ddd: 0
+                /
+root ->  ccc: 1
+                \
+                  bbb: -1
+                        \
+                          aaa: 0
+

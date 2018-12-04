@@ -1,4 +1,25 @@
 // file: avltree.cpp
+// Alex Giacobbi and Jalen Tacsiat
+// agiacobbi
+// date: 11/20/18
+// implementation file for avltree.cpp
+// data object: an AVLTree which is in the form of empty or conists of a root with left and right trees that
+//              are AVLTrees
+// data structure: an AVLTree made of linked BinarySearchTrees and array that contains the search path of the avltree
+
+/* operations: This is the implementation file of avltree class. This file contains the headers and bodies of the avltree
+			   The addNewEntry method is used to add an Item to the AVLTree. The prettyDisplay is used to display the AVLTrees 
+			   in pretty fashion. This file contains recursive helper functions to assist with the methods addNewEntry and prettyDisplay. The first
+			   set of helper functions return booleans based on the direction of the searchPath.The helper function addNewEntryAndMakeSearchPath 
+			   is used to add an item to the avltree and create the search path for an avltree. hasNoPivot is used to check if a search path has a 
+			   pivot point. fixBalances is used to correct each node's balance and matches the definition of an avltree. isAddedToShortSide is used 
+			   to check if an item is added to the short side of the tree. isSingleRotateLeft is used to check if the searchPath goes left. isSingleRotateRight 
+			   is used to check if the search path goes right. isDoubleRotateLeftRight is used to check if a search path goes left then right. 
+			   The next set of helpers functions are used to do the rotations. singleRotateLeft is used to rotate the avltree about the pivotpoint once to the left. 
+			   singleRotateRight is used to rotate the avltree about the pivotpoint once to the right. doubleRotateLeftRight is used to rotate the avltree about the 
+			   pivotpoint to the left and to the right. doubleRotateRightLeft is used to rotate the avltree about the pivotpoint to the right and to the left. the writePrettyWithBalances
+			   helper is used to display the avltree with the amount of balances it has. 
+*/
 
 #include "avltree.h"
 
@@ -10,7 +31,7 @@ struct SearchPath
     int size;
     int pivotIndex;
     SearchPath();
-}
+};
 
 SearchPath::SearchPath()
 {
@@ -26,35 +47,36 @@ SearchPath::SearchPath()
 // Pre: treep points to the root of the binaryTree
 // Post: Displays the contents of the binary tree
 // Usage: writePretty(root, int)
-void writePrettyWithBalances(TreeNode* treep, int level)
+void writePrettyWithBalances(TreeNode* treep, int level, ostream& output)
 {
     if (treep != nullptr)
 	{
-		writePretty(treep -> rightChild, level += 1);
+		writePrettyWithBalances(treep -> rightChild, level += 1, output);
 			if (treep -> rightChild != nullptr)
 			{
 				for (int j = 0; j <= level; j++)
-				cout << '\t';
-				cout << "/" << endl;
+				output << "        ";
+				output << "/" << endl;
 			}
 		if (level == 1)
-			cout << "root ->" ;
+			output << "root ->" ;
 		else	
 		{			
 			for (int i = 0; i < level; i++)
-				cout << '\t' ;
+				output << "        " ;
 		}
 		Key text = treep -> item;
-		cout << "  " << text << ": " << treep -> balance << endl;
+		output << "  " << text << ": " << treep -> balance << endl;
 		 if (treep -> leftChild != nullptr)
         {
             for (int i = 0; i <= level; i++)
-                cout << '\t';
-            cout << "\\" << endl;
-			writePretty(treep -> leftChild, level);
+                output << "        ";
+            output << "\\" << endl;
+			writePrettyWithBalances(treep -> leftChild, level, output);
 		}
 	}
 }
+
 
 // Helper function that adds new entry to the search tree
 //		and creates a search path from root to new entry
@@ -67,7 +89,7 @@ void writePrettyWithBalances(TreeNode* treep, int level)
 //		there was no memory for new TreeNode exception
 //		is thrown.
 // Usage: addNewEntryAndMakeSearchPath(newItem, root, search);
-void addnewEntryAndMakeSearchPath(const Item& newItem, TreeNode*& treeptr, SearchPath& search) throw (Exception)
+void addNewEntryAndMakeSearchPath(const Item& newItem, TreeNode*& treeptr, SearchPath& search) throw (Exception)
 {
 	if (treeptr != nullptr)
 	{
@@ -78,9 +100,9 @@ void addnewEntryAndMakeSearchPath(const Item& newItem, TreeNode*& treeptr, Searc
 		{
 			throw Exception("That abbreviation is already in the dictionary.");
 		} else if ( newItem < treeptr -> item) {
-			addnewEntryAndMakeSearchPath(newItem, treeptr -> leftChild, search);
+			addNewEntryAndMakeSearchPath(newItem, treeptr -> leftChild, search);
 		} else {
-			addnewEntryAndMakeSearchPath(newItem, treeptr -> rightChild, search);
+			addNewEntryAndMakeSearchPath(newItem, treeptr -> rightChild, search);
 		}
 	} else {
 		treeptr = new (nothrow) TreeNode(newItem, nullptr, nullptr);
@@ -124,8 +146,10 @@ void fixBalances(const SearchPath& search, int start)
 	{
 		if (search.path[start] -> leftChild == search.path[start + 1])
 			search.path[start] -> balance--;
-		else
+		else if (search.path[start] -> rightChild == search.path[start + 1])
 			search.path[start] -> balance++;
+		else
+			search.path[start] -> balance = 0;
 		start++;
 	}
 }
@@ -133,7 +157,7 @@ void fixBalances(const SearchPath& search, int start)
 // tells whether the new item has been added to the short or tall side
 // pre: SearchPath object exists
 // post: returns true if added to the short side, false if added to the tall side
-// usage: if(isAddedToShortSide(search))
+// usage: if(isAddedToShortSide(search));
 bool isAddedToShortSide(const SearchPath& search)
 {
 	return ((search.path[search.pivotIndex] -> balance == -1 && search.path[search.pivotIndex + 1] == search.path[search.pivotIndex] -> rightChild) ||
@@ -159,7 +183,7 @@ bool isSingleRotateRight(const SearchPath& search)
 bool isSingleRotateLeft(const SearchPath& search)
 {
 	return ((search.path[search.pivotIndex]->rightChild == search.path[search.pivotIndex + 1]) && 
-            (search.path[search.pivotIndex]->rightChild->rightChild == search.path[search.pivotIndex + 2]))
+            (search.path[search.pivotIndex]->rightChild->rightChild == search.path[search.pivotIndex + 2]));
 }
 
 // goes to the pivot and checks to see if the avl tree goes left then right 
@@ -169,7 +193,109 @@ bool isSingleRotateLeft(const SearchPath& search)
 bool isDoubleRotateLeftRight(const SearchPath& search)
 {
 	return (search.path[search.pivotIndex] -> leftChild == search.path[search.pivotIndex + 1]) &&
-	       (search.path[search.pivotIndex + 1] -> rightChild == search.path[search.pivotIndex + 2])
+	       (search.path[search.pivotIndex + 1] -> rightChild == search.path[search.pivotIndex + 2]);
+}
+
+// does a single rotation to the left at the pivot point
+// pre: SearchPath and TreeNode root exists 
+// post: pivot point is rotated once to the left
+// usage: singleRotateLeft(mysearchpath, myroot);
+void singleRotateLeft(SearchPath& search, TreeNode*& root)
+{
+	TreeNode* prev = search.path[search.pivotIndex - 1];
+	TreeNode* pivot = search.path[search.pivotIndex];
+	TreeNode* child = search.path[search.pivotIndex + 1];
+	
+	if (search.pivotIndex != 0)
+	{
+		if (prev -> leftChild == pivot)
+			prev -> leftChild = child;
+		else
+			prev -> rightChild =  child;
+	}
+	else
+		root = child;
+	pivot -> rightChild = child -> leftChild;
+	child -> leftChild = pivot;
+	
+	search.size--;
+}
+
+// does a single rotation to the right at the pivot point
+// pre: SearchPath and TreeNode root exists 
+// post: pivot point is rotated once to the right
+// usage: singleRotateRight(mysearchpath, myroot);
+void singleRotateRight(SearchPath& search, TreeNode*& root)
+{
+	TreeNode* prev = search.path[search.pivotIndex - 1];
+	TreeNode* pivot = search.path[search.pivotIndex];
+	TreeNode* child = search.path[search.pivotIndex + 1];
+	
+	if (search.pivotIndex != 0)
+	{
+		if (prev -> leftChild == pivot)
+			prev -> leftChild = child;
+		else
+			prev -> rightChild =  child;
+	}
+	else
+		root = child;
+	pivot -> leftChild = child -> rightChild;
+	child -> rightChild = pivot;
+	
+	search.size--;
+}
+
+// does a double rotation to the left and right at the pivot point
+// pre: SearchPath and TreeNode root exists 
+// post: pivot point is rotated to the left and to the right
+// usage: doubleRotateLeftRight(mysearchpath, myroot);
+void doubleRotateLeftRight(SearchPath& search, TreeNode*& root)
+{
+	TreeNode* prev = search.path[search.pivotIndex - 1];
+	TreeNode* pivot = search.path[search.pivotIndex];
+	TreeNode* child = pivot -> leftChild;
+	TreeNode* grandchild = child -> rightChild;
+	
+	if (search.pivotIndex != 0)
+	{
+		if (prev -> leftChild == pivot)
+			prev -> leftChild = grandchild;
+		else
+			prev -> rightChild =  grandchild;
+	}
+	else
+		root = grandchild;
+	child -> rightChild = grandchild -> leftChild;
+	pivot -> leftChild = grandchild -> rightChild;
+	grandchild -> leftChild = child;
+	grandchild -> rightChild = pivot;
+}
+
+// does a double rotation to the right and left at the pivot point
+// pre: SearchPath and TreeNode root exists 
+// post: pivot point is rotated to the right and to the left
+// usage: doubleRotateRightLeft(mysearchpath, myroot);
+void doubleRotateRightLeft(SearchPath& search, TreeNode*& root)
+{
+	TreeNode* prev = search.path[search.pivotIndex - 1];
+	TreeNode* pivot = search.path[search.pivotIndex];
+	TreeNode* child = pivot -> rightChild;
+	TreeNode* grandchild = child -> leftChild;
+	
+	if (search.pivotIndex != 0)
+	{
+		if (prev -> leftChild == pivot)
+			prev -> leftChild = grandchild;
+		else
+			prev -> rightChild =  grandchild;
+	}
+	else
+		root = grandchild;
+	child -> leftChild = grandchild -> rightChild;
+	pivot -> rightChild = grandchild -> leftChild;
+	grandchild -> rightChild = child;
+	grandchild -> leftChild = pivot;
 }
 
 // ---------------  MEMBER FUNCTIONS  ---------------
@@ -183,18 +309,52 @@ AVLTree::~AVLTree()
 
 }
 
+// adds and item to the AVLTree
+// pre: Items Exists
+// post: Item is added into the AVLTree
+// usage: myAVLTree.addNewEntry(myItem);
 void AVLTree::addNewEntry(const Item& newItem) throw (Exception)
 {
     SearchPath search;
 
-    addNewEntryAndMakeSearchPath(root, newItem, search);
-    if (hasNoPivot(search))
+    addNewEntryAndMakeSearchPath(newItem, root, search);
+    if (hasNoPivot(search)) {
         fixBalances(search, 0);
-    else if (isAddedToShortSide(search))
-        fixBalances(search, search.pivotIndex)
-    else if (isSingleRotateleft(search))
-        //do singleLeftRotation
-    else if (isSingleRotateRight(search))
-        //do singleRightRotation
-    else if (
+    } else if (isAddedToShortSide(search)) {
+        fixBalances(search, search.pivotIndex);
+    } else if (isSingleRotateLeft(search)) {
+        singleRotateLeft(search, root);
+		fixBalances(search, search.pivotIndex + 2);
+		search.path[search.pivotIndex] -> balance--;
+	} else if (isSingleRotateRight(search)) {
+        singleRotateRight(search, root);
+		fixBalances(search, search.pivotIndex + 2);
+		search.path[search.pivotIndex] -> balance ++;
+    } else if (isDoubleRotateLeftRight(search)) {
+		doubleRotateLeftRight(search, root);
+		fixBalances(search, search.pivotIndex + 2);
+		search.path[search.pivotIndex] -> balance ++;
+	} else {
+		doubleRotateRightLeft(search, root);
+		fixBalances(search, search.pivotIndex + 2);
+		search.path[search.pivotIndex] -> balance --;
+	}
+}
+
+//prints the tree to look like a computer science tree
+//post: outputs the tree as in the example below
+//
+//                        bar
+//                  foo
+//                        geeU
+//  root ->  queue
+//                        stack
+//                  list
+//                        array
+//nodes at the same level are indented the same.
+//Viewer must rotate head 90 degrees in order to look like a cs tree
+//usage: tree.prettyDisplay();
+void AVLTree::prettyDisplay(ostream& output)
+{
+    writePrettyWithBalances(root, 0, output);
 }
