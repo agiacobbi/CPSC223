@@ -24,7 +24,7 @@ Two34TreeNode::Two34TreeNode ()
 {
 	for (int index = 0; index < 4; index++)
 	   kids[index] = nullptr;
-	
+	numberOfKeys = 0;
 }
 
 // Creates a leaf node with one item

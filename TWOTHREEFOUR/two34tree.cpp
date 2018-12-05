@@ -47,11 +47,11 @@ void inorder(ostream& output, Two34TreeNode* treep)
 	if (treep != nullptr)
 	{
 		inorder(output, treep -> kids[0]);
-		output << theTexts[0] << endl;
+		output << treep -> theTexts[0] << endl;
 		inorder(output, treep -> kids[1]);
-		output << theTexts[1] << endl;
+		output << treep -> theTexts[1] << endl;
 		inorder(output, treep -> kids[2]);
-		output << theTexts[2] << endl;
+		output << treep -> theTexts[2] << endl;
 		inorder(output, treep -> kids[3]);
 	}
 }
@@ -68,19 +68,62 @@ void pretty(ostream& output, Two34TreeNode* treep, int level)
 	if (treep != nullptr)
 	{
 		pretty(output, treep -> kids[3], level + 1);
-		for (int i = 0; i < level; i++)
-			cout << '\t' << endl;
-		cout << theTexts[2] << endl;
+		for (int i = 0; i <= level; i++)
+			output << "\t\t";
+		output << treep -> theTexts[2] << endl;
 		pretty(output, treep -> kids[2], level + 1);
-		for (int i = 0; i < level; i++)
-			cout << '\t' << endl;
-		cout << theTexts[1] << endl;
+		if (level == 0)
+			output << "root ->\t";
+		else
+			for (int i = 0; i <= level; i++)
+				output << "\t\t";
+		output << treep -> theTexts[1] << endl;
 		pretty(output, treep -> kids[1], level + 1);
-		for (int i = 0; i < level; i++)
-			cout << '\t' << endl;
-		cout << theTexts[0] << endl;
+		for (int i = 0; i <= level; i++)
+			output << "\t\t";
+		output << treep -> theTexts[0] << endl;
 		pretty(output, treep -> kids[0], level + 1);
 	}		
+}
+
+void sort(Key texts[], int number)
+{
+	Key temp;
+	
+	for (int i = number - 1; i > 0; i--) {
+		if (texts[i] < texts[i - 1]) {
+			temp = texts[i - 1];
+			texts[i - 1] = texts[i];
+			texts[i] = temp;
+		}
+	}
+}
+
+Two34TreeNode* split(Two34TreeNode* treep, Two34TreeNode* parent, Two34TreeNode*& root)
+{	
+	if (treep == root) {
+		parent = new Two34TreeNode();
+		root = parent;
+	}
+	
+	parent -> kids[parent -> numberOfKeys] = treep;
+	parent -> kids[parent -> numberOfKeys + 1] = new Two34TreeNode(treep -> theTexts[2], treep -> kids[2], treep -> kids[3]);
+	parent -> theTexts[parent -> numberOfKeys] = treep -> theTexts[1];
+	parent -> numberOfKeys++;
+	sort(parent -> theTexts, parent -> numberOfKeys);
+	treep -> cleanUpNode();
+	
+	return parent;
+}	
+
+bool isFullNode(Two34TreeNode* treep)
+{
+	return (treep -> numberOfKeys == 3);
+}
+
+bool isLeafNode(Two34TreeNode* treep)
+{
+	return (treep -> kids[0] == nullptr and treep -> kids[1] == nullptr and treep -> kids[2] == nullptr and treep -> kids[3] == nullptr);
 }
 
 // member functions or methods --------------------------------------
@@ -107,25 +150,38 @@ Two34Tree::~Two34Tree()
 // usage: tree.addNewEntry(mytext);
 void Two34Tree::addNewEntry(const Key& text)
 {
-	two34TreeNode* treep = root;
-	
-	while (kids[0] != nullptr and kids[1] != nullptr and kids[2] != nullptr and kids[3] != nullptr)
-	{
-		if (treep -> numberOfKeys == 3)
-			split(treep, root);
-		if (text < treep -> theTexts[0])
-			treep = treep -> kids[0];
-		else if (text < treep -> theTexts[1] and treep -> numberOfKeys > 1)
-			treep = treep -> kids[1];
-		else
-			treep = treep -> kids[2];
-	}
+	Two34TreeNode* treep = root;
+	Two34TreeNode* parent = nullptr;
 	
 	if (root == nullptr) {
 		root = new Two34TreeNode(text);
+	} else if (isLeafNode(root) and not isFullNode(root)) {
+		treep -> theTexts[treep -> numberOfKeys] = text;
 		treep -> numberOfKeys++;
+		sort(treep -> theTexts, treep -> numberOfKeys);
+	} else {
+		do
+		{
+			if (isFullNode(treep)) {
+				treep = split(treep, parent, root);
+			} else if (treep -> numberOfKeys == 1) {
+				parent = treep;
+				if (text < treep -> theTexts[0])
+					treep = treep -> kids[0];
+				else
+					treep = treep -> kids[1];
+			} else {
+				parent = treep;
+				if (text < treep -> theTexts[1])
+					treep = treep -> kids[1];
+				else
+					treep = treep -> kids[2];
+			}
+		} while (not isLeafNode(treep));
+		treep -> theTexts[treep -> numberOfKeys] = text;
+		treep -> numberOfKeys++;
+		sort(treep -> theTexts, treep -> numberOfKeys);
 	}
-	else (
 }
 
 // displays a tree in one of two formats
