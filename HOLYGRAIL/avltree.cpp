@@ -137,8 +137,6 @@ bool hasNoPivot(SearchPath& search)
 }
 
 // Changes the balances along the search path
-// Pre search path is on an existing AVL tree, but the balances are not correct
-// Post each node's balance is correct and fits the definition of an AVL tree
 // usage: fixBalances(search, start);
 void fixBalances(const SearchPath& search, int start)
 {
@@ -196,7 +194,6 @@ bool isDoubleRotateLeftRight(const SearchPath& search)
 	       (search.path[search.pivotIndex + 1] -> rightChild == search.path[search.pivotIndex + 2]);
 }
 
-<<<<<<< HEAD
 // does a single rotation to the left at the pivot point
 // pre: SearchPath and TreeNode root exists 
 // post: pivot point is rotated once to the left
@@ -297,15 +294,15 @@ void doubleRotateRightLeft(SearchPath& search, TreeNode*& root)
 	pivot -> rightChild = grandchild -> leftChild;
 	grandchild -> rightChild = child;
 	grandchild -> leftChild = pivot;
+}
+
 
 // ---------------  MEMBER FUNCTIONS  ---------------
-AVLTree::AVLTree()
-{
+AVLTree::AVLTree() {
     
 }
 
-AVLTree::~AVLTree()
-{
+AVLTree::~AVLTree() {
 
 }
 
